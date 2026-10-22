@@ -135,7 +135,8 @@ jobs:
             --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
             --report-url "reports/${{ github.run_id }}/index.html" --stories stories.json
           node scripts/prune-old-runs.mjs published   # retention rule from Step 4
-
+          node scripts/mask-secrets.mjs published   # fails the job before publishing if a login value is left
+          
       - name: Publish to gh-pages
         run: |
           cd published
