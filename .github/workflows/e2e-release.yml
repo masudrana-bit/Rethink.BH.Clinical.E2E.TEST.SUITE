@@ -1,0 +1,161 @@
+# Release quality dashboard pipeline (.claude/rules/release-quality-dashboard.md)
+#
+# Decisions confirmed with the team (Step 0):
+#   Ticket system:       Jira. Stories are US-1 … US-47 under RHD-57736; tests are tagged @US-<n> on their describe block.
+#   Story priority:      stories.json in the repo. Release-critical (P1) = US-10 … US-25 (session lifecycle,
+#                        data collection, closeout); everything else is Standard (P2).
+#   Release identifier:  workflow_dispatch input "release" (no git tags yet); defaults to <environment>-<date>.
+#   Verdict thresholds:  not-ready when a release-critical story is red or more than 5% of tests failed;
+#                        risks when any other story is red; flaky and skipped tests never block on their own.
+#   Hosting:             verified locally first; this workflow publishes to GitHub Pages (gh-pages branch) once
+#                        the repository has a GitHub remote and Pages is enabled.
+#
+# Environments: pick dev2, dev3 or uat when starting the run. The job uses the GitHub Environment of the same name
+# (Settings → Environments), so each one can hold its own secrets and variables; anything not set there falls back to
+# the repository-level value. The dashboard keeps a separate history per environment.
+#
+# Secrets (per environment or repository): BCBA_USERNAME, BCBA_PASSWORD (required); RBT_USERNAME/RBT_PASSWORD and
+# ADMIN_USERNAME/ADMIN_PASSWORD (optional, otherwise the BCBA login and the view toggle are used); SLACK_E2E_WEBHOOK (optional).
+# Variables (per environment, optional): BASE_URL (only to override the standard URL of the environment),
+# CLEAN_CLIENT_ID, SEEDED_CLIENT_ID, GROUP_CLIENT_ID, SEEDED_OB_PROGRAM, SEEDED_OB_TARGET, SEEDED_TA_PROGRAM,
+# SEEDED_BEHAVIOR, SEEDED_DI_BEHAVIOR, SEEDED_INTERVAL_PROGRAM, SEEDED_PEAK_PROGRAM, SEEDED_FREQUENCY_PROGRAM.
+# Blank variables use the dev2 defaults from src/config/env.ts, which will not exist on dev3 or uat.
+
+name: E2E release report
+run-name: E2E on ${{ inputs.environment }} · ${{ inputs.release || 'dated release' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to test
+        type: choice
+        options: [dev2, dev3, uat]
+        default: dev2
+      release:
+        description: Release label, for example 2026.10.21 or a build number (blank = <environment>-<date>)
+        required: false
+      kind:
+        description: Run kind (only release runs show on the dashboard by default)
+        type: choice
+        options: [release, nightly, pr]
+        default: release
+
+permissions:
+  contents: write
+
+concurrency:
+  # One run at a time across all environments: each environment allows one session per user, and every run
+  # rewrites index.json on gh-pages.
+  group: e2e-report-publish
+  cancel-in-progress: false
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    # 90 tests run one at a time (about 2.5 hours with retries).
+    timeout-minutes: 300
+    env:
+      TEST_ENV: ${{ inputs.environment }}
+      KIND: ${{ inputs.kind || 'release' }}
+      BASE_URL: ${{ vars.BASE_URL }}
+      BCBA_USERNAME: ${{ secrets.BCBA_USERNAME }}
+      BCBA_PASSWORD: ${{ secrets.BCBA_PASSWORD }}
+      RBT_USERNAME: ${{ secrets.RBT_USERNAME }}
+      RBT_PASSWORD: ${{ secrets.RBT_PASSWORD }}
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      CLEAN_CLIENT_ID: ${{ vars.CLEAN_CLIENT_ID }}
+      SEEDED_CLIENT_ID: ${{ vars.SEEDED_CLIENT_ID }}
+      GROUP_CLIENT_ID: ${{ vars.GROUP_CLIENT_ID }}
+      SEEDED_OB_PROGRAM: ${{ vars.SEEDED_OB_PROGRAM }}
+      SEEDED_OB_TARGET: ${{ vars.SEEDED_OB_TARGET }}
+      SEEDED_TA_PROGRAM: ${{ vars.SEEDED_TA_PROGRAM }}
+      SEEDED_BEHAVIOR: ${{ vars.SEEDED_BEHAVIOR }}
+      SEEDED_DI_BEHAVIOR: ${{ vars.SEEDED_DI_BEHAVIOR }}
+      SEEDED_INTERVAL_PROGRAM: ${{ vars.SEEDED_INTERVAL_PROGRAM }}
+      SEEDED_PEAK_PROGRAM: ${{ vars.SEEDED_PEAK_PROGRAM }}
+      SEEDED_FREQUENCY_PROGRAM: ${{ vars.SEEDED_FREQUENCY_PROGRAM }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Name the release
+        env:
+          INPUT_RELEASE: ${{ inputs.release }}
+        run: |
+          RELEASE="${INPUT_RELEASE:-$TEST_ENV-$(date -u +%Y.%m.%d)}"
+          echo "RELEASE=$RELEASE" >> "$GITHUB_ENV"
+          echo "BUILD_ID=$RELEASE" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      - name: Run e2e suite on ${{ inputs.environment }} (story tests only; seed and maintenance specs are excluded)
+        id: tests
+        continue-on-error: true
+        run: npx playwright test tests/stories/0 tests/stories/1 --project=stories
+        env: { CI: true }
+
+      - name: Build run summary and coverage
+        run: |
+          node scripts/build-run-summary.mjs \
+            --results test-results/results.json \
+            --out site/runs \
+            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
+            --report-url "reports/${{ github.run_id }}/index.html" \
+            --stories stories.json
+          node scripts/build-coverage.mjs --out site/coverage.json
+
+      - name: Check out published site
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: published
+        continue-on-error: true   # first run: branch does not exist yet
+
+      - name: Assemble site
+        run: |
+          mkdir -p published/runs published/reports
+          rm -rf published/.git
+          cp site/runs/*.json published/runs/
+          cp site/coverage.json published/coverage.json
+          cp dashboard/index.html published/index.html
+          [ -f stories.json ] && cp stories.json published/stories.json || true
+          rm -rf "published/reports/${{ github.run_id }}"
+          cp -r playwright-report "published/reports/${{ github.run_id }}"
+          # rebuild index.json against everything now present
+          node scripts/build-run-summary.mjs --results test-results/results.json --out published/runs \
+            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
+            --report-url "reports/${{ github.run_id }}/index.html" --stories stories.json
+          node scripts/prune-old-runs.mjs published   # retention rule from Step 4
+
+      - name: Publish to gh-pages
+        run: |
+          cd published
+          git init -q
+          git checkout -q -B gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Results for $RELEASE on $TEST_ENV (run ${{ github.run_id }})"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+
+      - name: Notify
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_E2E_WEBHOOK }}
+        run: |
+          [ -z "$SLACK_WEBHOOK" ] && exit 0
+          [ -f published/index.json ] || exit 0
+          VERDICT=$(node -e "const i=require('./published/index.json');console.log(i.runs.filter(r=>r.environmentName===process.env.TEST_ENV).at(-1).verdict)")
+          RATE=$(node -e "const t=require('./published/index.json').runs.filter(r=>r.environmentName===process.env.TEST_ENV).at(-1).totals;console.log(((t.passed-(t.knownDefects||0)+t.flaky)/t.total*100).toFixed(1))")
+          curl -s -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"E2E on $TEST_ENV for $RELEASE: *$VERDICT*, pass rate $RATE%. <https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/#$TEST_ENV/$RELEASE|Open dashboard>\"}" "$SLACK_WEBHOOK"
+
+      - name: Fail the job if tests failed
+        if: steps.tests.outcome == 'failure'
+        run: exit 1
