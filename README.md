@@ -89,9 +89,10 @@ npm run dashboard:serve    # http://localhost:8765/
 
 The published dashboard is served by GitHub Pages from the `gh-pages` branch. The workflow `.github/workflows/e2e-release.yml` ("E2E release report") runs the suite on the chosen environment and adds the results to `gh-pages`. Before it can run:
 
-1. Add the workflow file to the repository. Pushing it needs a token with the `workflow` scope.
-2. Create GitHub Environments named `dev2`, `dev3` and `uat` (Settings → Environments) with the secrets `BCBA_USERNAME` and `BCBA_PASSWORD`, and optionally `RBT_*`, `ADMIN_*` and `SLACK_E2E_WEBHOOK`.
-3. Add the test data variables (`CLEAN_CLIENT_ID`, `SEEDED_CLIENT_ID` and so on) to each environment.
-4. Start it from Actions → E2E release report → Run workflow.
+1. Create GitHub Environments named `dev2`, `dev3` and `uat` (Settings → Environments) with the secrets `BCBA_USERNAME` and `BCBA_PASSWORD`, and optionally `RBT_*`, `ADMIN_*` and `SLACK_E2E_WEBHOOK`.
+2. Add the test data variables (`CLEAN_CLIENT_ID`, `SEEDED_CLIENT_ID` and so on) to each environment.
+3. Start it from Actions → E2E release report → Run workflow.
 
-Playwright traces record what was typed into the login form. Keep the repository private, or do not publish traces, if the logins are real.
+Changing files under `.github/workflows/` needs a token with the `workflow` scope.
+
+The published HTML reports leave out Playwright traces, because traces record what was typed into the login form and `gh-pages` is public. Screenshots and videos are kept. To look at a trace, run the failing test locally and open it with `npm run report`.
