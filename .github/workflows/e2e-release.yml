@@ -127,6 +127,9 @@ jobs:
           [ -f stories.json ] && cp stories.json published/stories.json || true
           rm -rf "published/reports/${{ github.run_id }}"
           cp -r playwright-report "published/reports/${{ github.run_id }}"
+          # gh-pages is public and traces record what was typed into the login form, so publish the report without them.
+          rm -rf "published/reports/${{ github.run_id }}/trace"
+          find "published/reports/${{ github.run_id }}/data" -name '*.zip' -delete 2>/dev/null || true
           # rebuild index.json against everything now present
           node scripts/build-run-summary.mjs --results test-results/results.json --out published/runs \
             --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
