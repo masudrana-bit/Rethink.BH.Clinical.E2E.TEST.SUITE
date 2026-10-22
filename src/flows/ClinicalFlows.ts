@@ -37,7 +37,7 @@ export class ClinicalFlows {
     await this.pages.signIn.signIn(credentials);
     await this.pages.shell.expectSignedIn();
     if (credentials.usesRoleToggle) {
-      this.testInfo.annotations.push({ type: 'role', description: `${role} simulated with the view toggle on ${credentials.username}` });
+      this.testInfo.annotations.push({ type: 'role', description: `${role} simulated with the view toggle on the shared login` });
       await this.pages.shell.switchView(role === 'rbt' ? 'rbt' : 'bcba');
       // The RBT view only loads the caseload and schedule on a full page load (see US-10).
       if (role === 'rbt' && reloadAfterToggle) {
