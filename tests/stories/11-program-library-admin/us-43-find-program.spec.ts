@@ -10,7 +10,11 @@ test.describe('US-43 Find a program in the catalog', { tag: '@US-43' }, () => {
     for (const title of titles) rows.push(await programLibrary.readRow(title));
     const categorized = (r: { category: string }) => Boolean(r.category) && r.category !== '—';
     // A blank category is shown as "—" but the Category filter has no such option.
-    const first = rows.find((r) => categorized(r) && r.domain && r.domain !== '—') ?? rows.find(categorized) ?? rows[0];
+    let first = rows.find((r) => categorized(r) && r.domain && r.domain !== '—') ?? rows.find(categorized) ?? rows[0];
+    if (!categorized(first)) {
+      const category = (await programLibrary.filterOptions('category')).find((o) => o && !/^All /.test(o));
+      if (category) first = { ...first, category, domain: '' };
+    }
     const keyword = first.title.split(/\s+/).find((w) => w.length > 4) ?? first.title;
 
     await test.step(`Search "${keyword}" narrows the grid to matching programs`, async () => {

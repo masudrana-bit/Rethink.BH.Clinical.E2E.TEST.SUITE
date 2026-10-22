@@ -25,9 +25,10 @@ test.describe('US-2 Search & browse the program library', { tag: '@US-2' }, () =
       for (const name of names) expect(name).toMatch(/matching/i);
     });
 
-    await test.step('Every row offers Add and Preview', async () => {
+    await test.step('Every row offers Preview, and Add unless already on the plan', async () => {
       const count = await addProgram.rows.count();
-      await expect(addProgram.rows.locator('[data-testid^="add-program-dialog-add-"]')).toHaveCount(count);
+      const onPlan = await addProgram.rows.filter({ hasText: /already added|already on plan/i }).count();
+      await expect(addProgram.rows.locator('[data-testid^="add-program-dialog-add-"]')).toHaveCount(count - onPlan);
       await expect(addProgram.rows.locator('[data-testid^="add-program-dialog-preview-"]')).toHaveCount(count);
     });
 

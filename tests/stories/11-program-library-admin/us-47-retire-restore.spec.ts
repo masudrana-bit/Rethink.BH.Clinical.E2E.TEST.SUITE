@@ -55,8 +55,14 @@ test.describe('US-47 Retire and restore a program', { tag: '@US-47' }, () => {
     await programLibrary.open();
     const sources = (await programLibrary.columnValues('source')).filter((s) => s !== 'Source');
     const titles = await programLibrary.titles();
-    const standard = titles[sources.findIndex((s) => s === 'Standard')];
-    test.skip(!standard, 'no standard program in the catalog');
+    let standard = '';
+    for (const title of titles.filter((_, i) => sources[i] === 'Standard').slice(0, 10)) {
+      if (/^active/i.test(await programLibrary.statusOf(title))) {
+        standard = title;
+        break;
+      }
+    }
+    test.skip(!standard, 'no active standard program in the catalog');
 
     await test.step(`Deactivate on "${standard}" asks first and explains the scope`, async () => {
       const actions = await programLibrary.actions(standard);

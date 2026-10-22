@@ -168,12 +168,16 @@ export class SessionClosePage extends BasePage {
     return (await fields.allInnerTexts()).map((t) => t.split('\n')[0].trim());
   }
 
-  /** For a note that "has not been started": picks a template whose label starts with `template` and starts the note. Returns the label picked. */
-  async startNoteWith(template: string): Promise<string> {
+  /**
+   * For a note that "has not been started": picks a template whose label starts with `template` and starts the note.
+   * With `orAnyReal`, falls back to the first real (non-test) template when `template` is not offered. Returns the label picked.
+   */
+  async startNoteWith(template: string, { orAnyReal = false } = {}): Promise<string> {
     const picker = this.noteRegion.locator('select').first();
     await expect(picker).toBeVisible();
     const labels = (await picker.locator('option').allInnerTexts()).map((t) => t.trim());
-    const label = labels.find((l) => l === template) ?? labels.find((l) => l.startsWith(template)) ?? labels.find((l) => l.includes(template));
+    const real = labels.filter((l) => l && !/^select a template$/i.test(l) && !/\btest\b/i.test(l));
+    const label = labels.find((l) => l === template) ?? labels.find((l) => l.startsWith(template)) ?? labels.find((l) => l.includes(template)) ?? (orAnyReal ? real[0] : undefined);
     expect(label, `note template "${template}" in ${JSON.stringify(labels)}`).toBeTruthy();
     await picker.selectOption({ label: label! });
     const start = this.tid('session-note-start');

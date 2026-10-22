@@ -208,8 +208,9 @@ export class ProgramDataTab extends BasePage {
   }
 
   /** Plotted data points (Highcharts thins x-axis labels when crowded, so count the accessible points instead). */
+  /** Data points, not counting the two ends of the goal line. */
   async pointCount(chart: Locator = this.charts.first()): Promise<number> {
-    return chart.locator('path[aria-label^="x, "], .highcharts-point[aria-label]').count();
+    return chart.locator('path[aria-label^="x, "]:not([aria-label$=" Goal."]), .highcharts-point[aria-label]:not([aria-label$=" Goal."])').count();
   }
 
   /** Line series drawn on the chart (data lines plus any trend line). */

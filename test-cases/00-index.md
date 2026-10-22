@@ -48,7 +48,12 @@ UAT runs an older build than dev2. Known defects that apply only to some environ
 | TC-US42-01 | Domain also blank on most programs | Area blank |
 | TC-US43-01 | first catalog program has no category: test now picks one that has a category | — |
 
-dev3: not run yet. The dev2 accounts are rejected on dev3 (credential service HTTP 401); dev3 needs its own `.env.dev3`.
+dev3 (Oct 22): own accounts and test data in `.env.dev3`. The test client is 394036, seeded with `tests/maintenance/seed-test-data.spec.ts`; the clean client is 467421.
+
+- **Data sheet stays blank for a client with a large plan.** On AppClient (84614, about 125 programs) starting a session requests targets, objectives, mastery criteria and data collection for every program at once (about 1,000 calls). About a third get no answer within 15 s, the retry loses another third, and the data sheet shows only the toolbar: no programs, no error and no Retry. 20 session tests failed this way in the first dev3 run; they pass on a client with a small plan. Not tracked in Jira yet.
+- Fixed on dev3 (still on dev2/UAT): TC-US09-03 maintenance threshold, TC-US10-01 RBT view needs refresh, TC-US32-01 phase history "Unknown", TC-US38-01 publishing unavailable. Fixed on dev3 like dev2: NGC-16, NGC-65, NGC-90.
+- Reproduces on dev3: NGC-49 RBT schedule shows clients outside the caseload (TC-US11-01, passes on dev2/UAT); no intensity levels on the duration recorder (TC-US20-01, as on dev2); pre-session note template not applied (TC-US23-01); Domain blank in the program catalog (TC-US42-01, as on UAT); library search 3.5 s (TC-US02-01).
+- Test data on dev3: the seeded client has no funder reports (TC-US39-02 skips); the session note templates differ from dev2 (no "Billable Session Note").
 
 ## Manual cases
 
