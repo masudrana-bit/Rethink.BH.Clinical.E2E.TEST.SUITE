@@ -31,8 +31,8 @@ export class SignInPage extends BasePage {
     for (let attempt = 1; ; attempt++) {
       await this.previewSignInLink.click();
       await expect(this.page).toHaveURL(/\/temp-dev-login/);
-      await this.usernameInput.fill(credentials.username);
-      await this.passwordInput.fill(credentials.password);
+      await this.enterPrivately(this.usernameInput, credentials.username);
+      await this.enterPrivately(this.passwordInput, credentials.password);
       await this.submitButton.click();
       const settled = await expect(shellHeader.or(failure)).toBeVisible({ timeout: 60_000 }).then(() => true, () => false);
       if (settled && !(await failure.isVisible())) return;
@@ -41,10 +41,20 @@ export class SignInPage extends BasePage {
         : 'sign-in did not finish within 60 s';
       if (attempt >= attempts) {
         test.skip(/sign-in link did not work|did not finish/i.test(reason), `${process.env.TEST_ENV} environment outage: sign-in handoff failed ${attempts} times ("${reason}")`);
-        throw new Error(`Preview sign-in failed ${attempts} times for "${credentials.username}": ${reason || "We couldn't sign you in"}. If other tests signed in, this is a ${process.env.TEST_ENV} sign-in outage; otherwise check .env.`);
+        throw new Error(`Preview sign-in failed ${attempts} times: ${reason || "We couldn't sign you in"}. If other tests signed in, this is a ${process.env.TEST_ENV} sign-in outage; otherwise check .env.`);
       }
       test.info().annotations.push({ type: `${process.env.TEST_ENV} sign-in error`, description: `attempt ${attempt}: ${reason || "We couldn't sign you in"}; signing in again` });
       await this.open();
     }
+  }
+
+  /** fill() and type() put the typed text in the step title, which is published in the HTML report. */
+  private async enterPrivately(input: Locator, value: string): Promise<void> {
+    await input.click();
+    await input.evaluate((el: HTMLInputElement, text) => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(el, text);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
   }
 }
