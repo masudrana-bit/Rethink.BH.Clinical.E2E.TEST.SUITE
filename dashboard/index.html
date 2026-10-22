@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Release quality · NextGen Clinical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --surface-2: #f4f4f2; --border: #e8e8e4; --border-strong: #d4d4cf;
+    --text: #18181b; --text-2: #52525b; --text-3: #8b8b93;
+    --green: #15803d; --green-bg: #e7f5ec; --amber: #a16207; --amber-bg: #fbf3dc;
+    --red: #b91c1c; --red-bg: #fdecec; --grey: #71717a; --grey-bg: #efeff0;
+    --focus: #2563eb; --link: #2563eb;
+    --radius: 14px;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111113; --surface: #18181b; --surface-2: #222226; --border: #2c2c31; --border-strong: #3c3c43;
+      --text: #f4f4f5; --text-2: #b4b4bb; --text-3: #85858d;
+      --green: #4ade80; --green-bg: #14301f; --amber: #fbbf24; --amber-bg: #372a0b;
+      --red: #f87171; --red-bg: #3b1616; --grey: #a1a1aa; --grey-bg: #27272a;
+      --focus: #93b4ff; --link: #93b4ff; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111113; --surface: #18181b; --surface-2: #222226; --border: #2c2c31; --border-strong: #3c3c43;
+    --text: #f4f4f5; --text-2: #b4b4bb; --text-3: #85858d;
+    --green: #4ade80; --green-bg: #14301f; --amber: #fbbf24; --amber-bg: #372a0b;
+    --red: #f87171; --red-bg: #3b1616; --grey: #a1a1aa; --grey-bg: #27272a;
+    --focus: #93b4ff; --link: #93b4ff; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  h1 { font-size: 22px; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+  h2 { font-size: 16px; margin: 0; font-weight: 600; }
+  h3 { font-size: 13px; color: var(--text-2); font-weight: 600; margin: 18px 0 6px; }
+  .secondary { color: var(--text-2); font-size: 13px; }
+  .muted { color: var(--text-3); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- top bar ---------- */
+  .topbar { position: sticky; top: 0; z-index: 10; background: var(--bg); background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--border); }
+  .topbar .row { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-top: 16px; }
+  .brand { display: flex; gap: 12px; align-items: center; min-width: 0; }
+  .logo { width: 30px; height: 30px; border-radius: 9px; background: var(--text); color: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: 13px; flex: none; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+  select, input[type="search"], button { font: inherit; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 6px 10px; }
+  button { cursor: pointer; }
+  select { padding-right: 28px; }
+  .seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
+  .seg button { border: 0; background: none; padding: 4px 12px; border-radius: 7px; font-weight: 600; color: var(--text-2); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+  .ghost { border-color: transparent; background: none; color: var(--text-2); }
+  .ghost:hover { background: var(--surface-2); }
+  .link-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+  .link-btn:hover { text-decoration: none; border-color: var(--border-strong); }
+  label.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--text-2); }
+  .tabs { display: flex; gap: 22px; margin-top: 10px; }
+  .tab { border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: none; padding: 8px 0 10px; color: var(--text-3); font-weight: 600; font-size: 14px; }
+  .tab:hover { color: var(--text-2); }
+  .tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--text); }
+
+  /* ---------- layout ---------- */
+  main { padding-bottom: 24px; }
+  section { margin-top: 36px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; break-inside: avoid; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 14px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ---------- verdict ---------- */
+  .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 40px; padding: 36px 0 8px; margin-top: 0; }
+  .eyebrow { font-size: 13px; color: var(--text-3); font-weight: 500; margin: 0 0 6px; }
+  .hero .word { font-size: 46px; line-height: 1.08; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .hero.ready .word { color: var(--green); }
+  .hero.risks .word { color: var(--amber); }
+  .hero.not-ready .word { color: var(--red); }
+  .hero .why { font-size: 15px; margin: 0 0 14px; color: var(--text); max-width: 62ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+  .rule-hint { display: inline-block; font-size: 13px; color: var(--text-3); margin-top: 14px; cursor: help; border-bottom: 1px dotted var(--text-3); }
+  .rate { font-size: 46px; font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
+  .rate small { font-size: 15px; font-weight: 500; color: var(--text-2); display: block; letter-spacing: 0; margin-top: 4px; }
+  .delta { font-size: 13px; margin-top: 6px; color: var(--text-2); }
+  .delta.good { color: var(--green); } .delta.bad { color: var(--red); }
+
+  .bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--grey-bg); margin-top: 18px; gap: 2px; }
+  .bar span { display: block; height: 100%; }
+  .seg-passed { background: var(--green); }
+  .seg-flaky { background: var(--amber); opacity: .85; }
+  .seg-skipped { background: var(--grey); opacity: .5; }
+  .seg-known { background: repeating-linear-gradient(135deg, var(--amber) 0 3px, var(--amber-bg) 3px 6px); }
+  .seg-failed { background: var(--red); }
+  .seg-auto { background: var(--green); }
+  .seg-manual { background: var(--grey); opacity: .4; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--text-2); margin-top: 10px; }
+  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+
+  /* ---------- stats strip ---------- */
+  .stats { display: flex; flex-wrap: wrap; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .stat { flex: 1 1 140px; background: var(--surface); padding: 16px 18px; break-inside: avoid; }
+  .stat .n { font-size: 28px; font-weight: 650; line-height: 1.2; letter-spacing: -0.01em; }
+  .stat .l { font-size: 13px; color: var(--text-2); }
+  .stat .n.red { color: var(--red); } .stat .n.green { color: var(--green); } .stat .n.amber { color: var(--amber); }
+
+  /* ---------- environments ---------- */
+  .envs { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .env-card { text-align: left; padding: 16px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); font-size: 15px; display: flex; flex-direction: column; gap: 6px; }
+  .env-card:hover { border-color: var(--border-strong); }
+  .env-card[aria-current="true"] { border-color: var(--text); box-shadow: 0 0 0 1px var(--text); }
+  .env-card .name { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; }
+  .env-card .big { font-size: 28px; font-weight: 650; line-height: 1.2; }
+  .diff { margin-top: 14px; }
+  .diff .table-scroll { margin-top: 10px; }
+  .diff table { min-width: 560px; }
+
+  /* ---------- trend ---------- */
+  .trend svg { width: 100%; height: auto; display: block; margin-top: 4px; }
+  .trend .tbar { cursor: pointer; }
+  .trend .tbar:focus-visible { outline: none; }
+  .trend .tbar:focus-visible rect.frame, .trend .tbar.selected rect.frame { stroke: var(--text); stroke-width: 1.5; }
+
+  /* ---------- lists ---------- */
+  .list { list-style: none; padding: 0; margin: 0; }
+  .list li { padding: 12px 0; border-top: 1px solid var(--border); }
+  .list li:first-child { border-top: 0; padding-top: 4px; }
+  .list .t { font-weight: 600; }
+  .err { font-family: var(--mono); font-size: 13px; color: var(--text-2); overflow-wrap: anywhere; margin-top: 2px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 0 6px; margin-right: 4px; white-space: nowrap; }
+  .scroll-y { max-height: 520px; overflow-y: auto; margin-right: -8px; padding-right: 8px; }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 1px 9px; border-radius: 999px; white-space: nowrap; }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge.green { color: var(--green); background: var(--green-bg); }
+  .badge.amber { color: var(--amber); background: var(--amber-bg); }
+  .badge.red { color: var(--red); background: var(--red-bg); }
+  .badge.grey { color: var(--grey); background: var(--grey-bg); }
+  .change.bad { color: var(--red); } .change.good { color: var(--green); } .change.warn { color: var(--amber); } .change.neutral { color: var(--text-3); }
+
+  /* ---------- tables ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 12px; }
+  .chip { border-radius: 999px; padding: 4px 12px; font-weight: 500; color: var(--text-2); }
+  .chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .filters input[type="search"] { flex: 1 1 240px; min-width: 0; margin-left: auto; max-width: 340px; padding: 6px 12px; }
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 860px; }
+  th, td { text-align: left; padding: 12px 14px; border-top: 1px solid var(--border); vertical-align: top; }
+  th { font-size: 13px; color: var(--text-3); font-weight: 500; border-top: 0; }
+  tr.story { cursor: pointer; }
+  tr.story:hover, tr.click:hover { background: var(--surface-2); }
+  tr.click { cursor: pointer; }
+  .caret { display: inline-block; width: 12px; color: var(--text-3); transition: transform .15s; }
+  tr.story[aria-expanded="true"] .caret { transform: rotate(90deg); }
+  .key { font-weight: 650; white-space: nowrap; margin-right: 4px; }
+  .mini { display: flex; width: 120px; height: 6px; border-radius: 999px; overflow: hidden; background: var(--grey-bg); margin-top: 6px; gap: 1px; }
+  .mini span { height: 100%; }
+  tr.detail td { background: var(--surface-2); padding: 4px 18px 16px 40px; }
+  .tests { list-style: none; margin: 0; padding: 0; }
+  .tests > li { padding: 14px 0; border-top: 1px solid var(--border); }
+  .tests > li:first-child { border-top: 0; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+  .dot.passed { background: var(--green); } .dot.flaky { background: var(--amber); } .dot.skipped { background: var(--grey); } .dot.failed { background: var(--red); }
+  .dot.known { background: var(--amber); box-shadow: 0 0 0 2px var(--amber-bg); }
+  pre.error { font-family: var(--mono); font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin: 8px 0 0; max-height: 220px; overflow-y: auto; }
+  details.notes { margin-top: 8px; font-size: 13px; color: var(--text-2); }
+  details.notes summary { cursor: pointer; color: var(--text-2); font-weight: 500; }
+  details.notes ul { margin: 6px 0 0; padding-left: 18px; }
+  .doc { font-size: 13px; color: var(--text-2); margin: 12px 0 0; }
+
+  /* ---------- misc ---------- */
+  .skeleton { background: var(--surface-2); border-radius: 8px; min-height: 18px; margin: 10px 0; }
+  .message { margin-top: 36px; }
+  .message.error-box { border-color: var(--red); }
+  dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; font-size: 13px; }
+  dl.facts dt { color: var(--text-3); }
+  dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+  footer { margin-top: 48px; padding: 18px 0 40px; font-size: 13px; color: var(--text-3); border-top: 1px solid var(--border); }
+  footer div + div { margin-top: 4px; }
+
+  @media (max-width: 860px) {
+    .hero, .two { grid-template-columns: 1fr; gap: 24px; }
+    .hero .word, .rate { font-size: 38px; }
+    .filters input[type="search"] { max-width: none; margin-left: 0; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .topbar { position: static; }
+  }
+  @media (prefers-reduced-motion: reduce) { .caret { transition: none; } }
+  @media print {
+    .controls, .filters, .tabs, .theme-toggle { display: none !important; }
+    .topbar { position: static; backdrop-filter: none; }
+    body { background: #fff; }
+    .panel, .stat, tr, li, .env-card { break-inside: avoid; }
+    .table-scroll { overflow: visible; border: 0; }
+    .scroll-y { max-height: none; overflow: visible; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="row">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">RQ</div>
+        <div>
+          <h1>Release quality</h1>
+          <div class="secondary" id="subtitle">NextGen Clinical end-to-end suite (RHD-57736)</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="seg" id="env" role="group" aria-label="Environment"></div>
+        <label class="sr-only" for="release">Release</label>
+        <select id="release" aria-label="Release"></select>
+        <a id="report-link" class="link-btn" href="#" target="_blank" rel="noopener">Open full test report</a>
+        <a id="run-link" class="link-btn" href="#" target="_blank" rel="noopener" hidden>Open the pipeline run</a>
+      </div>
+    </div>
+    <div class="row" style="padding-top:0;align-items:flex-end">
+      <div class="tabs" role="tablist" aria-label="View">
+        <button type="button" class="tab" role="tab" id="tab-results" data-view="results" aria-selected="true">Release results</button>
+        <button type="button" class="tab" role="tab" id="tab-coverage" data-view="coverage" aria-selected="false">Automation coverage</button>
+      </div>
+      <div class="controls" style="padding-bottom:8px">
+        <label class="toggle"><input type="checkbox" id="include-all"> Include nightly and PR runs</label>
+        <button type="button" class="ghost theme-toggle" id="theme-toggle" aria-label="Switch colour theme">Theme: auto</button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="app" aria-live="polite">
+  <main id="content">
+    <div class="hero">
+      <div><div class="skeleton" style="height:46px;width:50%"></div><div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:70%"></div></div>
+      <div><div class="skeleton" style="height:46px;width:40%"></div><div class="skeleton" style="width:100%"></div></div>
+    </div>
+  </main>
+  <footer id="footer"></footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const RULE = 'Not ready when any release-critical story has a failed test, or more than 5% of all tests failed. ' +
+    'Ready, with risks when other stories have failed tests. Tests that passed on retry or were skipped never block a release on their own. ' +
+    'Known product defects (tests expected to fail) are listed, keep their story at "Needs a look", and do not block.';
+  const VERDICT_WORD = { ready: 'Ready', risks: 'Ready, with risks', 'not-ready': 'Not ready' };
+  const VERDICT_TONE = { ready: 'green', risks: 'amber', 'not-ready': 'red' };
+  const STORY_WORD = { red: 'Failing', amber: 'Needs a look', green: 'Passing' };
+  const STORY_TONE = { red: 'red', amber: 'amber', green: 'green' };
+  const TEST_WORD = { passed: 'Passed', known: 'Known defect (expected to fail)', flaky: 'Passed on retry', skipped: 'Skipped', failed: 'Failed' };
+  const SEGMENTS = ['passed', 'known', 'flaky', 'skipped', 'failed'];
+  /** Known-defect tests are reported as "passed" in the data; show them as their own segment. */
+  const split = (t) => ({ ...t, passed: t.passed - (t.knownDefects || 0), known: t.knownDefects || 0 });
+  const testWord = (t) => (t.knownDefect ? TEST_WORD.known : t.knownDefectFixed ? 'Failed: known defect no longer reproduces' : TEST_WORD[t.status]);
+  const STATUS_ORDER = { red: 0, amber: 1, green: 2 };
+  /** Environments offered even before they have results; runs from any other environment are added from index.json. */
+  const ENVIRONMENTS = ['dev2', 'dev3', 'uat'];
+  const ENV_WORD = { dev2: 'dev2', dev3: 'dev3', uat: 'UAT' };
+  const envWord = (e) => ENV_WORD[e] || e;
+  const LEVEL_WORD = { full: 'Fully automated', partial: 'Partly automated', none: 'Not automated' };
+  const LEVEL_TONE = { full: 'green', partial: 'amber', none: 'grey' };
+  const LEVEL_ORDER = { none: 0, partial: 1, full: 2 };
+  const TYPE_WORD = { happy: 'Happy path', negative: 'Error or validation check', edge: 'Edge case' };
+
+  const state = {
+    index: null, runs: [], selected: null, cache: new Map(), filter: 'all', query: '', expanded: new Set(), includeAll: false,
+    env: null, view: 'results', coverage: null, covFilter: 'all', covQuery: '', covExpanded: new Set(),
+  };
+  const $ = (id) => document.getElementById(id);
+
+  /** Builds DOM nodes without innerHTML so report text is never interpreted as markup. */
+  function el(tag, attrs, ...children) {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v === null || v === undefined || v === false) continue;
+      if (k === 'class') node.className = v;
+      else if (k === 'style') node.setAttribute('style', v);
+      else if (k.startsWith('on')) node.addEventListener(k.slice(2), v);
+      else node.setAttribute(k, v === true ? '' : v);
+    }
+    for (const c of children.flat()) if (c !== null && c !== undefined && c !== false) node.append(c.nodeType ? c : String(c));
+    return node;
+  }
+  const svg = (tag, attrs, ...children) => {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k, v] of Object.entries(attrs || {})) if (v !== undefined && v !== null) node.setAttribute(k, v);
+    for (const c of children.flat()) if (c) node.append(c.nodeType ? c : document.createTextNode(String(c)));
+    return node;
+  };
+  const onActivate = (fn) => ({ onclick: fn, onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } } });
+
+  const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + 's')}`;
+  const rate = (t) => (t.total ? ((t.passed - (t.knownDefects || 0) + t.flaky) / t.total) * 100 : 0);
+  const fmtRate = (t) => `${rate(t).toFixed(1)}%`;
+  const fmtDate = (iso) => new Date(iso).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const fmtDay = (iso) => new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  const fmtDuration = (sec) => { const m = Math.floor(sec / 60), s = sec % 60; return m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : m ? `${m} min ${s} s` : `${s} s`; };
+  const fmtMs = (ms) => ms >= 60000 ? `${(ms / 60000).toFixed(1)} min` : `${(ms / 1000).toFixed(1)} s`;
+  const priorityWord = (p) => (p === 'P1' ? 'Release-critical' : 'Standard');
+  const firstLine = (s) => (s || '').split('\n').map((x) => x.trim()).find(Boolean) || '';
+  const storyLabel = (s) => `${s.key} ${s.title}`;
+  const tickets = (text) => [...new Set((text || '').match(/\bNGC-\d+\b/g) || [])];
+  const caseId = (name) => (name || '').match(/TC-US\d+-\d+/)?.[0] || null;
+  const listNames = (stories, max = 3) => {
+    const names = stories.slice(0, max).map(storyLabel);
+    const rest = stories.length - names.length;
+    return names.join('; ') + (rest > 0 ? `; and ${plural(rest, 'other story', 'other stories')}` : '');
+  };
+  const sectionHead = (title, note) => el('div', { class: 'section-head' }, el('h2', {}, title), note ? el('div', { class: 'secondary' }, note) : null);
+  const badge = (tone, text) => el('span', { class: `badge ${tone}` }, text);
+
+  // ---------- data ----------
+  const envOf = (r) => r.environmentName || (r.environment || '').match(/\/\/clinical\.([a-z0-9-]+)\./i)?.[1]?.toLowerCase() || 'dev2';
+  function environments() {
+    const seen = new Set((state.index?.runs || []).map(envOf));
+    return [...ENVIRONMENTS, ...[...seen].filter((e) => !ENVIRONMENTS.includes(e)).sort()];
+  }
+  function runsFor(env) {
+    const runs = (state.index?.runs || []).filter((r) => envOf(r) === env && (state.includeAll || r.kind === 'release'));
+    const latest = new Map();
+    for (const r of runs) {
+      const key = state.includeAll ? `${r.release}|${r.kind}` : r.release;
+      const prev = latest.get(key);
+      if (!prev || prev.startedAt < r.startedAt) latest.set(key, r);
+    }
+    return [...latest.values()].sort((a, b) => a.startedAt.localeCompare(b.startedAt));
+  }
+  const visibleRuns = () => runsFor(state.env);
+  async function loadRun(entry) {
+    if (state.cache.has(entry.file)) return state.cache.get(entry.file);
+    const res = await fetch(entry.file, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('missing');
+    const run = await res.json();
+    state.cache.set(entry.file, run);
+    return run;
+  }
+  const previousOf = (entry) => { const i = state.runs.indexOf(entry); return i > 0 ? state.runs[i - 1] : null; };
+
+  function changeFor(key, status, entry) {
+    const prev = previousOf(entry);
+    if (!prev) return { label: 'First release shown', tone: 'neutral' };
+    const before = prev.storyStatuses[key];
+    if (before === undefined) return { label: 'New story', tone: 'neutral' };
+    if (status === 'red' && before !== 'red') return { label: 'New failure', tone: 'bad' };
+    if (status === 'red') {
+      let n = 1;
+      for (let i = state.runs.indexOf(entry) - 1; i >= 0 && state.runs[i].storyStatuses[key] === 'red'; i--) n++;
+      return { label: `Still failing (${n} releases)`, tone: 'bad' };
+    }
+    if (before === 'red') return { label: 'Fixed', tone: 'good' };
+    if (before === 'green' && status === 'amber') return { label: 'Now needs a retry', tone: 'warn' };
+    if (before === 'amber' && status === 'green') return { label: 'Stable again', tone: 'good' };
+    return { label: 'No change', tone: 'neutral' };
+  }
+
+  function chronicFlaky(entry) {
+    const i = state.runs.indexOf(entry);
+    const recent = state.runs.slice(Math.max(0, i - 7), i + 1).filter((r) => r.kind === 'release');
+    const counts = new Map();
+    for (const r of recent) for (const id of new Set(r.flakyTestIds || [])) counts.set(id, (counts.get(id) || 0) + 1);
+    return [...counts.entries()].filter(([, n]) => n >= 3).map(([id, n]) => ({ id, n, of: recent.length }));
+  }
+
+  // ---------- release results ----------
+  function verdictSentence(entry, run) {
+    const t = run.totals;
+    const red = run.stories.filter((s) => s.status === 'red');
+    const critical = red.filter((s) => s.priority === 'P1');
+    const failedShare = t.total ? ((t.failed / t.total) * 100).toFixed(1) : '0.0';
+    if (entry.verdict === 'not-ready') {
+      const parts = [];
+      if (critical.length) parts.push(`${plural(critical.length, 'release-critical story is', 'release-critical stories are')} failing: ${listNames(critical)}.`);
+      if (t.failed / t.total > 0.05) parts.push(`${plural(t.failed, 'test')} of ${t.total} failed (${failedShare}% of all tests, above the 5% limit).`);
+      else parts.push(`${plural(t.failed, 'test')} of ${t.total} failed in total.`);
+      return parts.join(' ');
+    }
+    if (entry.verdict === 'risks') {
+      return `${plural(red.length, 'story has', 'stories have')} failed tests, none of them release-critical: ${listNames(red)}. ` +
+        `${plural(t.failed, 'test')} of ${t.total} failed (${failedShare}%).`;
+    }
+    const notes = [];
+    if (t.knownDefects) notes.push(`${plural(t.knownDefects, 'test still shows a known product defect', 'tests still show known product defects')}`);
+    if (t.flaky) notes.push(`${plural(t.flaky, 'test')} passed only on retry`);
+    if (t.skipped) notes.push(`${plural(t.skipped, 'test was', 'tests were')} skipped`);
+    return `All ${plural(run.stories.length, 'story', 'stories')} passed with no failed tests` + (notes.length ? `; ${notes.join(' and ')}.` : '.');
+  }
+
+  function compositionBar(totals, cls) {
+    const t = split(totals);
+    const seg = (k) => t[k] ? el('span', { class: `seg-${k}`, style: `width:${(t[k] / t.total) * 100}%`, title: `${TEST_WORD[k]}: ${t[k]}` }) : null;
+    return el('div', { class: cls || 'bar', role: 'img', 'aria-label': `${t.passed} passed, ${t.known} known defects, ${t.flaky} passed on retry, ${t.skipped} skipped, ${t.failed} failed` },
+      SEGMENTS.map(seg));
+  }
+
+  function renderHero(entry, run) {
+    const t = run.totals;
+    const prev = previousOf(entry);
+    const delta = prev ? rate(t) - rate(prev.totals) : null;
+    const deltaText = delta === null ? 'No earlier release on this environment to compare with'
+      : Math.abs(delta) < 0.05 ? `Same as ${prev.release}`
+      : `${delta > 0 ? 'Up' : 'Down'} ${Math.abs(delta).toFixed(1)} points from ${prev.release}`;
+    const pills = [
+      fmtDate(run.startedAt), `took ${fmtDuration(run.durationSec)}`,
+      run.environment ? run.environment.replace(/^https?:\/\//, '') : null,
+      run.sha ? `commit ${run.sha}` : null, run.kind !== 'release' ? `${run.kind} run` : null,
+    ].filter(Boolean);
+    const p = split(t);
+    return el('section', { class: `hero ${entry.verdict}`, 'aria-label': 'Release verdict' },
+      el('div', {},
+        el('p', { class: 'eyebrow' }, `${envWord(state.env)} · release ${run.release}`),
+        el('p', { class: 'word' }, VERDICT_WORD[entry.verdict]),
+        el('p', { class: 'why' }, verdictSentence(entry, run)),
+        el('div', { class: 'meta' }, pills.map((x) => el('span', { class: 'pill' }, x))),
+        el('span', { class: 'rule-hint', title: RULE, tabindex: '0', 'aria-label': `How the verdict is decided: ${RULE}` }, 'How is this decided?')),
+      el('div', {},
+        el('div', { class: 'rate' }, fmtRate(t), el('small', {}, `pass rate (${p.passed + t.flaky} of ${t.total} tests passed)`)),
+        el('div', { class: `delta${delta === null || Math.abs(delta) < 0.05 ? '' : delta > 0 ? ' good' : ' bad'}` }, deltaText),
+        compositionBar(t),
+        el('div', { class: 'legend' },
+          el('span', {}, el('i', { class: 'seg-passed' }), `${p.passed} passed first time`),
+          t.knownDefects ? el('span', {}, el('i', { class: 'seg-known' }), `${t.knownDefects} known defects`) : null,
+          el('span', {}, el('i', { class: 'seg-flaky' }), `${t.flaky} passed on retry`),
+          el('span', {}, el('i', { class: 'seg-skipped' }), `${t.skipped} skipped`),
+          el('span', {}, el('i', { class: 'seg-failed' }), `${t.failed} failed`))));
+  }
+
+  function renderStats(run) {
+    const t = run.totals;
+    const real = run.stories.filter((s) => s.key !== 'UNTAGGED');
+    const green = real.filter((s) => s.status === 'green').length;
+    const critical = real.filter((s) => s.priority === 'P1');
+    const criticalOk = critical.filter((s) => s.status !== 'red').length;
+    const stat = (n, l, tone) => el('div', { class: 'stat' }, el('div', { class: `n${tone ? ' ' + tone : ''}` }, n), el('div', { class: 'l' }, l));
+    return el('section', { 'aria-label': 'Counts' }, el('div', { class: 'stats' },
+      stat(split(t).passed, 'tests passed first time'),
+      t.knownDefects ? stat(t.knownDefects, 'known product defects (tests expected to fail)') : null,
+      stat(t.flaky, 'tests passed on retry'),
+      stat(t.skipped, 'tests skipped'),
+      stat(t.failed, 'tests failed', t.failed ? 'red' : null),
+      stat(`${green} of ${real.length}`, 'stories fully passing'),
+      critical.length ? stat(`${criticalOk} of ${critical.length}`, 'release-critical stories without failures') : null,
+      state.coverage ? stat(`${state.coverage.totals.full} of ${state.coverage.totals.stories}`, 'features fully automated') : null,
+      t.untagged ? stat(t.untagged, 'tests without a story tag') : null));
+  }
+
+  /** Latest release on every environment, and the stories whose result differs between them. */
+  function renderEnvironments() {
+    const latest = environments().map((env) => ({ env, entry: runsFor(env).at(-1) || null }));
+    const withRuns = latest.filter((x) => x.entry);
+    const cards = latest.map(({ env, entry }) => {
+      const t = entry?.totals;
+      return el('button', {
+        type: 'button', class: 'env-card', 'aria-current': String(env === state.env),
+        'aria-label': entry ? `${envWord(env)}: ${VERDICT_WORD[entry.verdict]}, pass rate ${fmtRate(t)}` : `${envWord(env)}: no runs yet`,
+        onclick: () => { openEnv(env); window.scrollTo({ top: 0 }); },
+      },
+        el('span', { class: 'name' }, envWord(env), entry ? badge(VERDICT_TONE[entry.verdict], VERDICT_WORD[entry.verdict]) : badge('grey', 'No runs yet')),
+        entry ? el('span', { class: 'big' }, fmtRate(t), el('span', { class: 'secondary' }, ' pass rate')) : el('span', { class: 'secondary' }, `Start the pipeline with environment "${env}" to see results here.`),
+        entry ? el('span', { class: 'secondary' }, `${plural(t.failed, 'failed test')} · ${plural(t.knownDefects || 0, 'known defect')} · ${t.skipped} skipped`) : null,
+        entry ? el('span', { class: 'secondary muted' }, `${entry.release} · ${fmtDay(entry.startedAt)}`) : null);
+    });
+
+    const titles = new Map();
+    for (const s of state.coverage?.stories || []) titles.set(s.key, s.title);
+    const run = state.selected && state.cache.get(state.selected.file);
+    for (const s of run?.stories || []) titles.set(s.key, s.title);
+    const keys = [...new Set(withRuns.flatMap((x) => Object.keys(x.entry.storyStatuses || {})))].filter((k) => k !== 'UNTAGGED');
+    const differing = withRuns.length > 1 ? keys.filter((k) => new Set(withRuns.map((x) => x.entry.storyStatuses[k] ?? 'none')).size > 1)
+      .sort((a, b) => a.localeCompare(b, 'en', { numeric: true })) : [];
+    const diff = differing.length ? el('details', { class: 'diff' },
+      el('summary', { class: 'secondary', style: 'cursor:pointer;font-weight:600' }, `${plural(differing.length, 'story has', 'stories have')} a different result on another environment`),
+      el('div', { class: 'table-scroll' }, el('table', {},
+        el('thead', {}, el('tr', {}, el('th', { scope: 'col' }, 'Story'), withRuns.map((x) => el('th', { scope: 'col' }, envWord(x.env))))),
+        el('tbody', {}, differing.map((k) => el('tr', {},
+          el('td', {}, el('span', { class: 'key' }, k), titles.get(k) || ''),
+          withRuns.map((x) => { const s = x.entry.storyStatuses[k]; return el('td', {}, s ? badge(STORY_TONE[s], STORY_WORD[s]) : el('span', { class: 'secondary' }, 'Not run')); }))))))) : null;
+    return el('section', { 'aria-label': 'Environments' },
+      sectionHead('Across environments', 'Latest release run on each environment. Select one to open it.'),
+      el('div', { class: 'envs' }, cards), diff);
+  }
+
+  function renderTrend(entry) {
+    const i = state.runs.indexOf(entry);
+    const end = Math.max(i + 1, Math.min(state.runs.length, 8));
+    const shown = state.runs.slice(Math.max(0, end - 8), end);
+    const maxTotal = Math.max(...shown.map((r) => r.totals.total), 1);
+    const W = 520, H = 220, top = 28, bottom = 40, gap = 18;
+    const bw = Math.min(44, (W - gap * (shown.length + 1)) / Math.max(shown.length, 1));
+    const chartH = H - top - bottom;
+    const node = svg('svg', { viewBox: `0 0 ${W} ${H}`, role: 'group', 'aria-label': 'Pass rate of the last releases; select a bar to view that release' });
+    node.append(svg('line', { x1: 0, x2: W, y1: top + chartH + 0.5, y2: top + chartH + 0.5, stroke: 'var(--border)' }));
+    const colors = { passed: 'var(--green)', known: 'var(--amber)', flaky: 'var(--amber)', skipped: 'var(--grey)', failed: 'var(--red)' };
+    const opac = { passed: 1, known: 0.55, flaky: 0.85, skipped: 0.5, failed: 1 };
+    shown.forEach((r, k) => {
+      const x = gap + k * (bw + gap);
+      const h = (r.totals.total / maxTotal) * chartH;
+      let y = top + chartH;
+      const g = svg('g', {
+        class: `tbar${r === entry ? ' selected' : ''}`, tabindex: '0', role: 'button',
+        'aria-label': `${r.release}: pass rate ${fmtRate(r.totals)}, ${r.totals.failed} failed, ${VERDICT_WORD[r.verdict]}${r === entry ? ', selected' : ''}`,
+      });
+      const parts = split(r.totals);
+      for (const key of SEGMENTS) {
+        const sh = r.totals.total ? (parts[key] / r.totals.total) * h : 0;
+        if (!sh) continue;
+        y -= sh;
+        g.append(svg('rect', { x, y, width: bw, height: sh, fill: colors[key], 'fill-opacity': opac[key] }));
+      }
+      g.append(svg('rect', { class: 'frame', x: x - 3, y: top + chartH - h - 3, width: bw + 6, height: h + 6, fill: 'none', rx: 4 }));
+      g.append(svg('text', { x: x + bw / 2, y: top + chartH - h - 9, 'text-anchor': 'middle', 'font-size': 12, 'font-weight': 600, fill: 'var(--text)' }, fmtRate(r.totals)));
+      g.append(svg('text', { x: x + bw / 2, y: H - bottom + 17, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--text-2)' }, fmtDay(r.startedAt)));
+      g.append(svg('text', { x: x + bw / 2, y: H - bottom + 31, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--text-3)' }, VERDICT_WORD[r.verdict]));
+      g.append(svg('title', {}, `${r.release} · ${fmtDate(r.startedAt)}`));
+      const pick = () => selectRelease(r);
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      node.append(g);
+    });
+    return el('div', { class: 'panel trend' },
+      sectionHead('Trend over the last releases', `on ${envWord(state.env)}`),
+      node,
+      el('div', { class: 'secondary' }, 'Bar height is the number of tests run; the number above each bar is its pass rate. Select a bar to open that release.'));
+  }
+
+  function renderAttention(entry, run) {
+    const failed = run.stories.flatMap((s) => s.tests.filter((t) => t.status === 'failed').map((t) => ({ s, t })));
+    const byId = new Map(run.stories.flatMap((s) => s.tests.map((t) => [t.id, { s, t }])));
+    const chronic = chronicFlaky(entry);
+    const known = run.stories.flatMap((s) => s.tests.filter((t) => t.knownDefect).map((t) => ({ s, t })));
+    const body = [];
+    if (failed.length) {
+      body.push(el('h3', {}, `Failed tests (${failed.length})`));
+      body.push(el('ul', { class: 'list' }, failed.map(({ s, t }) => el('li', {},
+        el('div', { class: 't' }, t.name),
+        el('div', { class: 'secondary' }, `${storyLabel(s)} · ${priorityWord(s.priority)}${t.knownDefectFixed ? ' · known defect may be fixed' : ''}`),
+        t.error ? el('div', { class: 'err' }, firstLine(t.error)) : null))));
+    }
+    if (chronic.length) {
+      body.push(el('h3', {}, 'Tests that keep needing a retry'));
+      body.push(el('ul', { class: 'list' }, chronic.map(({ id, n, of }) => {
+        const hit = byId.get(id);
+        return el('li', {},
+          el('div', { class: 't' }, hit ? hit.t.name : `Test ${id}`),
+          el('div', { class: 'secondary' }, `${hit ? storyLabel(hit.s) + ' · ' : ''}passed on retry in ${n} of the last ${of} releases. Likely a timing issue in the test, not the product.`));
+      })));
+    }
+    if (known.length) {
+      body.push(el('h3', {}, `Known product defects, tests expected to fail (${known.length})`));
+      body.push(el('ul', { class: 'list' }, known.map(({ s, t }) => {
+        const text = t.knownDefect.replace(/^TC-US\d+-\d+:\s*/, '');
+        return el('li', {},
+          el('div', {}, tickets(text).map((k) => el('span', { class: 'tag' }, k)), el('span', { class: 't' }, text.replace(/\bNGC-\d+:?\s*/g, '').trim() || text)),
+          el('div', { class: 'secondary' }, `${storyLabel(s)} · ${caseId(t.name) || t.name}`));
+      })));
+    }
+    return el('div', { class: 'panel attention' },
+      sectionHead('What needs attention', failed.length ? plural(failed.length, 'failed test') : null),
+      body.length ? el('div', { class: 'scroll-y' }, body) : el('p', { class: 'secondary' }, 'Nothing needs attention in this release: no failed tests and no tests that keep needing a retry.'));
+  }
+
+  /** Story results rolled up by product area (epic). Selecting an area filters the story table. */
+  function renderAreas(run) {
+    const areas = new Map();
+    for (const s of run.stories) {
+      if (s.key === 'UNTAGGED') continue;
+      const name = s.epic || 'Other';
+      const a = areas.get(name) || { name, stories: 0, red: 0, amber: 0, green: 0, tests: 0, failed: 0, known: 0 };
+      a.stories++; a[s.status]++; a.tests += s.tests.length; a.failed += s.counts.failed; a.known += s.counts.knownDefects || 0;
+      areas.set(name, a);
+    }
+    const rows = [...areas.values()];
+    const pick = (name) => { state.query = name; state.filter = 'all'; render(); $('stories')?.scrollIntoView({ block: 'start' }); };
+    return el('section', { 'aria-label': 'Results by product area' },
+      sectionHead('Results by product area', 'Select an area to list its stories.'),
+      el('div', { class: 'table-scroll' }, el('table', { style: 'min-width:640px' },
+        el('thead', {}, el('tr', {}, ['Product area', 'Stories', 'Result', 'Failed tests', 'Known defects'].map((h) => el('th', { scope: 'col' }, h)))),
+        el('tbody', {}, rows.map((a) => el('tr', { class: 'click', tabindex: '0', 'aria-label': `${a.name}: list its stories`, ...onActivate(() => pick(a.name)) },
+          el('td', {}, el('strong', {}, a.name)),
+          el('td', {}, plural(a.stories, 'story', 'stories'),
+            el('div', { class: 'mini', role: 'img', 'aria-label': `${a.green} passing, ${a.amber} need a look, ${a.red} failing` },
+              ['green', 'amber', 'red'].map((k) => a[k] ? el('span', { style: `width:${(a[k] / a.stories) * 100}%;background:var(--${k})` }) : null))),
+          el('td', {}, a.red ? badge('red', `${a.red} failing`) : a.amber ? badge('amber', `${a.amber} need a look`) : badge('green', 'All passing'),
+            a.red && a.amber ? el('div', { class: 'secondary', style: 'margin-top:4px' }, `${a.amber} need a look`) : null),
+          el('td', {}, a.failed ? el('span', { style: 'color:var(--red);font-weight:600' }, String(a.failed)) : el('span', { class: 'muted' }, 'None')),
+          el('td', {}, a.known ? String(a.known) : el('span', { class: 'muted' }, 'None'))))))));
+  }
+
+  function testItem(t) {
+    const notes = (t.annotations || []).filter((a) => a.type !== 'fail');
+    const id = caseId(t.name);
+    return el('li', {},
+      el('div', {}, el('span', { class: `dot ${t.knownDefect ? 'known' : t.status}`, 'aria-hidden': 'true' }), el('strong', {}, t.name)),
+      el('div', { class: 'secondary' }, `${testWord(t)} · ${fmtMs(t.durationMs)}${t.attempts > 1 ? ` · ${t.attempts} attempts` : ''} · ${t.file}:${t.line}`),
+      t.knownDefect ? el('div', { style: 'margin-top:6px' }, tickets(t.knownDefect).map((k) => el('span', { class: 'tag' }, k)), `Known defect: ${t.knownDefect.replace(/^TC-US\d+-\d+:\s*/, '')}`) : null,
+      t.error ? el('pre', { class: 'error' }, t.error) : null,
+      t.skipReason ? el('div', { class: 'secondary', style: 'margin-top:6px' }, `Skipped because: ${t.skipReason}`) : null,
+      notes.length ? el('details', { class: 'notes' }, el('summary', {}, `Notes recorded by the test (${notes.length})`),
+        el('ul', {}, notes.map((a) => el('li', {}, `${a.type.replace(/-/g, ' ')}: ${a.description}`)))) : null,
+      t.traceUrl ? el('div', { style: 'margin-top:6px' }, el('a', { href: t.traceUrl, target: '_blank', rel: 'noopener' }, id ? `View trace for ${id}` : 'View trace')) : null);
+  }
+
+  function storyRows(entry, run) {
+    const q = state.query.trim().toLowerCase();
+    const rows = run.stories.map((s) => ({ s, change: changeFor(s.key, s.status, entry) }))
+      .filter(({ s, change }) => {
+        if (state.filter === 'attention' && s.status === 'green') return false;
+        if (state.filter === 'failing' && s.status !== 'red') return false;
+        if (state.filter === 'changed' && ['No change', 'First release shown'].includes(change.label)) return false;
+        return !q || `${s.key} ${s.title} ${s.epic || ''}`.toLowerCase().includes(q);
+      })
+      .sort((a, b) => STATUS_ORDER[a.s.status] - STATUS_ORDER[b.s.status]
+        || (a.s.priority === 'P1' ? 0 : 1) - (b.s.priority === 'P1' ? 0 : 1)
+        || a.s.key.localeCompare(b.s.key, 'en', { numeric: true }));
+    const out = [];
+    for (const { s, change } of rows) {
+      const open = state.expanded.has(s.key);
+      const toggle = () => { open ? state.expanded.delete(s.key) : state.expanded.add(s.key); renderStories(entry, run); document.getElementById(`row-${s.key}`)?.focus(); };
+      const c = s.counts;
+      const kd = c.knownDefects || 0;
+      const breakdown = [c.passed - kd && `${c.passed - kd} passed`, kd && `${kd} known defect${kd > 1 ? 's' : ''}`, c.flaky && `${c.flaky} passed on retry`, c.skipped && `${c.skipped} skipped`, c.failed && `${c.failed} failed`].filter(Boolean).join(', ');
+      const total = s.tests.length;
+      out.push(el('tr', { class: 'story', id: `row-${s.key}`, tabindex: '0', 'aria-expanded': String(open), 'aria-controls': `detail-${s.key}`, ...onActivate(toggle) },
+        el('td', {}, el('span', { class: 'caret', 'aria-hidden': 'true' }, '▸'), ' ', el('span', { class: 'key' }, s.key), s.title,
+          s.epic ? el('div', { class: 'secondary', style: 'margin-left:16px' }, s.epic) : null),
+        el('td', {}, priorityWord(s.priority)),
+        el('td', {}, badge(STORY_TONE[s.status], STORY_WORD[s.status])),
+        el('td', {}, plural(total, 'test'), s.manualCases ? el('div', { class: 'secondary' }, `+ ${plural(s.manualCases, 'manual case')}`) : null),
+        el('td', {}, el('div', { class: 'secondary' }, breakdown), compositionBar({ ...c, total }, 'mini')),
+        el('td', {}, el('span', { class: `change ${change.tone}` }, change.label))));
+      if (open) {
+        out.push(el('tr', { class: 'detail', id: `detail-${s.key}` }, el('td', { colspan: '6' },
+          el('ul', { class: 'tests' }, s.tests.map(testItem)),
+          s.doc ? el('p', { class: 'doc' }, `Written test cases for this story: ${s.doc}`) : null)));
+      }
+    }
+    if (!rows.length) out.push(el('tr', {}, el('td', { colspan: '6', class: 'secondary' }, 'No stories match this filter.')));
+    return out;
+  }
+
+  function renderStories(entry, run) {
+    const tbody = $('story-body');
+    if (tbody) tbody.replaceChildren(...storyRows(entry, run));
+  }
+
+  function renderStorySection(entry, run) {
+    const chip = (id, label) => el('button', {
+      type: 'button', class: 'chip', 'aria-pressed': String(state.filter === id),
+      onclick: () => { state.filter = id; render(); },
+    }, label);
+    const search = el('input', { type: 'search', placeholder: 'Search by story key, title or area', 'aria-label': 'Search stories', value: state.query });
+    search.addEventListener('input', () => { state.query = search.value; renderStories(entry, run); });
+    return el('section', { id: 'stories', 'aria-label': 'Results by story' },
+      sectionHead('Results by story', 'Select a story to see each test, its notes and its trace.'),
+      el('div', { class: 'filters' },
+        chip('all', 'All'), chip('attention', 'Needs attention'), chip('failing', 'Failing'), chip('changed', 'Changed since last release'), search),
+      el('div', { class: 'table-scroll' }, el('table', {},
+        el('thead', {}, el('tr', {}, ['Story', 'Priority', 'Result', 'Tests', 'Breakdown', 'Since last release'].map((h) => el('th', { scope: 'col' }, h)))),
+        el('tbody', { id: 'story-body' }, storyRows(entry, run)))));
+  }
+
+  function renderRunFacts(run) {
+    const slow = run.stories.flatMap((s) => s.tests).filter((t) => t.status !== 'skipped').sort((a, b) => b.durationMs - a.durationMs).slice(0, 5);
+    const retried = run.stories.flatMap((s) => s.tests).filter((t) => t.attempts > 1).length;
+    const fact = (k, v) => [el('dt', {}, k), el('dd', {}, v)];
+    return el('section', { class: 'two', 'aria-label': 'Run details' },
+      el('div', { class: 'panel' }, sectionHead('Run details'),
+        el('dl', { class: 'facts' },
+          fact('Environment', `${envWord(state.env)}${run.environment ? ` (${run.environment.replace(/^https?:\/\//, '')})` : ''}`),
+          fact('Release', run.release),
+          fact('Started', fmtDate(run.startedAt)),
+          fact('Duration', fmtDuration(run.durationSec)),
+          fact('Tests', `${run.totals.total} automated tests in ${plural(run.stories.filter((s) => s.key !== 'UNTAGGED').length, 'story', 'stories')}`),
+          fact('Retried', `${plural(retried, 'test')} needed more than one attempt`),
+          fact('Branch', `${run.branch}${run.sha ? ` · commit ${run.sha}` : ''}`))),
+      el('div', { class: 'panel' }, sectionHead('Slowest tests'),
+        el('ul', { class: 'list' }, slow.map((t) => el('li', {},
+          el('div', { class: 't' }, t.name),
+          el('div', { class: 'secondary' }, `${fmtMs(t.durationMs)}${t.attempts > 1 ? ` over ${t.attempts} attempts` : ''}`))))));
+  }
+
+  // ---------- automation coverage ----------
+  /** Latest-run result of each written test case, matched by its TC id in the test name. */
+  function caseResults(run) {
+    const m = new Map();
+    if (run) for (const s of run.stories) for (const t of s.tests) { const id = caseId(t.name); if (id) m.set(id, t); }
+    return m;
+  }
+  function resultOf(t) {
+    if (!t) return null;
+    if (t.knownDefect) return { word: 'Known defect', tone: 'amber', detail: t.knownDefect.replace(/^TC-US\d+-\d+:\s*/, '') };
+    if (t.knownDefectFixed) return { word: 'Failed: known defect no longer reproduces', tone: 'red', detail: null };
+    if (t.status === 'skipped') return { word: 'Skipped', tone: 'grey', detail: t.skipReason ? `because ${t.skipReason}` : null };
+    if (t.status === 'failed') return { word: 'Failed', tone: 'red', detail: firstLine(t.error) };
+    if (t.status === 'flaky') return { word: 'Passed on retry', tone: 'amber', detail: null };
+    return { word: 'Passed', tone: 'green', detail: null };
+  }
+  function automationBar(automated, total, label) {
+    return el('div', { class: 'mini', role: 'img', 'aria-label': label },
+      total ? [el('span', { class: 'seg-auto', style: `width:${(automated / total) * 100}%` }), el('span', { class: 'seg-manual', style: `width:${((total - automated) / total) * 100}%` })] : null);
+  }
+  const ofAutomated = (p) => (p.total ? `${p.automated} of ${p.total} automated` : 'None written');
+
+  function renderCoverageSummary(cov) {
+    const t = cov.totals;
+    const notFull = cov.stories.filter((s) => s.level !== 'full');
+    const other = cov.stories.reduce((a, s) => ({ total: a.total + s.other.total, automated: a.automated + s.other.automated }), { total: 0, automated: 0 });
+    const why = notFull.length
+      ? `${plural(notFull.length, 'feature still has', 'features still have')} happy-path checks done by hand: ${listNames(notFull, 5)}.`
+      : 'No happy-path check is done by hand.';
+    const pct = t.happy ? ((t.happyAutomated / t.happy) * 100).toFixed(1) : '0.0';
+    const stat = (n, l) => el('div', { class: 'stat' }, el('div', { class: 'n' }, n), el('div', { class: 'l' }, l));
+    return [
+      el('section', { class: `hero ${notFull.length ? 'risks' : 'ready'}`, 'aria-label': 'Automation coverage summary' },
+        el('div', {},
+          el('p', { class: 'eyebrow' }, 'Automation coverage · all environments'),
+          el('p', { class: 'word' }, `${t.full} of ${t.stories} features`),
+          el('p', { class: 'why' }, `are fully automated: every happy-path test case written for them runs as an automated test. ${why}`),
+          el('span', { class: 'rule-hint', title: cov.rule, tabindex: '0', 'aria-label': `What fully automated means: ${cov.rule}` }, 'What does "fully automated" mean?')),
+        el('div', {},
+          el('div', { class: 'rate' }, `${pct}%`, el('small', {}, `of happy-path test cases are automated (${t.happyAutomated} of ${t.happy})`)),
+          el('div', { class: 'bar', role: 'img', 'aria-label': `${t.happyAutomated} of ${t.happy} happy-path test cases automated` },
+            el('span', { class: 'seg-auto', style: `width:${(t.happyAutomated / t.happy) * 100}%` }),
+            el('span', { class: 'seg-manual', style: `width:${((t.happy - t.happyAutomated) / t.happy) * 100}%` })),
+          el('div', { class: 'legend' },
+            el('span', {}, el('i', { class: 'seg-auto' }), `${t.happyAutomated} automated`),
+            el('span', {}, el('i', { class: 'seg-manual' }), `${t.happy - t.happyAutomated} checked by hand`)))),
+      el('section', { 'aria-label': 'Coverage counts' }, el('div', { class: 'stats' },
+        stat(t.full, 'features fully automated'),
+        stat(t.partial, 'features partly automated'),
+        t.none ? stat(t.none, 'features not automated') : null,
+        stat(`${t.happyAutomated} of ${t.happy}`, 'happy-path test cases automated'),
+        stat(`${other.automated} of ${other.total}`, 'error, validation and edge-case checks automated'),
+        stat(t.cases - t.automated, 'test cases checked by hand'))),
+    ];
+  }
+
+  function renderCoverageByArea(cov) {
+    const areas = new Map();
+    for (const s of cov.stories) {
+      const a = areas.get(s.epic || 'Other') || { name: s.epic || 'Other', stories: 0, full: 0, happy: 0, happyAuto: 0, manual: 0 };
+      a.stories++; if (s.level === 'full') a.full++;
+      a.happy += s.happy.total; a.happyAuto += s.happy.automated;
+      a.manual += s.cases.filter((c) => !c.automated).length;
+      areas.set(a.name, a);
+    }
+    return el('section', { 'aria-label': 'Coverage by area' },
+      sectionHead('Coverage by product area'),
+      el('div', { class: 'table-scroll' }, el('table', { style: 'min-width:640px' },
+        el('thead', {}, el('tr', {}, ['Product area', 'Features', 'Fully automated', 'Happy-path test cases', 'Checked by hand'].map((h) => el('th', { scope: 'col' }, h)))),
+        el('tbody', {}, [...areas.values()].map((a) => el('tr', {},
+          el('td', {}, el('strong', {}, a.name)),
+          el('td', {}, plural(a.stories, 'feature')),
+          el('td', {}, badge(a.full === a.stories ? 'green' : 'amber', `${a.full} of ${a.stories}`)),
+          el('td', {}, el('div', { class: 'secondary' }, `${a.happyAuto} of ${a.happy} automated`), automationBar(a.happyAuto, a.happy, `${a.happyAuto} of ${a.happy} happy-path cases automated`)),
+          el('td', {}, a.manual ? plural(a.manual, 'test case') : el('span', { class: 'muted' }, 'None'))))))));
+  }
+
+  function coverageRows(cov, run) {
+    const q = state.covQuery.trim().toLowerCase();
+    const results = caseResults(run);
+    const runStatus = new Map((run?.stories || []).map((s) => [s.key, s.status]));
+    const rows = cov.stories
+      .filter((s) => {
+        if (state.covFilter === 'full' && s.level !== 'full') return false;
+        if (state.covFilter === 'partial' && s.level === 'full') return false;
+        if (state.covFilter === 'manual' && s.cases.every((c) => c.automated)) return false;
+        return !q || `${s.key} ${s.title} ${s.epic || ''}`.toLowerCase().includes(q);
+      })
+      .sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level] || a.key.localeCompare(b.key, 'en', { numeric: true }));
+    const out = [];
+    for (const s of rows) {
+      const open = state.covExpanded.has(s.key);
+      const toggle = () => { open ? state.covExpanded.delete(s.key) : state.covExpanded.add(s.key); renderCoverageRows(); document.getElementById(`cov-${s.key}`)?.focus(); };
+      const status = runStatus.get(s.key);
+      out.push(el('tr', { class: 'story', id: `cov-${s.key}`, tabindex: '0', 'aria-expanded': String(open), 'aria-controls': `cov-detail-${s.key}`, ...onActivate(toggle) },
+        el('td', {}, el('span', { class: 'caret', 'aria-hidden': 'true' }, '▸'), ' ', el('span', { class: 'key' }, s.key), s.title,
+          s.epic ? el('div', { class: 'secondary', style: 'margin-left:16px' }, s.epic) : null),
+        el('td', {}, priorityWord(s.priority)),
+        el('td', {}, badge(LEVEL_TONE[s.level], LEVEL_WORD[s.level])),
+        el('td', {}, el('div', { class: 'secondary' }, ofAutomated(s.happy)), automationBar(s.happy.automated, s.happy.total, `${ofAutomated(s.happy)} happy-path cases`)),
+        el('td', {}, el('div', { class: 'secondary' }, ofAutomated(s.other))),
+        el('td', {}, status ? badge(STORY_TONE[status], STORY_WORD[status]) : el('span', { class: 'secondary' }, run ? 'Not in this run' : 'No run yet'))));
+      if (open) {
+        out.push(el('tr', { class: 'detail', id: `cov-detail-${s.key}` }, el('td', { colspan: '6' },
+          el('ul', { class: 'tests' }, s.cases.map((c) => {
+            const r = resultOf(results.get(c.id));
+            return el('li', {},
+              el('div', {}, el('span', { class: 'key' }, c.id), c.title),
+              el('div', { class: 'secondary', style: 'margin-top:4px' },
+                el('span', { class: 'tag' }, TYPE_WORD[c.type]), el('span', { class: 'tag' }, c.automated ? 'Automated' : 'Checked by hand'),
+                c.automated && run ? (r ? badge(r.tone, `${r.word} on ${envWord(state.env)}`) : `not in the last run on ${envWord(state.env)}`) : null),
+              !c.automated && c.note ? el('div', { class: 'secondary', style: 'margin-top:4px' }, c.note) : null,
+              r && r.detail ? el('div', { class: 'secondary', style: 'margin-top:4px' }, r.detail) : null);
+          })),
+          s.doc ? el('p', { class: 'doc' }, `Written test cases: ${s.doc}`) : null)));
+      }
+    }
+    if (!rows.length) out.push(el('tr', {}, el('td', { colspan: '6', class: 'secondary' }, 'No features match this filter.')));
+    return out;
+  }
+  function renderCoverageRows() {
+    const tbody = $('cov-body');
+    if (tbody) tbody.replaceChildren(...coverageRows(state.coverage, state.selected && state.cache.get(state.selected.file)));
+  }
+
+  function renderCoverageFeatures(cov, run) {
+    const chip = (id, label) => el('button', {
+      type: 'button', class: 'chip', 'aria-pressed': String(state.covFilter === id),
+      onclick: () => { state.covFilter = id; render(); },
+    }, label);
+    const search = el('input', { type: 'search', placeholder: 'Search by story key, title or area', 'aria-label': 'Search features', value: state.covQuery });
+    search.addEventListener('input', () => { state.covQuery = search.value; renderCoverageRows(); });
+    const lastCol = run ? `Last result on ${envWord(state.env)}` : 'Last result';
+    return el('section', { 'aria-label': 'Coverage by feature' },
+      sectionHead('Coverage by feature', 'Select a feature to see each written test case, whether it is automated, and its latest result.'),
+      el('div', { class: 'filters' },
+        chip('all', 'All'), chip('full', 'Fully automated'), chip('partial', 'Not fully automated'), chip('manual', 'Has checks done by hand'), search),
+      el('div', { class: 'table-scroll' }, el('table', {},
+        el('thead', {}, el('tr', {}, ['Feature', 'Priority', 'Automation', 'Happy paths', 'Error and edge cases', lastCol].map((h) => el('th', { scope: 'col' }, h)))),
+        el('tbody', { id: 'cov-body' }, coverageRows(cov, run)))));
+  }
+
+  function renderCoverage() {
+    const cov = state.coverage;
+    if (!cov) {
+      showMessage('Automation coverage is not published yet.', 'coverage.json is missing. The pipeline builds it with scripts/build-coverage.mjs on every run.');
+      return;
+    }
+    const run = state.selected && state.cache.get(state.selected.file);
+    $('content').replaceChildren(...renderCoverageSummary(cov), renderCoverageByArea(cov), renderCoverageFeatures(cov, run));
+    $('footer').replaceChildren(
+      el('div', {}, `Coverage built ${fmtDate(cov.generatedAt)} from the written test cases and the automated tests.`),
+      el('div', {}, `What fully automated means: ${cov.rule}`),
+      el('div', {}, run ? `Last results are from ${run.release} on ${envWord(state.env)}.` : `No results on ${envWord(state.env)} yet.`));
+  }
+
+  // ---------- page ----------
+  function renderHeader() {
+    const entry = state.selected;
+    const run = entry && state.cache.get(entry.file);
+    $('env').replaceChildren(...environments().map((e) => {
+      const n = runsFor(e).length;
+      return el('button', {
+        type: 'button', 'aria-pressed': String(e === state.env), title: n ? plural(n, 'release') : 'No runs yet',
+        onclick: () => openEnv(e),
+      }, envWord(e));
+    }));
+    const select = $('release');
+    select.hidden = !state.runs.length;
+    select.replaceChildren(...[...state.runs].reverse().map((r) =>
+      el('option', { value: r.runId, selected: r === entry }, `${r.release}${state.includeAll && r.kind !== 'release' ? ` (${r.kind})` : ''} · ${VERDICT_WORD[r.verdict]}`)));
+    $('subtitle').textContent = `NextGen Clinical end-to-end suite (RHD-57736)` + (run ? ` · branch ${run.branch}` : '');
+    $('report-link').hidden = !run;
+    if (run) $('report-link').href = run.reportUrl;
+    const runLink = $('run-link');
+    runLink.hidden = !run?.runUrl;
+    if (run?.runUrl) runLink.href = run.runUrl;
+    for (const tab of document.querySelectorAll('.tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === state.view));
+  }
+
+  function render() {
+    renderHeader();
+    if (state.view === 'coverage') return renderCoverage();
+    const entry = state.selected;
+    const run = entry && state.cache.get(entry.file);
+    if (!entry) {
+      showMessage(`No release results on ${envWord(state.env)} yet.`,
+        `Start the pipeline with environment "${state.env}", or run "npm run test:${state.env}" locally and rebuild the dashboard. Tick "Include nightly and PR runs" to see other runs.`, { neutral: true });
+      $('content').append(renderEnvironments());
+      $('footer').replaceChildren();
+      return;
+    }
+    if (!run) return;
+    $('content').replaceChildren(
+      renderHero(entry, run),
+      renderStats(run),
+      el('section', { class: 'two' }, renderTrend(entry), renderAttention(entry, run)),
+      renderEnvironments(),
+      renderAreas(run),
+      renderStorySection(entry, run),
+      renderRunFacts(run));
+    $('footer').replaceChildren(
+      el('div', {}, `Results published ${fmtDate(state.index.generatedAt)}. Trend and "since last release" compare runs on ${envWord(state.env)} only.`),
+      el('div', {}, `How the verdict is decided: ${RULE}`));
+  }
+
+  function showMessage(title, text, { neutral = false } = {}) {
+    $('content').replaceChildren(el('div', { class: `panel message${neutral ? '' : ' error-box'}` }, el('h2', {}, title), el('p', { class: 'secondary' }, text)));
+  }
+
+  /** The hash is "<environment>/<release>" or "<environment>/coverage", so a view can be shared. */
+  function writeHash() {
+    const tail = state.view === 'coverage' ? 'coverage' : state.selected?.release;
+    history.replaceState(null, '', `#${encodeURIComponent(state.env)}${tail ? '/' + encodeURIComponent(tail) : ''}`);
+  }
+  function readHash() {
+    const raw = location.hash.slice(1);
+    if (!raw) return {};
+    const parts = raw.split('/').map(decodeURIComponent);
+    if (parts.length === 1) {
+      if (environments().includes(parts[0])) return { env: parts[0] };
+      const r = (state.index?.runs || []).find((x) => x.release === parts[0]);
+      return { env: r ? envOf(r) : undefined, release: parts[0] };
+    }
+    return { env: parts[0], release: parts[1] === 'coverage' ? undefined : parts[1], view: parts[1] === 'coverage' ? 'coverage' : 'results' };
+  }
+
+  async function selectRelease(entry, { updateHash = true } = {}) {
+    state.selected = entry;
+    state.expanded.clear();
+    if (updateHash) writeHash();
+    if (!state.cache.has(entry.file)) {
+      renderHeader();
+      $('content').replaceChildren(el('div', { class: 'hero' },
+        el('div', {}, el('div', { class: 'skeleton', style: 'height:46px;width:50%' }), el('div', { class: 'skeleton', style: 'width:90%' }))));
+    }
+    try {
+      await loadRun(entry);
+      if (state.selected === entry) render();
+    } catch {
+      showMessage(`Results for ${entry.release} are not published yet.`, 'The pipeline may still be running. Try again in a few minutes.');
+    }
+  }
+
+  /** Switches environment and opens the wanted release there (or its latest one). */
+  function openEnv(env, release, { updateHash = true } = {}) {
+    state.env = env;
+    state.runs = visibleRuns();
+    state.query = '';
+    const entry = [...state.runs].reverse().find((r) => r.release === release) || state.runs[state.runs.length - 1];
+    if (entry) return selectRelease(entry, { updateHash });
+    state.selected = null;
+    if (updateHash) writeHash();
+    render();
+  }
+
+  // ---------- theme ----------
+  const THEMES = ['auto', 'light', 'dark'];
+  function applyTheme(t) {
+    if (t === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', t);
+    $('theme-toggle').textContent = `Theme: ${t}`;
+    try { localStorage.setItem('rq-theme', t); } catch {}
+  }
+  $('theme-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'auto';
+    applyTheme(THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length]);
+  });
+  try { applyTheme(localStorage.getItem('rq-theme') || 'auto'); } catch { applyTheme('auto'); }
+
+  // ---------- start ----------
+  $('release').addEventListener('change', (e) => { const r = state.runs.find((x) => x.runId === e.target.value); if (r) selectRelease(r); });
+  $('include-all').addEventListener('change', (e) => {
+    state.includeAll = e.target.checked;
+    openEnv(state.env, state.selected?.release);
+  });
+  for (const tab of document.querySelectorAll('.tab')) {
+    tab.addEventListener('click', () => { state.view = tab.dataset.view; writeHash(); render(); });
+  }
+  window.addEventListener('hashchange', () => {
+    const h = readHash();
+    const env = h.env && environments().includes(h.env) ? h.env : state.env;
+    state.view = h.view || 'results';
+    if (env !== state.env || (h.release && h.release !== state.selected?.release)) openEnv(env, h.release, { updateHash: false });
+    else render();
+  });
+
+  const getJson = (url) => fetch(url, { cache: 'no-cache' }).then((res) => { if (!res.ok) throw new Error(url); return res.json(); });
+  Promise.allSettled([getJson('index.json'), getJson('coverage.json')]).then(([index, coverage]) => {
+    state.coverage = coverage.status === 'fulfilled' ? coverage.value : null;
+    if (index.status !== 'fulfilled' && !state.coverage) {
+      showMessage('Results could not be loaded.', 'index.json is missing. The pipeline may not have published any results yet.');
+      return;
+    }
+    state.index = index.status === 'fulfilled' ? index.value : { runs: [], generatedAt: new Date().toISOString() };
+    const h = readHash();
+    const latest = [...state.index.runs].filter((r) => r.kind === 'release').sort((a, b) => a.startedAt.localeCompare(b.startedAt)).pop();
+    state.view = h.view || 'results';
+    openEnv(h.env && environments().includes(h.env) ? h.env : latest ? envOf(latest) : ENVIRONMENTS[0], h.release, { updateHash: !!location.hash });
+  });
+})();
+</script>
+</body>
+</html>

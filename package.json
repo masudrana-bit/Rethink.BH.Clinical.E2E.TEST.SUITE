@@ -1,0 +1,32 @@
+{
+  "name": "rethink-bh-clinical-e2e-test-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NextGen Clinical end-to-end test suite (RHD-57736) - Playwright + TypeScript, Page Object Model",
+  "scripts": {
+    "test": "playwright test",
+    "test:core": "playwright test --project=core-e2e",
+    "test:stories": "playwright test --project=stories",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "test:release": "playwright test tests/stories/0 tests/stories/1 --project=stories",
+    "test:dev2": "node scripts/run-env.mjs dev2",
+    "test:dev3": "node scripts/run-env.mjs dev3",
+    "test:uat": "node scripts/run-env.mjs uat",
+    "ui:dev2": "node scripts/run-env.mjs dev2 --ui",
+    "ui:dev3": "node scripts/run-env.mjs dev3 --ui",
+    "ui:uat": "node scripts/run-env.mjs uat --ui",
+    "dashboard:build": "node scripts/build-run-summary.mjs --results test-results/results.json --out site/runs --kind release --stories stories.json && node scripts/build-coverage.mjs",
+    "coverage:build": "node scripts/build-coverage.mjs",
+    "dashboard:serve": "node scripts/serve-site.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "^26.6.5",
+    "dotenv": "^18.0.8",
+    "typescript": "^7.0.2"
+  }
+}
