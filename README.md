@@ -95,4 +95,4 @@ The published dashboard is served by GitHub Pages from the `gh-pages` branch. Th
 
 Changing files under `.github/workflows/` needs a token with the `workflow` scope.
 
-The published HTML reports leave out Playwright traces, because traces record what was typed into the login form and `gh-pages` is public. Screenshots and videos are kept. To look at a trace, run the failing test locally and open it with `npm run report`.
+The published HTML reports leave out Playwright traces, because traces record what was typed into the login form and `gh-pages` is public. Screenshots and videos are kept. Before publishing, `scripts/mask-secrets.mjs` replaces the login values with `***` in every published file, because the app shows the signed-in user's name, which on the shared test accounts can equal the username or password. To look at a trace, run the failing test locally and open it with `npm run report`.
