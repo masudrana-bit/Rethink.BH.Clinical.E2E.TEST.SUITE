@@ -1,0 +1,425 @@
+{
+  "US-1": {
+    "title": "Select / switch active client context",
+    "epic": "01 Plan setup & library",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/01-plan-setup-library/US-01-select-switch-client.md"
+  },
+  "US-2": {
+    "title": "Search & browse the program library",
+    "epic": "01 Plan setup & library",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/01-plan-setup-library/US-02-search-browse-library.md"
+  },
+  "US-3": {
+    "title": "View client treatment plan",
+    "epic": "01 Plan setup & library",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/01-plan-setup-library/US-03-view-treatment-plan.md"
+  },
+  "US-4": {
+    "title": "Add a library program to a plan (Current / Future)",
+    "epic": "02 Program authoring",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/02-program-authoring/US-04-add-library-program.md"
+  },
+  "US-5": {
+    "title": "Create a custom program",
+    "epic": "02 Program authoring",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/02-program-authoring/US-05-create-custom-program.md"
+  },
+  "US-6": {
+    "title": "Edit, archive, or delete a program",
+    "epic": "02 Program authoring",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/02-program-authoring/US-06-edit-archive-delete-program.md"
+  },
+  "US-7": {
+    "title": "Manage targets / steps within a program",
+    "epic": "03 Target & criteria",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/03-target-criteria/US-07-manage-targets.md"
+  },
+  "US-8": {
+    "title": "Configure data-collection type & dimensions",
+    "epic": "03 Target & criteria",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/03-target-criteria/US-08-data-collection-type.md"
+  },
+  "US-9": {
+    "title": "Configure mastery, maintenance & generalization criteria",
+    "epic": "03 Target & criteria",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/03-target-criteria/US-09-mastery-criteria.md"
+  },
+  "US-10": {
+    "title": "Access the RBT shell and navigate to sessions",
+    "epic": "04 Session lifecycle",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/04-session-lifecycle/US-10-rbt-shell.md"
+  },
+  "US-11": {
+    "title": "View and open scheduled sessions",
+    "epic": "04 Session lifecycle",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/04-session-lifecycle/US-11-scheduled-sessions.md"
+  },
+  "US-12": {
+    "title": "Create an ad-hoc session, incl. multi-client group",
+    "epic": "04 Session lifecycle",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/04-session-lifecycle/US-12-adhoc-group-session.md"
+  },
+  "US-13": {
+    "title": "Start, pause, resume, and close a session",
+    "epic": "04 Session lifecycle",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/04-session-lifecycle/US-13-start-pause-resume-close.md"
+  },
+  "US-14": {
+    "title": "Enter historical / backfill session data",
+    "epic": "04 Session lifecycle",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/04-session-lifecycle/US-14-historical-entry.md"
+  },
+  "US-15": {
+    "title": "Record standard discrete-trial attempts",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-15-discrete-trials.md"
+  },
+  "US-16": {
+    "title": "Record task-analysis attempts",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-16-task-analysis.md"
+  },
+  "US-17": {
+    "title": "Record PEAK attempts",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-17-peak.md"
+  },
+  "US-18": {
+    "title": "Record simple collection data (8 types)",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-18-simple-collection.md"
+  },
+  "US-19": {
+    "title": "Record a toileting visit",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-19-toileting.md"
+  },
+  "US-20": {
+    "title": "Record duration-intensity behavior data",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-20-duration-intensity.md"
+  },
+  "US-21": {
+    "title": "Track session and program timers",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-21-timers.md"
+  },
+  "US-22": {
+    "title": "Record an in-session ABC entry",
+    "epic": "05 Data collection",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/05-data-collection/US-22-abc-entry.md"
+  },
+  "US-23": {
+    "title": "Close a session and review summary, audit & note",
+    "epic": "06 Closeout",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/06-closeout/US-23-close-session-summary.md"
+  },
+  "US-24": {
+    "title": "Correct a previously recorded attempt or fact",
+    "epic": "06 Closeout",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 0,
+    "doc": "test-cases/06-closeout/US-24-correct-recorded-data.md"
+  },
+  "US-25": {
+    "title": "Resume an in-progress session after a refresh",
+    "epic": "06 Closeout",
+    "priority": "P1",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/06-closeout/US-25-resume-after-refresh.md"
+  },
+  "US-26": {
+    "title": "Enter the app from a BH tile already authenticated",
+    "epic": "07 Platform",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 5,
+    "manualCases": 2,
+    "doc": "test-cases/07-platform/US-26-bh-tile-entry.md"
+  },
+  "US-27": {
+    "title": "Review a program's combined trend chart",
+    "epic": "08 Program analysis",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/08-program-analysis/US-27-combined-trend-chart.md"
+  },
+  "US-28": {
+    "title": "Review each target on its own chart",
+    "epic": "08 Program analysis",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/08-program-analysis/US-28-per-target-charts.md"
+  },
+  "US-29": {
+    "title": "Add trend lines to a program's chart",
+    "epic": "08 Program analysis",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/08-program-analysis/US-29-trend-lines.md"
+  },
+  "US-30": {
+    "title": "Annotate a program's chart with clinical events",
+    "epic": "08 Program analysis",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 1,
+    "doc": "test-cases/08-program-analysis/US-30-annotations.md"
+  },
+  "US-31": {
+    "title": "Review and correct recorded observations",
+    "epic": "08 Program analysis",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/08-program-analysis/US-31-observations.md"
+  },
+  "US-32": {
+    "title": "Change a target's phase and see its history",
+    "epic": "09 Clinical decisioning",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/09-clinical-decisioning/US-32-phase-change.md"
+  },
+  "US-33": {
+    "title": "Review and confirm automatic mastery determinations",
+    "epic": "09 Clinical decisioning",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/09-clinical-decisioning/US-33-mastery-determination.md"
+  },
+  "US-34": {
+    "title": "Review mastered targets across a client's plan",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-34-mastered-targets.md"
+  },
+  "US-35": {
+    "title": "Build a custom cross-program comparison graph",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-35-custom-comparison-graph.md"
+  },
+  "US-36": {
+    "title": "Review every program & behavior graph in one report",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-36-bulk-graphs.md"
+  },
+  "US-37": {
+    "title": "Review behavior & replacement-skill trends side by side",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-37-behavior-skill-trends.md"
+  },
+  "US-38": {
+    "title": "Review ABC patterns for a behavior plan",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-38-abc-patterns.md"
+  },
+  "US-39": {
+    "title": "Produce a funder-ready graph",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 3,
+    "manualCases": 1,
+    "doc": "test-cases/10-client-funder-reporting/US-39-funder-graph.md"
+  },
+  "US-40": {
+    "title": "Reach client-level and program-level analysis",
+    "epic": "10 Client & funder reporting",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/10-client-funder-reporting/US-40-analysis-navigation.md"
+  },
+  "US-41": {
+    "title": "Reach the clinical settings area",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/11-program-library-admin/US-41-settings-access.md"
+  },
+  "US-42": {
+    "title": "View the organization's program catalog",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 1,
+    "doc": "test-cases/11-program-library-admin/US-42-program-catalog.md"
+  },
+  "US-43": {
+    "title": "Find a program in the catalog",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 1,
+    "doc": "test-cases/11-program-library-admin/US-43-find-program.md"
+  },
+  "US-44": {
+    "title": "Create a new program",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 1,
+    "doc": "test-cases/11-program-library-admin/US-44-create-program.md"
+  },
+  "US-45": {
+    "title": "Edit a program without changing it for everyone else",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/11-program-library-admin/US-45-adapt-program.md"
+  },
+  "US-46": {
+    "title": "Publish a draft",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 1,
+    "manualCases": 0,
+    "doc": "test-cases/11-program-library-admin/US-46-publish-draft.md"
+  },
+  "US-47": {
+    "title": "Retire and restore a program",
+    "epic": "11 Program library admin",
+    "priority": "P2",
+    "owner": null,
+    "testCases": 2,
+    "manualCases": 0,
+    "doc": "test-cases/11-program-library-admin/US-47-retire-restore.md"
+  }
+}

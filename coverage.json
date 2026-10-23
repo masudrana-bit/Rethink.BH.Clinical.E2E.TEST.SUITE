@@ -1,0 +1,1709 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-23T05:12:57.285Z",
+  "rule": "A feature is fully automated when every happy-path test case written for it runs as an automated test. Error, validation and edge cases are counted separately and do not change the label.",
+  "totals": {
+    "stories": 47,
+    "full": 42,
+    "partial": 5,
+    "none": 0,
+    "cases": 94,
+    "automated": 87,
+    "happy": 83,
+    "happyAutomated": 78
+  },
+  "stories": [
+    {
+      "key": "US-1",
+      "title": "Select / switch active client context",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "doc": "test-cases/01-plan-setup-library/US-01-select-switch-client.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US01-01",
+          "story": "US-1",
+          "title": "Find a client on the Clients page and open their workspace",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US01-02",
+          "story": "US-1",
+          "title": "Switch client from the header and every tab reloads for the new client",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US01-03",
+          "story": "US-1",
+          "title": "Search by Client ID and hand-off to legacy BH",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-2",
+      "title": "Search & browse the program library",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "doc": "test-cases/01-plan-setup-library/US-02-search-browse-library.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US02-01",
+          "story": "US-2",
+          "title": "Browse System Programs, search by keyword and preview a program",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-02-search-browse-library.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US02-02",
+          "story": "US-2",
+          "title": "Filter by Category / Domain / Area and switch to My Programs",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-02-search-browse-library.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-3",
+      "title": "View client treatment plan",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "doc": "test-cases/01-plan-setup-library/US-03-view-treatment-plan.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US03-01",
+          "story": "US-3",
+          "title": "Review the Current and Inactive plan lists with domain and last-recorded info",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-03-view-treatment-plan.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US03-02",
+          "story": "US-3",
+          "title": "Add a Future program and find it under the right list, then reorder",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/01-plan-setup-library/us-03-view-treatment-plan.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-4",
+      "title": "Add a library program to a plan (Current / Future)",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "doc": "test-cases/02-program-authoring/US-04-add-library-program.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US04-01",
+          "story": "US-4",
+          "title": "Add a system program as Current and confirm goal, targets and lesson plan were copied",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US04-02",
+          "story": "US-4",
+          "title": "Duplicate protection: \"Already added\" in the catalog and a warning from a stale second tab",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US04-03",
+          "story": "US-4",
+          "title": "Add a program as Future and move it to Current",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-5",
+      "title": "Create a custom program",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "doc": "test-cases/02-program-authoring/US-05-create-custom-program.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US05-01",
+          "story": "US-5",
+          "title": "Build a full custom program with objectives, bulk targets, lesson plan and a material link",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US05-02",
+          "story": "US-5",
+          "title": "New custom program saved to My Programs is searchable in the library",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US05-03",
+          "story": "US-5",
+          "title": "Required-field validation",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-6",
+      "title": "Edit, archive, or delete a program",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "doc": "test-cases/02-program-authoring/US-06-edit-archive-delete-program.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US06-01",
+          "story": "US-6",
+          "title": "Edit the goal and rename a program from the header",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-06-edit-archive-delete-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US06-02",
+          "story": "US-6",
+          "title": "Discontinue (archive) a program, then delete it with confirmation",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/02-program-authoring/us-06-edit-archive-delete-program.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-7",
+      "title": "Manage targets / steps within a program",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "doc": "test-cases/03-target-criteria/US-07-manage-targets.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US07-01",
+          "story": "US-7",
+          "title": "Add, bulk add, rename, reorder and assign objective and group",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US07-02",
+          "story": "US-7",
+          "title": "Status lifecycle: In Progress, On hold, Mastered and un-master, with dated history",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US07-03",
+          "story": "US-7",
+          "title": "Remove a target (cancel and save) and delete a group",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-8",
+      "title": "Configure data-collection type & dimensions",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "doc": "test-cases/03-target-criteria/US-08-data-collection-type.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US08-01",
+          "story": "US-8",
+          "title": "Opportunity Based with prompts and location; settings persist and show in Program Details",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US08-02",
+          "story": "US-8",
+          "title": "Every collection type can be selected and shows its mastery wording",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US08-03",
+          "story": "US-8",
+          "title": "Change the collection type of a configured program",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-9",
+      "title": "Configure mastery, maintenance & generalization criteria",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "doc": "test-cases/03-target-criteria/US-09-mastery-criteria.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US09-01",
+          "story": "US-9",
+          "title": "Mastery, baseline, generalization and maintenance save and display",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US09-02",
+          "story": "US-9",
+          "title": "Validation: percentage above 100 and empty required values",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US09-03",
+          "story": "US-9",
+          "title": "Frequency/Rate programs use frequency-based criteria",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-10",
+      "title": "Access the RBT shell and navigate to sessions",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "doc": "test-cases/04-session-lifecycle/US-10-rbt-shell.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US10-01",
+          "story": "US-10",
+          "title": "RBT lands on RBT home and navigates the RBT shell",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-10-rbt-shell.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US10-02",
+          "story": "US-10",
+          "title": "RBT view survives refresh on a deep page and re-login",
+          "type": "edge",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-10-rbt-shell.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-11",
+      "title": "View and open scheduled sessions",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "doc": "test-cases/04-session-lifecycle/US-11-scheduled-sessions.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US11-01",
+          "story": "US-11",
+          "title": "Sessions list is limited to own clients and shows correct counts",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US11-02",
+          "story": "US-11",
+          "title": "Open a scheduled session: pre-session page, then data sheet",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US11-03",
+          "story": "US-11",
+          "title": "Concluded session appears in \"Incomplete session notes\" for its client only",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-12",
+      "title": "Create an ad-hoc session, incl. multi-client group",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "doc": "test-cases/04-session-lifecycle/US-12-adhoc-group-session.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US12-01",
+          "story": "US-12",
+          "title": "Ad-hoc single-client session from RBT home",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US12-02",
+          "story": "US-12",
+          "title": "Start Live Session from the client page pre-selects the client",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US12-03",
+          "story": "US-12",
+          "title": "Group session with two clients records data per client",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-13",
+      "title": "Start, pause, resume, and close a session",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "doc": "test-cases/04-session-lifecycle/US-13-start-pause-resume-close.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US13-01",
+          "story": "US-13",
+          "title": "Pause and resume keep the timer and recorded data; summary shows real times",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-13-start-pause-resume-close.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US13-02",
+          "story": "US-13",
+          "title": "Transfer uses a staff picker; Cancel keeps the session running",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-13-start-pause-resume-close.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-14",
+      "title": "Enter historical / backfill session data",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "doc": "test-cases/04-session-lifecycle/US-14-historical-entry.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US14-01",
+          "story": "US-14",
+          "title": "Backfill a past date with times left blank and see it in the program data",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/04-session-lifecycle/us-14-historical-entry.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-15",
+      "title": "Record standard discrete-trial attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-15-discrete-trials.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US15-01",
+          "story": "US-15",
+          "title": "Every prompt level is recordable, shown trial by trial; on-hold targets stay off the sheet",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-15-discrete-trials.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US15-02",
+          "story": "US-15",
+          "title": "Change and delete a recorded trial from the trial-by-trial view",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-15-discrete-trials.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-16",
+      "title": "Record task-analysis attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-16-task-analysis.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US16-01",
+          "story": "US-16",
+          "title": "Score every step, start a new series at step 1, see % in the summary",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-16-task-analysis.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-17",
+      "title": "Record PEAK attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-17-peak.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US17-01",
+          "story": "US-17",
+          "title": "Score a PEAK block, see totals, and start another scoring",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-17-peak.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-18",
+      "title": "Record simple collection data (8 types)",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-18-simple-collection.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US18-01",
+          "story": "US-18",
+          "title": "Quick-entry recorders: percentage, numeric, rating, tally",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-18-simple-collection.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US18-02",
+          "story": "US-18",
+          "title": "Timed recorders: frequency, interval, duration, frequency + duration",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-18-simple-collection.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-19",
+      "title": "Record a toileting visit",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-19-toileting.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US19-01",
+          "story": "US-19",
+          "title": "Time a sit, pick an outcome, submit, and see it in the metrics",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-19-toileting.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-20",
+      "title": "Record duration-intensity behavior data",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-20-duration-intensity.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US20-01",
+          "story": "US-20",
+          "title": "Duration-intensity segments per level survive a pause",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-20-duration-intensity.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US20-02",
+          "story": "US-20",
+          "title": "Plan behavior offers the duration-intensity recorder",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-20-duration-intensity.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-21",
+      "title": "Track session and program timers",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-21-timers.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US21-01",
+          "story": "US-21",
+          "title": "Session, program and interval timers run, pause and stop",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-21-timers.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-22",
+      "title": "Record an in-session ABC entry",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "doc": "test-cases/05-data-collection/US-22-abc-entry.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US22-01",
+          "story": "US-22",
+          "title": "Record a plan-defined and a novel behavior; audit shows context names",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-22-abc-entry.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US22-02",
+          "story": "US-22",
+          "title": "In a group session, Record ABC Data from a client's card targets that client",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/05-data-collection/us-22-abc-entry.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-23",
+      "title": "Close a session and review summary, audit & note",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "doc": "test-cases/06-closeout/US-23-close-session-summary.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US23-01",
+          "story": "US-23",
+          "title": "Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-23-close-session-summary.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US23-02",
+          "story": "US-23",
+          "title": "Finalize stays locked until the session times are confirmed",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-23-close-session-summary.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-24",
+      "title": "Correct a previously recorded attempt or fact",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "doc": "test-cases/06-closeout/US-24-correct-recorded-data.md",
+      "level": "full",
+      "happy": {
+        "total": 3,
+        "automated": 3
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US24-01",
+          "story": "US-24",
+          "title": "Correct a trial outcome from the audit list; the summary and audit trail update",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US24-02",
+          "story": "US-24",
+          "title": "Undo in session and delete from the audit list leave an audit trail",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US24-03",
+          "story": "US-24",
+          "title": "Correct or remove an ABC entry from the audit list (NGC-65)",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-25",
+      "title": "Resume an in-progress session after a refresh",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "doc": "test-cases/06-closeout/US-25-resume-after-refresh.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US25-01",
+          "story": "US-25",
+          "title": "Refresh mid-session: trials, behavior count, ABC entry and clock are kept; recording continues",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-25-resume-after-refresh.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US25-02",
+          "story": "US-25",
+          "title": "Close the tab and come back: RBT Home offers the session under \"Resume a session\" with its data",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/06-closeout/us-25-resume-after-refresh.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-26",
+      "title": "Enter the app from a BH tile already authenticated",
+      "epic": "07 Platform",
+      "priority": "P2",
+      "doc": "test-cases/07-platform/US-26-bh-tile-entry.md",
+      "level": "partial",
+      "happy": {
+        "total": 4,
+        "automated": 3
+      },
+      "other": {
+        "total": 1,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US26-01",
+          "story": "US-26",
+          "title": "Signed-out deep link asks for the BH hand-off; after sign-in the session is reused without a second sign-in",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US26-02",
+          "story": "US-26",
+          "title": "The user lands with the correct role; the RBT view lands on RBT Home",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US26-03",
+          "story": "US-26",
+          "title": "Header link back to Rethink BH and session survives an idle gap",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US26-04",
+          "story": "US-26",
+          "title": "Launch from the BH dashboard tile",
+          "type": "happy",
+          "automated": false,
+          "file": "tests/stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "note": "Only a placeholder test exists (test.fixme in tests/stories/07-platform/us-26-bh-tile-entry.spec.ts)"
+        },
+        {
+          "id": "TC-US26-05",
+          "story": "US-26",
+          "title": "No forced sign-out over a 90-minute session with idle gaps",
+          "type": "edge",
+          "automated": false,
+          "file": "tests/stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "note": "Only a placeholder test exists (test.fixme in tests/stories/07-platform/us-26-bh-tile-entry.spec.ts)"
+        }
+      ]
+    },
+    {
+      "key": "US-27",
+      "title": "Review a program's combined trend chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "doc": "test-cases/08-program-analysis/US-27-combined-trend-chart.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US27-01",
+          "story": "US-27",
+          "title": "A finalized session appears on the combined chart as a new point dated today",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-27-combined-trend-chart.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US27-02",
+          "story": "US-27",
+          "title": "Date-range filter changes the sessions shown",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-27-combined-trend-chart.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-28",
+      "title": "Review each target on its own chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "doc": "test-cases/08-program-analysis/US-28-per-target-charts.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US28-01",
+          "story": "US-28",
+          "title": "Each target gets its own chart with its session data; a phase change shows on that chart (NGC-61)",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-28-per-target-charts.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-29",
+      "title": "Add trend lines to a program's chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "doc": "test-cases/08-program-analysis/US-29-trend-lines.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US29-01",
+          "story": "US-29",
+          "title": "Trend line is added to a chart with 3+ points and removed again",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-29-trend-lines.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US29-02",
+          "story": "US-29",
+          "title": "With fewer than 3 points the trend control explains why no line is drawn (NGC-85)",
+          "type": "edge",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-29-trend-lines.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-30",
+      "title": "Annotate a program's chart with clinical events",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "doc": "test-cases/08-program-analysis/US-30-annotations.md",
+      "level": "partial",
+      "happy": {
+        "total": 2,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US30-01",
+          "story": "US-30",
+          "title": "Add a dated Medication Change annotation; it is listed on the rail and on the chart, then removed",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-30-annotations.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US30-02",
+          "story": "US-30",
+          "title": "Annotation dialog: types offered, start date required, Cancel adds nothing",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-30-annotations.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US30-03",
+          "story": "US-30",
+          "title": "Line style by type and phase-change lines",
+          "type": "happy",
+          "automated": false,
+          "file": null,
+          "note": "No automated test written yet"
+        }
+      ]
+    },
+    {
+      "key": "US-31",
+      "title": "Review and correct recorded observations",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "doc": "test-cases/08-program-analysis/US-31-observations.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US31-01",
+          "story": "US-31",
+          "title": "A finalized session is listed in the Observations grid with staff and setting; correcting it updates the grid and chart",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/08-program-analysis/us-31-observations.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-32",
+      "title": "Change a target's phase and see its history",
+      "epic": "09 Clinical decisioning",
+      "priority": "P2",
+      "doc": "test-cases/09-clinical-decisioning/US-32-phase-change.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US32-01",
+          "story": "US-32",
+          "title": "Move a target from Baseline to Intervention and then Maintenance with reasons; history and the program-level phase follow",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/09-clinical-decisioning/us-32-phase-change.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US32-02",
+          "story": "US-32",
+          "title": "Close baseline moves a target out of Baseline",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/09-clinical-decisioning/us-32-phase-change.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-33",
+      "title": "Review and confirm automatic mastery determinations",
+      "epic": "09 Clinical decisioning",
+      "priority": "P2",
+      "doc": "test-cases/09-clinical-decisioning/US-33-mastery-determination.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US33-01",
+          "story": "US-33",
+          "title": "Meeting the criteria raises a determination; confirm masters one target and reject keeps the other in progress",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/09-clinical-decisioning/us-33-mastery-determination.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US33-02",
+          "story": "US-33",
+          "title": "Program without pending determinations shows the empty review state",
+          "type": "edge",
+          "automated": true,
+          "file": "tests/stories/09-clinical-decisioning/us-33-mastery-determination.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-34",
+      "title": "Review mastered targets across a client's plan",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-34-mastered-targets.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US34-01",
+          "story": "US-34",
+          "title": "Mastered targets report: tiles add up, chart and grouping, any date range",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-34-mastered-targets.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US34-02",
+          "story": "US-34",
+          "title": "A saved report stays available after reload and in a new browser session",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-34-mastered-targets.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-35",
+      "title": "Build a custom cross-program comparison graph",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-35-custom-comparison-graph.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US35-01",
+          "story": "US-35",
+          "title": "Two programs and a behavior plotted on one time axis; the report can be exported and saved",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-35-custom-comparison-graph.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-36",
+      "title": "Review every program & behavior graph in one report",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-36-bulk-graphs.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US36-01",
+          "story": "US-36",
+          "title": "Bulk Graphs lists every program and behavior, then respects a narrowed selection (NGC-89)",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-36-bulk-graphs.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-37",
+      "title": "Review behavior & replacement-skill trends side by side",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-37-behavior-skill-trends.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US37-01",
+          "story": "US-37",
+          "title": "Behavior counts from a session appear in the plan Data tab beside the linked measures",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-37-behavior-skill-trends.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-38",
+      "title": "Review ABC patterns for a behavior plan",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-38-abc-patterns.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US38-01",
+          "story": "US-38",
+          "title": "ABC entries recorded in a session show up in the plan ABC breakdown",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-38-abc-patterns.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-39",
+      "title": "Produce a funder-ready graph",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-39-funder-graph.md",
+      "level": "partial",
+      "happy": {
+        "total": 3,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US39-01",
+          "story": "US-39",
+          "title": "Funder (payor) graph of a program exports as PNG and PDF with dated x-axis labels and US spelling",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-39-funder-graph.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US39-02",
+          "story": "US-39",
+          "title": "Funder report opens in the editor with required fields marked",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-39-funder-graph.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US39-03",
+          "story": "US-39",
+          "title": "Exported files",
+          "type": "happy",
+          "automated": false,
+          "file": null,
+          "note": "No automated test written yet"
+        }
+      ]
+    },
+    {
+      "key": "US-40",
+      "title": "Reach client-level and program-level analysis",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "doc": "test-cases/10-client-funder-reporting/US-40-analysis-navigation.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US40-01",
+          "story": "US-40",
+          "title": "Move between Analyze Data and a program chart without losing the client; legacy tabs open the same client",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/10-client-funder-reporting/us-40-analysis-navigation.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-41",
+      "title": "Reach the clinical settings area",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-41-settings-access.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 1
+      },
+      "cases": [
+        {
+          "id": "TC-US41-01",
+          "story": "US-41",
+          "title": "Admin opens Settings from the navigation; every clinical section and the Locations list load",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-41-settings-access.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US41-02",
+          "story": "US-41",
+          "title": "Settings is not offered in the RBT view",
+          "type": "negative",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-41-settings-access.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-42",
+      "title": "View the organization's program catalog",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-42-program-catalog.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 1,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US42-01",
+          "story": "US-42",
+          "title": "Catalog grid shows program details and row actions without side scrolling",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-42-program-catalog.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US42-02",
+          "story": "US-42",
+          "title": "Side panel does not overlap the grid",
+          "type": "edge",
+          "automated": false,
+          "file": null,
+          "note": "No automated test written yet"
+        }
+      ]
+    },
+    {
+      "key": "US-43",
+      "title": "Find a program in the catalog",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-43-find-program.md",
+      "level": "partial",
+      "happy": {
+        "total": 2,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US43-01",
+          "story": "US-43",
+          "title": "Search by name, filter by category / domain / area, and clear back to the full catalog",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-43-find-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US43-02",
+          "story": "US-43",
+          "title": "Last edited updates on every edit",
+          "type": "happy",
+          "automated": false,
+          "file": null,
+          "note": "No automated test written yet"
+        }
+      ]
+    },
+    {
+      "key": "US-44",
+      "title": "Create a new program",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-44-create-program.md",
+      "level": "partial",
+      "happy": {
+        "total": 2,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US44-01",
+          "story": "US-44",
+          "title": "Create a program with objectives, targets and a link material and save it as a draft",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-44-create-program.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US44-02",
+          "story": "US-44",
+          "title": "System targets, file materials and dropdown behaviour",
+          "type": "happy",
+          "automated": false,
+          "file": null,
+          "note": "No automated test written yet"
+        }
+      ]
+    },
+    {
+      "key": "US-45",
+      "title": "Edit a program without changing it for everyone else",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-45-adapt-program.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US45-01",
+          "story": "US-45",
+          "title": "Editing a standard program adapts a copy; the original stays Standard and unchanged",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-45-adapt-program.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-46",
+      "title": "Publish a draft",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-46-publish-draft.md",
+      "level": "full",
+      "happy": {
+        "total": 1,
+        "automated": 1
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US46-01",
+          "story": "US-46",
+          "title": "A draft is not offered to clients; publishing asks for confirmation and makes it available in Add Program",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-46-publish-draft.spec.ts",
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "US-47",
+      "title": "Retire and restore a program",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "doc": "test-cases/11-program-library-admin/US-47-retire-restore.md",
+      "level": "full",
+      "happy": {
+        "total": 2,
+        "automated": 2
+      },
+      "other": {
+        "total": 0,
+        "automated": 0
+      },
+      "cases": [
+        {
+          "id": "TC-US47-01",
+          "story": "US-47",
+          "title": "Deactivate with confirmation hides the program from clients; Reactivate brings it back",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-47-retire-restore.spec.ts",
+          "note": null
+        },
+        {
+          "id": "TC-US47-02",
+          "story": "US-47",
+          "title": "Deactivating a standard program is either confirmed for this organization only or offers \"Adapt a copy\" (NGC-30)",
+          "type": "happy",
+          "automated": true,
+          "file": "tests/stories/11-program-library-admin/us-47-retire-restore.spec.ts",
+          "note": null
+        }
+      ]
+    }
+  ]
+}
