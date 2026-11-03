@@ -100,7 +100,7 @@
     <div>
       <p class="eyebrow">Report date · November 3, 2026</p>
       <p class="word">At risk</p>
-      <p class="why">Coverage is strong: 82% of all test scenarios now run automatically. dev3 is not release-ready yet, and the manual Xray execution has not started.</p>
+      <p class="why">Coverage is strong: 87 of 106 test scenarios (82%) now run automatically. The 106 are our 94 e2e test cases plus the 12 Xray tests they don't cover; the other 71 Xray tests overlap with e2e and are counted once. dev3 is not release-ready yet, and the manual Xray execution has not started.</p>
       <div class="meta"><span class="pill">Environments: dev2, dev3, UAT</span><span class="pill">Latest run: dev3, Oct 27, 2026</span><span class="pill">GitHub Actions</span></div>
     </div>
     <div>
@@ -114,6 +114,8 @@
 
   <section>
     <div class="stats">
+      <div class="stat"><div class="n">106</div><div class="l">total test scenarios: 94 e2e + 12 Xray-only</div></div>
+      <div class="stat"><div class="n green">87 of 106</div><div class="l">automated (82%)</div></div>
       <div class="stat"><div class="n green">87 of 94</div><div class="l">automated test cases</div></div>
       <div class="stat"><div class="n">42 of 47</div><div class="l">stories fully automated</div></div>
       <div class="stat"><div class="n">71 of 83</div><div class="l">Xray tests with automated coverage</div></div>
