@@ -124,6 +124,7 @@ jobs:
           cp site/runs/*.json published/runs/
           cp site/coverage.json published/coverage.json
           cp dashboard/index.html published/index.html
+          cp dashboard/status.html published/status.html
           [ -f stories.json ] && cp stories.json published/stories.json || true
           rm -rf "published/reports/${{ github.run_id }}"
           cp -r playwright-report "published/reports/${{ github.run_id }}"

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QA status report · NextGen Clinical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --surface-2: #f4f4f2; --border: #e8e8e4; --border-strong: #d4d4cf;
+    --text: #18181b; --text-2: #52525b; --text-3: #8b8b93;
+    --green: #15803d; --green-bg: #e7f5ec; --amber: #a16207; --amber-bg: #fbf3dc;
+    --red: #b91c1c; --red-bg: #fdecec; --grey: #71717a; --grey-bg: #efeff0;
+    --focus: #2563eb; --link: #2563eb; --radius: 14px;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --surface: #18181b; --surface-2: #222226; --border: #2c2c31; --border-strong: #3c3c43;
+      --text: #f4f4f5; --text-2: #b4b4bb; --text-3: #85858d;
+      --green: #4ade80; --green-bg: #14301f; --amber: #fbbf24; --amber-bg: #372a0b;
+      --red: #f87171; --red-bg: #3b1616; --grey: #a1a1aa; --grey-bg: #27272a;
+      --focus: #93b4ff; --link: #93b4ff; color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  h1 { font-size: 22px; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+  h2 { font-size: 16px; margin: 0 0 12px; font-weight: 600; }
+  .secondary { color: var(--text-2); font-size: 13px; }
+  .topbar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--border); }
+  .topbar .row { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .brand { display: flex; gap: 12px; align-items: center; }
+  .logo { width: 30px; height: 30px; border-radius: 9px; background: var(--text); color: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+  .link-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+  .link-btn:hover { text-decoration: none; border-color: var(--border-strong); }
+  section { margin-top: 36px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+  .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 40px; padding: 36px 0 8px; }
+  .eyebrow { font-size: 13px; color: var(--text-3); font-weight: 500; margin: 0 0 6px; }
+  .word { font-size: 46px; line-height: 1.08; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.02em; color: var(--amber); }
+  .why { margin: 0 0 14px; max-width: 62ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font-size: 13px; color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+  .rate { font-size: 46px; font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
+  .rate small { font-size: 15px; font-weight: 500; color: var(--text-2); display: block; letter-spacing: 0; margin-top: 4px; }
+  .bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--grey-bg); margin-top: 18px; gap: 2px; }
+  .bar span { display: block; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--text-2); margin-top: 10px; }
+  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .stat { flex: 1 1 150px; background: var(--surface); padding: 16px 18px; }
+  .stat .n { font-size: 28px; font-weight: 650; line-height: 1.2; }
+  .stat .l { font-size: 13px; color: var(--text-2); }
+  .n.green { color: var(--green); } .n.amber { color: var(--amber); } .n.red { color: var(--red); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  ul.points { margin: 0; padding-left: 18px; } ul.points li { margin: 6px 0; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-size: 12px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.total td { font-weight: 600; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 1px 9px; border-radius: 999px; white-space: nowrap; }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge.green { color: var(--green); background: var(--green-bg); }
+  .badge.amber { color: var(--amber); background: var(--amber-bg); }
+  .badge.red { color: var(--red); background: var(--red-bg); }
+  .badge.grey { color: var(--grey); background: var(--grey-bg); }
+  ol.steps { margin: 0; padding-left: 20px; } ol.steps li { margin: 8px 0; }
+  footer { margin: 40px 0 32px; font-size: 13px; color: var(--text-3); }
+  @media (max-width: 820px) { .hero, .two { grid-template-columns: 1fr; gap: 24px; } .word, .rate { font-size: 36px; } }
+  @media print { .topbar { position: static; backdrop-filter: none; } .link-btn { display: none; } section, .panel { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap row">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">RQ</div>
+      <div>
+        <h1>QA status report</h1>
+        <div class="secondary">NextGen Clinical · E2E testing <a href="https://rethinkautism.atlassian.net/browse/RHD-57736">RHD-57736</a> and test execution <a href="https://rethinkautism.atlassian.net/browse/RHD-60204">RHD-60204</a></div>
+      </div>
+    </div>
+    <a class="link-btn" href="./">Release dashboard</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Report date · November 3, 2026</p>
+      <p class="word">At risk</p>
+      <p class="why">Coverage is strong: 82% of all test scenarios now run automatically. dev3 is not release-ready yet, and the manual Xray execution has not started.</p>
+      <div class="meta"><span class="pill">Environments: dev2, dev3, UAT</span><span class="pill">Latest run: dev3, Oct 27, 2026</span><span class="pill">GitHub Actions</span></div>
+    </div>
+    <div>
+      <div class="rate">82%<small>of 106 combined scenarios automated</small></div>
+      <div class="bar" role="img" aria-label="Xray tests: 44 covered, 27 partly covered, 12 not covered">
+        <span style="width:53%;background:var(--green)"></span><span style="width:32.5%;background:var(--amber)"></span><span style="width:14.5%;background:var(--red)"></span>
+      </div>
+      <div class="legend"><span><i style="background:var(--green)"></i>44 Xray tests covered</span><span><i style="background:var(--amber)"></i>27 partly</span><span><i style="background:var(--red)"></i>12 not covered</span></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="stats">
+      <div class="stat"><div class="n green">87 of 94</div><div class="l">automated test cases</div></div>
+      <div class="stat"><div class="n">42 of 47</div><div class="l">stories fully automated</div></div>
+      <div class="stat"><div class="n">71 of 83</div><div class="l">Xray tests with automated coverage</div></div>
+      <div class="stat"><div class="n amber">65.2%</div><div class="l">dev3 pass rate (Oct 27)</div></div>
+      <div class="stat"><div class="n red">8</div><div class="l">dev3 failures to triage</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">defects raised by the manual execution</div></div>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="panel">
+      <h2>Highlights</h2>
+      <ul class="points">
+        <li><strong>The suite runs in CI on any environment.</strong> GitHub Actions runs the full suite on dev2, dev3 or UAT in about an hour and publishes this dashboard.</li>
+        <li><strong>dev3 test data is in place.</strong> With dedicated clients and seeded programs, the local dev3 run went from 39 to 82 tests behaving as expected.</li>
+        <li><strong>Fixes confirmed on dev3:</strong> the RBT view loads without a refresh, the frequency mastery threshold saves, phase history names the user, behavior plans publish, and NGC-16, NGC-65 and NGC-90 are fixed.</li>
+        <li><strong>Charts are covered beyond the manual plan:</strong> 9 automated test cases for program analysis (US-27 to US-31) have no Xray counterpart.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Latest dev3 run · Oct 27, 2026</h2>
+      <table>
+        <tbody>
+          <tr><td><span class="badge green">Passed</span></td><td class="num">58</td></tr>
+          <tr><td><span class="badge amber">Known product defect, reproduced as expected</span></td><td class="num">17</td></tr>
+          <tr><td><span class="badge red">Failed</span></td><td class="num">8</td></tr>
+          <tr><td><span class="badge grey">Skipped</span></td><td class="num">6</td></tr>
+          <tr class="total"><td>Total</td><td class="num">89</td></tr>
+        </tbody>
+      </table>
+      <p class="secondary">Verdict "Not ready". Of the 8 failures, 2 are likely CI-only (legacy BH new tab), 1 known defect now passes, and 5 follow dev3 changes since Oct 22. <a href="https://github.com/masudrana-bit/Rethink.BH.Clinical.E2E.TEST.SUITE/actions/runs/40478073527">Pipeline run</a></p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Risks and blockers</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Risk</th><th>Impact</th><th>Action needed</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge red">High</span> The dev3 data sheet stays blank for clients with large plans. About 1,000 requests fire at session start and a third time out.</td><td>RBTs cannot record data for those clients</td><td>Log a defect and route it to engineering (not in Jira yet)</td><td>QA → Engineering</td></tr>
+          <tr><td><span class="badge red">High</span> 8 dev3 failures in the Oct 27 CI run</td><td>Release verdict "Not ready"</td><td>Triage and fix, then re-run dev3 in GitHub Actions</td><td>QA automation</td></tr>
+          <tr><td><span class="badge amber">Medium</span> 17 product defects still reproduce on dev3 (e.g. NGC-49 caseload filter, NGC-86 note template, NGC-68 catalog columns)</td><td>Session close-out and catalog flows</td><td>Prioritise fixes before release</td><td>Product / Engineering</td></tr>
+          <tr><td><span class="badge amber">Medium</span> Manual execution RHD-60204 not started (0%)</td><td>12 scenarios are only covered once it runs</td><td>Assign testers and start the execution</td><td>QA lead</td></tr>
+          <tr><td><span class="badge grey">Low</span> Four-client group sessions and staff transfer cannot be automated yet</td><td>Gaps in session coverage</td><td>Two more test clients and a second staff account on dev3</td><td>Environment owner</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Coverage by product area</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Product area</th><th class="num">Xray tests</th><th class="num">Covered</th><th class="num">Partly</th><th class="num">Not covered</th><th class="num">Automated test cases</th></tr></thead>
+        <tbody>
+          <tr><td>Session lifecycle and closeout</td><td class="num">13</td><td class="num">10</td><td class="num">2</td><td class="num">1</td><td class="num">18 of 18</td></tr>
+          <tr><td>Plan setup and program authoring</td><td class="num">9</td><td class="num">6</td><td class="num">2</td><td class="num">1</td><td class="num">15 of 15</td></tr>
+          <tr><td>Program types: create and collect data</td><td class="num">12</td><td class="num">7</td><td class="num">4</td><td class="num">1</td><td class="num">7 of 7</td></tr>
+          <tr><td>Targets and criteria</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">9 of 9</td></tr>
+          <tr><td>Recording during a session</td><td class="num">5</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">5 of 5</td></tr>
+          <tr><td>Phases and mastery</td><td class="num">7</td><td class="num">2</td><td class="num">3</td><td class="num">2</td><td class="num">4 of 4</td></tr>
+          <tr><td>Platform and cross-cutting</td><td class="num">8</td><td class="num">1</td><td class="num">6</td><td class="num">1</td><td class="num">3 of 5</td></tr>
+          <tr><td>Program analysis charts</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">8 of 9</td></tr>
+          <tr><td>Client and funder reporting</td><td class="num">10</td><td class="num">7</td><td class="num">2</td><td class="num">1</td><td class="num">9 of 10</td></tr>
+          <tr><td>Program library admin</td><td class="num">13</td><td class="num">6</td><td class="num">4</td><td class="num">3</td><td class="num">9 of 12</td></tr>
+          <tr class="total"><td>Total</td><td class="num">83</td><td class="num">44</td><td class="num">27</td><td class="num">12</td><td class="num">87 of 94</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="panel">
+      <h2>12 Xray scenarios with no automation yet</h2>
+      <table>
+        <thead><tr><th>Xray test</th><th>Scenario</th><th>Effort</th></tr></thead>
+        <tbody>
+          <tr><td>RHD-60284</td><td>Task Analysis Backward Chain</td><td>Small</td></tr>
+          <tr><td>RHD-60388</td><td>Publish a revision of a published program</td><td>Small</td></tr>
+          <tr><td>RHD-60390</td><td>Adapted copy can be added to a client plan</td><td>Small</td></tr>
+          <tr><td>RHD-60391</td><td>Adapting does not change plans using the original</td><td>Small</td></tr>
+          <tr><td>RHD-60121</td><td>Copy a program</td><td>Small</td></tr>
+          <tr><td>RHD-60299</td><td>Edit criteria on a program that has data</td><td>Medium</td></tr>
+          <tr><td>RHD-60303</td><td>ABC archived and unused options</td><td>Medium</td></tr>
+          <tr><td>RHD-60313</td><td>Mastery paths: maintenance, goals only, days-based</td><td>Medium</td></tr>
+          <tr><td>RHD-60373</td><td>Funder-ready behavior graphs</td><td>Medium</td></tr>
+          <tr><td>RHD-60307</td><td>Auto-switch from baseline to intervention</td><td>Medium</td></tr>
+          <tr><td>RHD-61117</td><td>Group session with four clients</td><td>Needs test data</td></tr>
+          <tr><td>RHD-60364</td><td>UI consistency sweep</td><td>Keep manual</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h2>Defects raised by the manual execution</h2>
+      <table>
+        <thead><tr><th>Defect</th><th>Summary</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60506">RHD-60506</a></td><td>All targets shown as Baseline on the data record page</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60512">RHD-60512</a></td><td>Target phase names overlap on the graph</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60572">RHD-60572</a></td><td>Inconsistent note icons across programs</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60576">RHD-60576</a></td><td>No validation for prompt assignment on new targets</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60578">RHD-60578</a></td><td>No Fading Prompts option with Automastery</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60579">RHD-60579</a></td><td>All targets recordable regardless of objective sequence</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-60907">RHD-60907</a></td><td>Toileting: objectives, targets and mastery misaligned</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-59598">RHD-59598</a></td><td>Program Library: no unique name validation <span class="badge amber">In progress</span></td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61011">RHD-61011</a></td><td>Locations list shows only the dummy entry <span class="badge amber">In progress</span></td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61012">RHD-61012</a></td><td>Program Library side panel no longer opens</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61215">RHD-61215</a></td><td>Negative values allowed in Mastery Criteria</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61408">RHD-61408</a></td><td>No validation for collection type change after data</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61411">RHD-61411</a></td><td>No validation for objectives on TA programs</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61417">RHD-61417</a></td><td>Read-only TA steps</td></tr>
+          <tr><td><a href="https://rethinkautism.atlassian.net/browse/RHD-61474">RHD-61474</a></td><td>Group and phase fields missing when adding a target</td></tr>
+        </tbody>
+      </table>
+      <p class="secondary">13 are Ready for Development and 2 are In Progress. The automated suite would catch 3 of them, only partly.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Next steps (next 1–2 weeks)</h2>
+    <ol class="steps">
+      <li>Triage and fix the 8 dev3 CI failures, then re-run dev3 through GitHub Actions.</li>
+      <li>Log the blank data sheet defect for clients with large plans.</li>
+      <li>Automate the 5 small gaps: backward chain, publishing a revision, the two adapted-copy scenarios, and copying a program.</li>
+      <li>Add automated checks for RHD-61215, RHD-60576, RHD-60578, RHD-59598 and RHD-61011.</li>
+      <li>Tag each automated test with its Xray key so results can be reported in RHD-60204.</li>
+      <li>Start the manual execution RHD-60204, focusing on the 12 scenarios with no automation.</li>
+    </ol>
+  </section>
+
+  <footer>Sources: Jira (RHD-57736, RHD-60204 and linked defects, read Nov 3, 2026) · automated suite tests/stories · GitHub Actions run 40478073527 (dev3, Oct 27, 2026).</footer>
+</main>
+</body>
+</html>
