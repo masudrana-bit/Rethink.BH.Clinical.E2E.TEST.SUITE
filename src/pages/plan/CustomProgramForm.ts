@@ -70,6 +70,14 @@ export class CustomProgramForm extends BasePage {
     return readPrimeOptions(this.page, this.domain);
   }
 
+  /** Added objectives are editable inputs, so their text is in the input values, not the fieldset text. */
+  async objectiveValues(): Promise<string[]> {
+    const fields = this.objectives.locator('input:not([data-testid="custom-program-form-new-objective"]), textarea:not([data-testid="custom-program-form-new-objective"])');
+    const values = await fields.evaluateAll((els) => els.map((e) => (e as HTMLInputElement).value.trim()));
+    const text = (await this.objectives.innerText()).split('\n').map((t) => t.trim());
+    return [...values, ...text].filter(Boolean);
+  }
+
   async fill(input: CustomProgramInput): Promise<void> {
     await selectPrimeOption(this.page, this.category, input.category);
     if (input.domain) await selectPrimeOptionOrFirst(this.page, this.domain, input.domain);
@@ -80,7 +88,7 @@ export class CustomProgramForm extends BasePage {
     for (const objective of input.objectives ?? []) {
       await this.newObjective.fill(objective);
       await this.addObjective.click();
-      await expect(this.objectives).toContainText(objective);
+      await expect.poll(() => this.objectiveValues()).toContain(objective);
     }
     const lesson = input.lesson ?? {};
     if (lesson.exercise) await this.exercise.fill(lesson.exercise);
