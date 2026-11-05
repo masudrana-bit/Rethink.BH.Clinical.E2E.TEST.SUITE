@@ -42,6 +42,14 @@ export class TargetManagerDrawer extends BasePage {
     await expect(this.errorState, "Targets failed to load (\"Couldn't load this program's targets\")").toHaveCount(0);
   }
 
+  /** Targets offered from the program's library template ("From this program's template"), not yet on the program. */
+  async templateTargets(): Promise<string[]> {
+    const heading = this.root.getByText(/from this program's template/i).first();
+    if (!(await heading.isVisible().catch(() => false))) return [];
+    const chips = await heading.locator('xpath=..').getByRole('button').allInnerTexts();
+    return chips.map((c) => c.replace(/^\s*\+\s*/, '').trim()).filter(Boolean);
+  }
+
   async targetNames(): Promise<string[]> {
     const inputs = this.rows.locator('input[data-testid$="-name"]');
     const names: string[] = [];

@@ -21,9 +21,9 @@
     { "key": "RHD-60127", "level": "full", "tests": ["TC-US47-01", "TC-US47-02"], "missing": "" },
     { "key": "RHD-60380", "level": "partial", "tests": ["TC-US41-02"], "missing": "Program Admin reopens Settings by copied URL after sign-out, and after a refresh" },
     { "key": "RHD-60383", "level": "partial", "tests": ["TC-US47-01"], "missing": "The deactivated program stays on a plan that already uses it" },
-    { "key": "RHD-60388", "level": "gap", "tests": [], "missing": "Open draft revision on a published program, change a target, publish, BCBA sees the update" },
-    { "key": "RHD-60390", "level": "gap", "tests": [], "missing": "Adapted copy with an added target is offered in Add Program and keeps the target on the plan" },
-    { "key": "RHD-60391", "level": "gap", "tests": [], "missing": "Plans using the original and the library preview are unchanged after adapting" },
+    { "key": "RHD-60388", "level": "full", "tests": ["TC-US46-02"], "missing": "" },
+    { "key": "RHD-60390", "level": "full", "tests": ["TC-US45-02"], "missing": "" },
+    { "key": "RHD-60391", "level": "full", "tests": ["TC-US45-03"], "missing": "" },
     { "key": "RHD-60393", "level": "partial", "tests": ["TC-US44-01"], "missing": "Refresh, reopen the draft and compare every field; file material" },
     { "key": "RHD-60394", "level": "partial", "tests": ["TC-US44-01"], "missing": "Reopen the draft, change and add a target, Last edited updates" },
 

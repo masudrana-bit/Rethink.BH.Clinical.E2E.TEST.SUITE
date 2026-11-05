@@ -1,6 +1,6 @@
 # Xray RHD-60204 mapped to the automated suite
 
-Compared on 2026-11-05 using the Xray test steps. 83 Xray tests: 38 covered, 32 partly covered, 13 not covered.
+Compared on 2026-11-05 using the Xray test steps. 83 Xray tests: 41 covered, 32 partly covered, 10 not covered.
 
 Run the automated tests for one Xray case with `npx playwright test --grep @RHD-60282`, or all mapped tests with `--grep @xray`.
 
@@ -23,9 +23,9 @@ Run the automated tests for one Xray case with `npx playwright test --grep @RHD-
 | [RHD-60127](https://rethinkautism.atlassian.net/browse/RHD-60127) | Deactivate and reactivate a program, and check client impact | Covered | TC-US47-01, TC-US47-02 | — |
 | [RHD-60380](https://rethinkautism.atlassian.net/browse/RHD-60380) | Reach Settings by direct URL and after a refresh | Partly covered | TC-US41-02 | Program Admin reopens Settings by copied URL after sign-out, and after a refresh |
 | [RHD-60383](https://rethinkautism.atlassian.net/browse/RHD-60383) | A deactivated program is hidden from Add Program but stays on existing plans | Partly covered | TC-US47-01 | The deactivated program stays on a plan that already uses it |
-| [RHD-60388](https://rethinkautism.atlassian.net/browse/RHD-60388) | Publish a revision of an already published program | Not covered | — | Open draft revision on a published program, change a target, publish, BCBA sees the update |
-| [RHD-60390](https://rethinkautism.atlassian.net/browse/RHD-60390) | Adapted copy can be added to a client plan with its changes | Not covered | — | Adapted copy with an added target is offered in Add Program and keeps the target on the plan |
-| [RHD-60391](https://rethinkautism.atlassian.net/browse/RHD-60391) | Adapting a program does not change client plans that use the original | Not covered | — | Plans using the original and the library preview are unchanged after adapting |
+| [RHD-60388](https://rethinkautism.atlassian.net/browse/RHD-60388) | Publish a revision of an already published program | Covered | TC-US46-02 | — |
+| [RHD-60390](https://rethinkautism.atlassian.net/browse/RHD-60390) | Adapted copy can be added to a client plan with its changes | Covered | TC-US45-02 | — |
+| [RHD-60391](https://rethinkautism.atlassian.net/browse/RHD-60391) | Adapting a program does not change client plans that use the original | Covered | TC-US45-03 | — |
 | [RHD-60393](https://rethinkautism.atlassian.net/browse/RHD-60393) | A saved draft reopens with everything that was entered | Partly covered | TC-US44-01 | Refresh, reopen the draft and compare every field; file material |
 | [RHD-60394](https://rethinkautism.atlassian.net/browse/RHD-60394) | Create a program with its own goal, objectives and targets, then edit the draft | Partly covered | TC-US44-01 | Reopen the draft, change and add a target, Last edited updates |
 | [RHD-60282](https://rethinkautism.atlassian.net/browse/RHD-60282) | Opportunity Based program: create and collect data, with and without prompts | Covered | TC-US08-01, TC-US15-01, TC-US15-02 | — |

@@ -22,3 +22,15 @@
 | 3 | Program Library → **Edit** the draft → **Publish** | Confirmation first (**fails today**: publishes immediately, no confirmation) → Status Active; offered under "System Programs" in Add Program |
 | 4 | Clean client → Add Program → search the title | Offered |
 | 5 | Clean-up: deactivate the program | — |
+
+## TC-US46-02 — Publish a revision of a published program; clients see the updated version
+
+**Xray:** [RHD-60388](https://rethinkautism.atlassian.net/browse/RHD-60388)
+
+| # | Action | Expected result |
+| --- | --- | --- |
+| 1 | Admin → New Program → fill → **Publish** | Status Active; row actions Edit, Deactivate, Duplicate |
+| 2 | **Edit** the published program → add target "Step four" → **Save Changes** | Saved as a draft revision; row shows "Draft pending" |
+| 3 | **Edit** again → "Step four" is listed → **Publish** | Confirmation first (**fails on dev3**: publishes immediately, no confirmation) → Status Active, no draft pending |
+| 4 | Clean client → Add Program → search the title → preview | Preview lists "Step four" |
+| 5 | Clean-up: deactivate the program | — |

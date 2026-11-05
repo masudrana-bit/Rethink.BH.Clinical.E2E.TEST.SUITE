@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../BasePage';
-import { readPrimeOptions, selectPrimeOption, selectPrimeOptionOrFirst, setPrimeCheckbox } from '../../helpers/primeng';
+import { FIRST_OPTION, readPrimeOptions, selectPrimeOption, selectPrimeOptionOrFirst, setPrimeCheckbox } from '../../helpers/primeng';
 import { BulkTargetPaste } from '../shared/BulkTargetPaste';
 import { LessonMaterialEditor } from '../shared/LessonMaterialEditor';
 
@@ -89,6 +89,14 @@ export class ProgramEditorDialog extends BasePage {
     await setPrimeCheckbox(this.legal, true);
   }
 
+  /** Fills Category (Skills) and the first Domain when they are empty; returns true if it had to. */
+  async fillMissingClassification(): Promise<boolean> {
+    if (!/select a category/i.test(await this.category.innerText())) return false;
+    await selectPrimeOption(this.page, this.category, 'Skills');
+    await selectPrimeOptionOrFirst(this.page, this.domain, FIRST_OPTION);
+    return true;
+  }
+
   async saveDraft(): Promise<void> {
     await this.saveDraftButton.click();
     await this.expectSavedOrSkipOnOutage(this.form, () => this.saveDraftButton.click());
@@ -105,6 +113,29 @@ export class ProgramEditorDialog extends BasePage {
     }
     await expect(this.form).toBeHidden({ timeout: 30_000 });
     return message;
+  }
+
+  /**
+   * Finishes editing a published program. Builds with draft revisions offer Publish; others save the
+   * change in place ("Save Changes"). Returns which happened and any confirmation text.
+   */
+  async publishOrSaveChanges(): Promise<{ mode: 'published' | 'saved'; confirmation: string }> {
+    if (await this.publishButton.isVisible().catch(() => false)) return { mode: 'published', confirmation: await this.publish() };
+    return { mode: 'saved', confirmation: await this.saveChanges() };
+  }
+
+  /** Saves an existing program ("Save Changes", outside the form; "Save as Draft" on builds without it). Returns any confirmation text. */
+  async saveChanges(): Promise<string> {
+    const save = this.page.getByRole('dialog').getByRole('button', { name: /save changes/i }).or(this.saveDraftButton).first();
+    await save.click();
+    const confirm = this.page.locator('.p-confirmdialog:visible, [role=alertdialog]:visible').last();
+    let confirmation = '';
+    if (await confirm.waitFor({ state: 'visible', timeout: 3_000 }).then(() => true, () => false)) {
+      confirmation = (await confirm.innerText()).trim();
+      await confirm.getByRole('button', { name: /save|yes|confirm|publish/i }).last().click();
+    }
+    await expect(this.form).toBeHidden({ timeout: 30_000 });
+    return confirmation;
   }
 
   /** Cancel; confirms the "discard changes" prompt when one appears. */

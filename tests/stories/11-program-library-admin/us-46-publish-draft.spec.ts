@@ -45,4 +45,77 @@ test.describe('US-46 Publish a draft', { tag: '@US-46' }, () => {
       test.info().annotations.push({ type: 'cleanup', description: await programLibrary.retire(input.title) });
     });
   });
+
+  test('TC-US46-02 [RHD-60388] Publish a revision of a published program; clients see the updated version', { tag: ['@xray', '@RHD-60388'] }, async ({ page, flows, programLibrary, programEditor, plan, addProgram, testData }) => {
+    test.setTimeout(10 * 60_000);
+    const input = libraryProgramInput('Library Revision');
+    const addedTarget = 'Step four';
+    const client = testData.clients.clean;
+    await flows.signInAs('admin');
+    await programLibrary.open();
+
+    await test.step('Create and publish a program', async () => {
+      await programLibrary.openNewProgram();
+      await programEditor.fill(input);
+      await programEditor.publish();
+      await expect.poll(async () => {
+        await programLibrary.typeSearch(input.title);
+        return programLibrary.statusOf(input.title);
+      }, { timeout: 60_000 }).toMatch(/active|published/i);
+    });
+
+    await test.step('Open a draft revision and add a target', async () => {
+      const labels = await programLibrary.rowActionLabels(input.title);
+      test.info().annotations.push({ type: 'published row actions', description: JSON.stringify(labels) });
+      const revision = labels.find((l) => /revision/i.test(l));
+      if (revision) await programLibrary.runRowAction(input.title, revision);
+      else await programLibrary.edit(input.title);
+      await expect(programEditor.form).toBeVisible();
+      await programEditor.bulkTargets.addTargets([addedTarget]);
+      await expect(programEditor.targetCatalog).toContainText(addedTarget);
+    });
+
+    await test.step('Save the revision: the published program shows "Draft pending"', async () => {
+      const { mode } = await programEditor.publishOrSaveChanges();
+      if (mode === 'saved') {
+        await programLibrary.typeSearch(input.title);
+        await expect.poll(async () => (await programLibrary.readRow(input.title)).title).toMatch(/draft pending/i);
+      }
+    });
+
+    await test.step('Publish the revision: confirmation first, then Published with no draft pending', async () => {
+      if (/draft pending/i.test((await programLibrary.readRow(input.title)).title)) {
+        await programLibrary.edit(input.title);
+        await expect(programEditor.targetCatalog).toContainText(addedTarget);
+        const confirmation = await programEditor.publish();
+        test.info().annotations.push({ type: 'revision publish confirmation', description: confirmation || '(none)' });
+        expect.soft(confirmation, 'confirmation before publishing the revision').not.toBe('');
+      }
+      await expect.poll(async () => {
+        await programLibrary.typeSearch(input.title);
+        const row = await programLibrary.readRow(input.title);
+        return `${row.status} ${row.title}`;
+      }, { timeout: 60_000 }).toMatch(/^(active|published)(?![\s\S]*draft pending)/i);
+    });
+
+    await test.step('A client preview of the program shows the updated version', async () => {
+      const offered = await flows.addProgramCatalogOffers(client, input.title);
+      expect(offered.length, 'published program offered to clients').toBeGreaterThan(0);
+      await page.goto(`/clients/${client}`);
+      await plan.openAddProgram();
+      await addProgram.expectLoaded();
+      await addProgram.chooseSource(offered[0] as 'System Programs' | 'My Programs').catch(() => undefined);
+      await addProgram.searchFor(input.title);
+      const preview = await addProgram.preview(input.title);
+      await expect(preview).toContainText(addedTarget);
+      await flows.evidence('revision-preview');
+      await addProgram.closePreview(preview);
+      await addProgram.close();
+    });
+
+    await test.step('Clean-up', async () => {
+      await programLibrary.open();
+      test.info().annotations.push({ type: 'cleanup', description: await programLibrary.retire(input.title) });
+    });
+  });
 });

@@ -61,7 +61,29 @@ export class ProgramLibraryAdminPage extends BasePage {
   }
 
   async titles(): Promise<string[]> {
-    return (await this.grid.locator('.ag-center-cols-container .ag-row [col-id=title], .ag-pinned-left-cols-container .ag-row [col-id=title]').allInnerTexts()).map((t) => t.trim());
+    return (await this.grid.locator('.ag-row [col-id=title]').allInnerTexts()).map((t) => t.trim());
+  }
+
+  /** Titles of every row on the current page; AG Grid only renders rows near the viewport, so scroll through it. */
+  async allTitles(): Promise<string[]> {
+    const viewport = this.grid.locator('.ag-body-viewport').first();
+    const seen = new Set<string>();
+    await expect
+      .poll(async () => (await this.titles()).length > 0 || (await this.shownCount()).shown === 0, { timeout: 15_000 })
+      .toBe(true);
+    await viewport.evaluate((el) => (el.scrollTop = 0));
+    for (let i = 0; i < 100; i++) {
+      (await this.titles()).forEach((t) => seen.add(t));
+      const atEnd = await viewport.evaluate((el) => {
+        const end = el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
+        el.scrollTop += el.clientHeight * 0.8;
+        return end;
+      });
+      if (atEnd) break;
+      await this.page.waitForTimeout(150);
+    }
+    await viewport.evaluate((el) => (el.scrollTop = 0));
+    return [...seen];
   }
 
   async columnValues(colId: string): Promise<string[]> {
@@ -92,7 +114,8 @@ export class ProgramLibraryAdminPage extends BasePage {
   /** Clean-up for E2E programs: Delete when offered, otherwise Deactivate. Returns what was done. */
   async retire(title: string): Promise<string> {
     await this.typeSearch(title);
-    if (!(await this.rows.filter({ hasText: title }).count())) return 'not listed';
+    const row = this.grid.locator('.ag-row [col-id=title]', { hasText: title }).first();
+    if (!(await row.waitFor({ timeout: 15_000 }).then(() => true, () => false))) return 'not listed';
     const labels = await this.rowActionLabels(title);
     const del = labels.find((l) => /^delete/i.test(l));
     if (del) {
@@ -113,7 +136,7 @@ export class ProgramLibraryAdminPage extends BasePage {
 
   /** AG Grid renders pinned columns in separate containers, so a row is addressed by its row-index across them. */
   async rowIndex(title: string | RegExp): Promise<string> {
-    const row = this.rows.filter({ has: this.page.locator('[col-id=title]', { hasText: title }) }).first();
+    const row = this.grid.locator('.ag-row[row-index]').filter({ has: this.page.locator('[col-id=title]', { hasText: title }) }).first();
     await expect(row).toBeVisible();
     return (await row.getAttribute('row-index'))!;
   }
@@ -186,6 +209,42 @@ export class ProgramLibraryAdminPage extends BasePage {
     await this.adaptConfirm.getByRole('button', { name: /adapt|copy|continue/i }).last().click();
     await expect(form).toBeVisible();
     return message;
+  }
+
+  /**
+   * First active Standard (non-E2E) program on the current grid page. `label` is the title cell including its "(#id)",
+   * which tells it apart from same-named copies; `name` is the program name shown to clients.
+   */
+  async firstStandardProgram(): Promise<{ label: string; name: string }> {
+    await expect.poll(async () => (await this.titles()).length, { timeout: 15_000 }).toBeGreaterThan(0);
+    for (const label of await this.titles()) {
+      if (/^E2E-/.test(label)) continue;
+      const row = await this.readRow(label);
+      if (row.source === 'Standard' && /^active/i.test(row.status)) return { label, name: label.split('\n')[0].trim() };
+    }
+    throw new Error('no active Standard program in the catalog');
+  }
+
+  /** Runs Duplicate on a row and accepts its confirmation. Returns the confirmation text and whether the editor opened on the copy. */
+  async duplicate(title: string | RegExp): Promise<{ confirmation: string; editor: boolean }> {
+    await this.runRowAction(title, 'Duplicate');
+    const form = this.tid('program-editor-form');
+    const dialog = this.page.locator('.p-confirmdialog:visible, .p-dialog:visible').last();
+    await expect(form.or(dialog)).toBeVisible({ timeout: 15_000 });
+    let confirmation = '';
+    if (!(await form.isVisible())) {
+      confirmation = (await dialog.innerText()).replace(/\s+/g, ' ').trim();
+      await dialog.getByRole('button', { name: /duplicate|yes|confirm/i }).last().click();
+    }
+    const editor = await form.waitFor({ state: 'visible', timeout: 15_000 }).then(() => true, () => false);
+    return { confirmation, editor };
+  }
+
+  /** Runs a row action whether it is an inline button or in the overflow menu. */
+  async runRowAction(title: string | RegExp, action: string | RegExp): Promise<void> {
+    const button = (await this.actions(title)).getByRole('button', { name: action });
+    if (await button.first().isVisible().catch(() => false)) await button.first().click();
+    else await this.overflowAction(title, action);
   }
 
   async overflowAction(title: string | RegExp, action: string | RegExp): Promise<void> {
