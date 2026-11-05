@@ -34,3 +34,14 @@
 | 1 | Sign in as RBT | RBT Home; no Settings in the navigation |
 | 2 | Type `/settings/clinical/program-library` in the address bar | Settings does not open (redirect or access denied) (**fails today**: in the RBT view the direct URL opens Settings — tested with the view toggle, confirm with a real RBT login) |
 | 3 | Manual (needs a non-admin BCBA login): sign in as a BCBA without admin rights | Settings hidden |
+
+## TC-US41-03 — Admin reopens Settings from a copied URL after signing out, and stays there on refresh
+
+**Xray:** [RHD-60380](https://rethinkautism.atlassian.net/browse/RHD-60380)
+
+| # | Action | Expected result |
+| --- | --- | --- |
+| 1 | Sign in as Program Admin → Settings → **Locations** → copy the URL | Settings opens |
+| 2 | Sign out | Sign-in screen |
+| 3 | Open the copied URL → sign in | Back on the copied Settings page (dev3 Nov 5: yes) |
+| 4 | Refresh the browser | Still on the same Settings page, not sent home |

@@ -31,3 +31,16 @@
 | --- | --- | --- |
 | 1 | **Deactivate** on a Standard program | Confirmation that explains it is hidden for this organization only, or an "Adapt a copy" message (NGC-30) (**fails today**: deactivated immediately with no message; the test reactivates it) |
 | 2 | **Cancel** | Program still Active (if it was deactivated without asking, reactivate it and log the defect) |
+
+## TC-US47-03 — A deactivated program stays on a plan that uses it and is hidden from other clients
+
+**Xray:** [RHD-60383](https://rethinkautism.atlassian.net/browse/RHD-60383)
+
+| # | Action | Expected result |
+| --- | --- | --- |
+| 1 | Admin → New Program → fill → **Publish** | Active; offered in Add Program |
+| 2 | Clean client (A) → Add Program → add it → note its targets | On the plan |
+| 3 | Program Library → **Deactivate** | Status Inactive |
+| 4 | Seeded client (B) → Add Program → search the title | Not offered |
+| 5 | Client A → open the program | Still on the plan (Current) with the same targets |
+| 6 | Clean-up: delete the program from client A | — |

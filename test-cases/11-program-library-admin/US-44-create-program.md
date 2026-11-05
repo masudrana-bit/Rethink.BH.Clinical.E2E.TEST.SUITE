@@ -32,8 +32,24 @@
 
 ## TC-US44-02 — System targets, file materials and dropdown behaviour (manual)
 
+**Xray:** [RHD-60393](https://rethinkautism.atlassian.net/browse/RHD-60393), [RHD-60394](https://rethinkautism.atlassian.net/browse/RHD-60394)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | In New Program, add a target from the system target catalog | Target added |
 | 2 | Upload a PDF as a lesson material | File listed |
 | 3 | Pick a value in each dropdown | Dropdown closes after the pick; nothing stays drawn on screen |
+
+## TC-US44-02 — A saved draft reopens after a refresh with every field; changed targets are kept and Last edited updates
+
+**Xray:** [RHD-60393](https://rethinkautism.atlassian.net/browse/RHD-60393), [RHD-60394](https://rethinkautism.atlassian.net/browse/RHD-60394)
+
+| # | Action | Expected result |
+| --- | --- | --- |
+| 1 | Admin → New Program → category, domain, area, title, goal, 2 objectives, 3 custom targets, a link → **Save as Draft** | Draft listed; Last Edited By empty |
+| 2 | Refresh → search → **Edit** the draft | Title, goal, category, domain, area, both objectives, all targets and the link are kept |
+| 3 | Remove "Step three", add "Step four" → **Save Changes** | Saved |
+| 4 | Search → **Edit** again | "Step one", "Step two", "Step four" listed, "Step three" gone; Last Edited By now shows the admin |
+| 5 | Clean-up: **Publish**, then deactivate (drafts cannot be deleted) | — |
+
+File materials (Xray RHD-60393 step 4) are not in the product: the editor says "Uploading files is not available yet".

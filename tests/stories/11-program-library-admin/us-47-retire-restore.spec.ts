@@ -50,6 +50,74 @@ test.describe('US-47 Retire and restore a program', { tag: '@US-47' }, () => {
     });
   });
 
+  test('TC-US47-03 [RHD-60383] A deactivated program stays on a plan that uses it and is hidden from other clients', { tag: ['@xray', '@RHD-60383'] }, async ({ page, flows, programLibrary, programEditor, plan, addProgram, programDetails, targets, testData }) => {
+    test.setTimeout(10 * 60_000);
+    const input = libraryProgramInput('Library Retire In Use');
+    const clientA = testData.clients.clean;
+    const clientB = testData.clients.seeded;
+    await flows.signInAs('admin');
+    await programLibrary.open();
+    let offered: string[] = [];
+    let targetsBefore: string[] = [];
+    const planTargets = async () => {
+      await programDetails.manageTargetsButton.click();
+      await targets.expectLoaded();
+      const names = [...(await targets.templateTargets()), ...(await targets.targetNames())];
+      await targets.cancel();
+      return names;
+    };
+
+    await test.step('Create and publish a program', async () => {
+      await programLibrary.openNewProgram();
+      await programEditor.fill(input);
+      await programEditor.publish();
+      await expect.poll(async () => {
+        await programLibrary.typeSearch(input.title);
+        return programLibrary.statusOf(input.title);
+      }, { timeout: 60_000 }).toMatch(/active|published/i);
+      offered = await flows.addProgramCatalogOffers(clientA, input.title);
+      expect(offered.length).toBeGreaterThan(0);
+    });
+
+    await test.step("Add it to client A's plan", async () => {
+      await page.goto(`/clients/${clientA}`);
+      await plan.expectLoaded();
+      await plan.openAddProgram();
+      await addProgram.expectLoaded();
+      await addProgram.chooseSource(offered[0] as 'System Programs' | 'My Programs').catch(() => undefined);
+      await addProgram.searchFor(input.title);
+      await addProgram.addProgram(input.title, 'current');
+      if (await addProgram.search.isVisible()) await addProgram.close();
+      await flows.openProgram(input.title);
+      targetsBefore = await planTargets();
+      test.info().annotations.push({ type: 'targets on the plan', description: JSON.stringify(targetsBefore) });
+    });
+
+    await test.step('Deactivate the program in the library', async () => {
+      await programLibrary.open();
+      await programLibrary.typeSearch(input.title);
+      await programLibrary.toggleActive(input.title, 'Deactivate');
+      await expect.poll(() => programLibrary.statusOf(input.title)).toMatch(/inactive|deactivated|retired/i);
+    });
+
+    await test.step('Client B: not offered in Add Program', async () => {
+      expect(await flows.addProgramCatalogOffers(clientB, input.title)).toEqual([]);
+    });
+
+    await test.step("Client A: still on the plan with the same targets", async () => {
+      await page.goto(`/clients/${clientA}`);
+      await plan.expectLoaded();
+      await plan.expectProgramListed(input.title, 'current');
+      await flows.openProgram(input.title);
+      expect(await planTargets()).toEqual(targetsBefore);
+      await flows.evidence('deactivated-still-on-plan');
+    });
+
+    await test.step('Clean-up', async () => {
+      test.info().annotations.push({ type: 'cleanup plan', description: await programDetails.deleteProgram(input.title).catch(() => 'not deleted') });
+    });
+  });
+
   test('TC-US47-02 [RHD-60127] Deactivating a standard program is either confirmed for this organization only or offers "Adapt a copy" (NGC-30)', { tag: ['@xray', '@RHD-60127'] }, async ({ page, flows, programLibrary }) => {
     await flows.signInAs('admin');
     await programLibrary.open();

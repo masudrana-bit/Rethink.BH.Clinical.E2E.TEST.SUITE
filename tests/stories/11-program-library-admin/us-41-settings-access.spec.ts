@@ -42,4 +42,40 @@ test.describe('US-41 Reach the clinical settings area', { tag: '@US-41' }, () =>
       expect.soft(opened, 'Settings blocked for a non-admin role').toBe(false);
     });
   });
+
+  test('TC-US41-03 [RHD-60380] Admin reopens Settings from a copied URL after signing out, and stays there on refresh', { tag: ['@xray', '@RHD-60380'] }, async ({ page, flows, shell, settings, signIn, testData }) => {
+    await flows.signInAs('admin');
+    let settingsUrl = '';
+
+    await test.step('Open Settings and copy its URL', async () => {
+      await shell.goToNav('Settings');
+      await settings.expectLoaded();
+      await settings.openSection('locations');
+      settingsUrl = page.url();
+      test.info().annotations.push({ type: 'copied URL', description: settingsUrl });
+    });
+
+    await test.step('Sign out', async () => {
+      await shell.logOut();
+    });
+
+    await test.step('Sign back in through the copied URL: Settings opens directly', async () => {
+      await signIn.open(settingsUrl);
+      await signIn.signIn(testData.accounts.admin);
+      await shell.expectSignedIn();
+      const landed = page.url();
+      test.info().annotations.push({ type: 'landed after sign-in', description: landed });
+      expect.soft(landed, 'sign-in returns to the copied Settings URL').toBe(settingsUrl);
+      if (landed !== settingsUrl) await page.goto(settingsUrl);
+      await settings.expectLoaded();
+      await expect(page).toHaveURL(settingsUrl);
+    });
+
+    await test.step('Refresh: still on Settings, not sent to the home page', async () => {
+      await page.reload();
+      await settings.expectLoaded();
+      await expect(page).toHaveURL(settingsUrl);
+      await flows.evidence('settings-after-refresh');
+    });
+  });
 });
