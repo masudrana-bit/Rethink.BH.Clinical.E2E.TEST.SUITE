@@ -10,7 +10,10 @@
 #   Hosting:             verified locally first; this workflow publishes to GitHub Pages (gh-pages branch) once
 #                        the repository has a GitHub remote and Pages is enabled.
 #
-# Environments: pick dev2, dev3 or uat when starting the run. The job uses the GitHub Environment of the same name
+# Schedule: every day at 06:00 Bangladesh time the workflow runs dev3, then uat, as "nightly" runs (tick
+# "Include nightly and PR runs" on the dashboard to see them). GitHub may start scheduled runs a few minutes late.
+#
+# Environments: pick dev2, dev3 or uat when starting the run by hand. The job uses the GitHub Environment of the same name
 # (Settings → Environments), so each one can hold its own secrets and variables; anything not set there falls back to
 # the repository-level value. The dashboard keeps a separate history per environment.
 #
@@ -22,9 +25,12 @@
 # Blank variables use the dev2 defaults from src/config/env.ts, which will not exist on dev3 or uat.
 
 name: E2E release report
-run-name: E2E on ${{ inputs.environment }} · ${{ inputs.release || 'dated release' }}
+run-name: ${{ github.event_name == 'schedule' && 'Nightly E2E on dev3 and uat' || format('E2E on {0} · {1}', inputs.environment, inputs.release || 'dated release') }}
 
 on:
+  schedule:
+    # Every day at 06:00 Bangladesh time (UTC+6) = 00:00 UTC: dev3, then uat, as nightly runs.
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       environment:
@@ -51,14 +57,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  e2e:
+  plan:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    outputs:
+      environments: ${{ steps.pick.outputs.environments }}
+    steps:
+      - id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          CHOSEN: ${{ inputs.environment }}
+        run: |
+          if [ "$EVENT" = "schedule" ]; then echo 'environments=["dev3","uat"]' >> "$GITHUB_OUTPUT";
+          else echo "environments=[\"$CHOSEN\"]" >> "$GITHUB_OUTPUT"; fi
+
+  e2e:
+    needs: plan
+    runs-on: ubuntu-latest
+    strategy:
+      # One environment at a time: every run rewrites gh-pages.
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        environment: ${{ fromJSON(needs.plan.outputs.environments) }}
+    environment: ${{ matrix.environment }}
     # 90 tests run one at a time (about 2.5 hours with retries).
     timeout-minutes: 300
     env:
-      TEST_ENV: ${{ inputs.environment }}
-      KIND: ${{ inputs.kind || 'release' }}
+      TEST_ENV: ${{ matrix.environment }}
+      KIND: ${{ github.event_name == 'schedule' && 'nightly' || inputs.kind || 'release' }}
       BASE_URL: ${{ vars.BASE_URL }}
       BCBA_USERNAME: ${{ secrets.BCBA_USERNAME }}
       BCBA_PASSWORD: ${{ secrets.BCBA_PASSWORD }}
@@ -94,7 +120,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
 
-      - name: Run e2e suite on ${{ inputs.environment }} (story tests only; seed and maintenance specs are excluded)
+      - name: Run e2e suite on ${{ matrix.environment }} (story tests only; seed and maintenance specs are excluded)
         id: tests
         continue-on-error: true
         run: npx playwright test tests/stories/0 tests/stories/1 --project=stories
