@@ -3,7 +3,7 @@ import { customProgramInput } from '../../../src/data/programs';
 import { readPrimeOptions } from '../../../src/helpers/primeng';
 
 test.describe('US-3 View client treatment plan', { tag: '@US-3' }, () => {
-  test('TC-US03-01 Review the Current and Inactive plan lists with domain and last-recorded info', async ({ page, flows, plan, testData }) => {
+  test('TC-US03-01 [RHD-60115] Review the Current and Inactive plan lists with domain and last-recorded info', { tag: ['@xray', '@RHD-60115'] }, async ({ page, flows, plan, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
 
@@ -34,7 +34,7 @@ test.describe('US-3 View client treatment plan', { tag: '@US-3' }, () => {
     });
   });
 
-  test('TC-US03-02 Add a Future program and find it under the right list, then reorder', async ({ page, flows, plan, addProgram, customProgram, programDetails, testData }) => {
+  test('TC-US03-02 [RHD-60115] Add a Future program and find it under the right list, then reorder', { tag: ['@xray', '@RHD-60115'] }, async ({ page, flows, plan, addProgram, customProgram, programDetails, testData }) => {
     const program = customProgramInput('Future Program', { status: 'future' });
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

@@ -16,6 +16,8 @@
 
 ## TC-US38-01 — ABC entries recorded in a session show up in the plan ABC breakdown
 
+**Xray:** [RHD-60369](https://rethinkautism.atlassian.net/browse/RHD-60369), [RHD-60371](https://rethinkautism.atlassian.net/browse/RHD-60371)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: session on the seeded client with "Self Injury" → two ABC entries (Academics; Task/command given; Ignored) → finalize | Finalized |

@@ -18,6 +18,8 @@
 
 ## TC-US42-01 — Catalog grid shows program details and row actions without side scrolling
 
+**Xray:** [RHD-60122](https://rethinkautism.atlassian.net/browse/RHD-60122)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → Settings → Program Library | Grid with a count (N of M) |

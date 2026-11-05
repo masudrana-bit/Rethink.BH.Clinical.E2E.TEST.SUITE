@@ -19,6 +19,8 @@
 
 ## TC-US14-01 — Backfill a past date with times left blank and see it in the program data
 
+**Xray:** [RHD-61119](https://rethinkautism.atlassian.net/browse/RHD-61119)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as RBT, Sessions → **Post-Session Entry** | Wizard with **HISTORICAL** badge and Observation date; future dates are blocked (`max` = today) |

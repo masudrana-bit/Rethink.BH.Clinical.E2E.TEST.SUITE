@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-10 Access the RBT shell and navigate to sessions', { tag: '@US-10' }, () => {
-  test('TC-US10-01 RBT lands on RBT home and navigates the RBT shell', async ({ page, flows, shell, rbtHome, rbtSessions, clientsList }) => {
+  test('TC-US10-01 [RHD-60360] RBT lands on RBT home and navigates the RBT shell', { tag: ['@xray', '@RHD-60360'] }, async ({ page, flows, shell, rbtHome, rbtSessions, clientsList }) => {
     let rowsBeforeRefresh = 0;
 
     await test.step('Sign in and enter the RBT view', async () => {
@@ -47,7 +47,7 @@ test.describe('US-10 Access the RBT shell and navigate to sessions', { tag: '@US
     await flows.evidence('RBT home');
   });
 
-  test('TC-US10-02 RBT view survives refresh on a deep page and re-login', async ({ page, flows, shell, signIn, clientsList, rbtHome, rbtSessions, testData }) => {
+  test('TC-US10-02 [RHD-60360] RBT view survives refresh on a deep page and re-login', { tag: ['@xray', '@RHD-60360'] }, async ({ page, flows, shell, signIn, clientsList, rbtHome, rbtSessions, testData }) => {
     await flows.signInAs('rbt');
 
     await test.step('Refresh on Sessions stays in the RBT shell (NGC-47)', async () => {

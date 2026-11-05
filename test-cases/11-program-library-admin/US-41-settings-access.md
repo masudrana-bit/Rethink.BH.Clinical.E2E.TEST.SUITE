@@ -17,6 +17,8 @@
 
 ## TC-US41-01 — Admin opens Settings from the navigation; every clinical section and the Locations list load
 
+**Xray:** [RHD-60122](https://rethinkautism.atlassian.net/browse/RHD-60122)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as Program Administrator → **Settings** | Program Library section |
@@ -24,6 +26,8 @@
 | 3 | **Locations** | Organization locations listed; no test/QA locations |
 
 ## TC-US41-02 — Settings is not offered in the RBT view @negative
+
+**Xray:** [RHD-60360](https://rethinkautism.atlassian.net/browse/RHD-60360), [RHD-60380](https://rethinkautism.atlassian.net/browse/RHD-60380)
 
 | # | Action | Expected result |
 | --- | --- | --- |

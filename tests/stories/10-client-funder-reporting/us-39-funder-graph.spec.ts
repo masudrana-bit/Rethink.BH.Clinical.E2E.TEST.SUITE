@@ -4,7 +4,7 @@ import { exportWithConsent } from '../../../src/helpers/download';
 const BRITISH = /\b(behaviour|colour|organisation|analyse|generalisation|programme|categorised|uncategorised)\b/i;
 
 test.describe('US-39 Produce a funder-ready graph', { tag: '@US-39' }, () => {
-  test('TC-US39-01 Funder (payor) graph of a program exports as PNG and PDF with dated x-axis labels and US spelling', async ({ page, flows, programDetails, programData, testData }) => {
+  test('TC-US39-01 [RHD-60372] Funder (payor) graph of a program exports as PNG and PDF with dated x-axis labels and US spelling', { tag: ['@xray', '@RHD-60372'] }, async ({ page, flows, programDetails, programData, testData }) => {
     const client = testData.clients.seeded;
     await flows.signInAs('bcba');
     await flows.openClient(client);
@@ -39,7 +39,7 @@ test.describe('US-39 Produce a funder-ready graph', { tag: '@US-39' }, () => {
     });
   });
 
-  test('TC-US39-02 Funder report opens in the editor with required fields marked', async ({ page, flows, workspace, funderReports, testData }) => {
+  test('TC-US39-02 [RHD-60372] Funder report opens in the editor with required fields marked', { tag: ['@xray', '@RHD-60372'] }, async ({ page, flows, workspace, funderReports, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await workspace.openTab('reports');

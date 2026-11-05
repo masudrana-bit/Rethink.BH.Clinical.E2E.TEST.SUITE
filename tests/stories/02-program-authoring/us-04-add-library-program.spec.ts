@@ -3,7 +3,7 @@ import { LIBRARY_PROGRAMS } from '../../../src/data/programs';
 import { createPages } from '../../../src/fixtures/pages';
 
 test.describe('US-4 Add a library program to a plan (Current / Future)', { tag: '@US-4' }, () => {
-  test('TC-US04-01 Add a system program as Current and confirm goal, targets and lesson plan were copied', async ({ page, flows, plan, addProgram, programDetails, targets, testData }) => {
+  test('TC-US04-01 [RHD-60116] Add a system program as Current and confirm goal, targets and lesson plan were copied', { tag: ['@xray', '@RHD-60116'] }, async ({ page, flows, plan, addProgram, programDetails, targets, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.clean);
     let catalogGoal = '';
@@ -52,7 +52,7 @@ test.describe('US-4 Add a library program to a plan (Current / Future)', { tag: 
     await flows.evidence('library program added');
   });
 
-  test('TC-US04-02 Duplicate protection: "Already added" in the catalog and a warning from a stale second tab', async ({ page, flows, plan, addProgram, testData }) => {
+  test('TC-US04-02 [RHD-60116] Duplicate protection: "Already added" in the catalog and a warning from a stale second tab', { tag: ['@xray', '@RHD-60116'] }, async ({ page, flows, plan, addProgram, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.clean);
 
@@ -107,7 +107,7 @@ test.describe('US-4 Add a library program to a plan (Current / Future)', { tag: 
     });
   });
 
-  test('TC-US04-03 Add a program as Future and move it to Current', async ({ flows, plan, programDetails, testData }) => {
+  test('TC-US04-03 [RHD-60116] Add a program as Future and move it to Current', { tag: ['@xray', '@RHD-60116'] }, async ({ flows, plan, programDetails, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.clean);
 

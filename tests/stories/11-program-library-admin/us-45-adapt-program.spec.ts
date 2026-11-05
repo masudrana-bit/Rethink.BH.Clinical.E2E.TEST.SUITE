@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { uniqueName } from '../../../src/helpers/data-factory';
 
 test.describe('US-45 Edit a program without changing it for everyone else', { tag: '@US-45' }, () => {
-  test('TC-US45-01 Editing a standard program adapts a copy; the original stays Standard and unchanged', async ({ flows, programLibrary, programEditor }) => {
+  test('TC-US45-01 [RHD-60125] Editing a standard program adapts a copy; the original stays Standard and unchanged', { tag: ['@xray', '@RHD-60125'] }, async ({ flows, programLibrary, programEditor }) => {
     await flows.signInAs('admin');
     await programLibrary.open();
     const sources = await programLibrary.columnValues('source');

@@ -18,6 +18,8 @@
 
 ## TC-US11-01 — Sessions list is limited to own clients and shows correct counts
 
+**Xray:** [RHD-60360](https://rethinkautism.atlassian.net/browse/RHD-60360), [RHD-61112](https://rethinkautism.atlassian.net/browse/RHD-61112)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as RBT, nav → **Clients** | Caseload ("Your assigned clients") listed |
@@ -28,6 +30,8 @@
 
 ## TC-US11-02 — Open a scheduled session: pre-session page, then data sheet
 
+**Xray:** [RHD-61113](https://rethinkautism.atlassian.net/browse/RHD-61113)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Home → seeded client's scheduled row (another caseload row if it is completed) → **Open** | Pre-session page: client name and DOB, service and location, prep card, note template list with real account templates |
@@ -35,6 +39,8 @@
 | 3 | Close Session → Conclude → Finalize | Session finalized; back on the Sessions list |
 
 ## TC-US11-03 — Concluded session appears in "Incomplete session notes" for its client only
+
+**Xray:** [RHD-61112](https://rethinkautism.atlassian.net/browse/RHD-61112)
 
 | # | Action | Expected result |
 | --- | --- | --- |

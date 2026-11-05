@@ -21,6 +21,8 @@
 
 ## TC-US32-01 — Move a target from Baseline to Intervention and then Maintenance with reasons; history and the program-level phase follow
 
+**Xray:** [RHD-60305](https://rethinkautism.atlassian.net/browse/RHD-60305), [RHD-60306](https://rethinkautism.atlassian.net/browse/RHD-60306)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create an Opportunity Based program → **Manage Targets** | Touch nose phase: Baseline |
@@ -33,6 +35,8 @@
 | 8 | Clean-up: delete the program | Removed |
 
 ## TC-US32-02 — Close baseline moves a target out of Baseline
+
+**Xray:** [RHD-60305](https://rethinkautism.atlassian.net/browse/RHD-60305)
 
 | # | Action | Expected result |
 | --- | --- | --- |

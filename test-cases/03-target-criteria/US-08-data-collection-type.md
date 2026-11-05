@@ -20,6 +20,8 @@ The default prompt list is Independent, Verbal, Gestural, Model, Partial Physica
 
 ## TC-US08-01 — Opportunity Based with prompts and location; settings persist and show in Program Details @smoke
 
+**Xray:** [RHD-60282](https://rethinkautism.atlassian.net/browse/RHD-60282)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client, create a custom program with 3 targets | Program opens; Data Settings says no data collection is configured |
@@ -35,6 +37,8 @@ The default prompt list is Independent, Verbal, Gestural, Model, Partial Physica
 
 ## TC-US08-02 — Every collection type can be selected and shows its mastery wording
 
+**Xray:** [RHD-60296](https://rethinkautism.atlassian.net/browse/RHD-60296)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client, create a custom program | Program opens |
@@ -44,6 +48,8 @@ The default prompt list is Independent, Verbal, Gestural, Model, Partial Physica
 | 5 | Clean-up: delete the program | Program removed |
 
 ## TC-US08-03 — Change the collection type of a configured program
+
+**Xray:** [RHD-60296](https://rethinkautism.atlassian.net/browse/RHD-60296)
 
 | # | Action | Expected result |
 | --- | --- | --- |

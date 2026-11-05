@@ -15,6 +15,8 @@
 
 ## TC-US02-01 — Browse System Programs, search by keyword and preview a program @smoke
 
+**Xray:** [RHD-60114](https://rethinkautism.atlassian.net/browse/RHD-60114), [RHD-60363](https://rethinkautism.atlassian.net/browse/RHD-60363)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client (Skills Programs) | Program rail is shown |
@@ -26,6 +28,8 @@
 | 7 | Check Domain and Area of system programs | Not blank (NGC-22 — failing today if "—") |
 
 ## TC-US02-02 — Filter by Category / Domain / Area and switch to My Programs
+
+**Xray:** [RHD-60114](https://rethinkautism.atlassian.net/browse/RHD-60114)
 
 | # | Action | Expected result |
 | --- | --- | --- |

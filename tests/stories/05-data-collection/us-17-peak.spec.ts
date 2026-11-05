@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const TARGETS = ['Touch nose', 'Clap hands', 'Stand up'];
 
 test.describe('US-17 Record PEAK attempts', { tag: '@US-17' }, () => {
-  test('TC-US17-01 Score a PEAK block, see totals, and start another scoring @rbt', async ({ flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US17-01 [RHD-60293] Score a PEAK block, see totals, and start another scoring @rbt', { tag: ['@xray', '@RHD-60293'] }, async ({ flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');

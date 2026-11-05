@@ -28,6 +28,8 @@
 
 ## TC-US23-01 — Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed
 
+**Xray:** [RHD-61120](https://rethinkautism.atlassian.net/browse/RHD-61120), [RHD-61121](https://rethinkautism.atlassian.net/browse/RHD-61121)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT Home → today's scheduled session for the seeded client → **Open** | Pre-session page; account note templates offered |
@@ -45,6 +47,8 @@
 If the client has no open scheduled session today, steps 1–2 use an ad-hoc session and step 10 is skipped (noted as a test-data gap).
 
 ## TC-US23-02 — Finalize stays locked until the session times are confirmed @negative
+
+**Xray:** [RHD-61121](https://rethinkautism.atlassian.net/browse/RHD-61121)
 
 | # | Action | Expected result |
 | --- | --- | --- |

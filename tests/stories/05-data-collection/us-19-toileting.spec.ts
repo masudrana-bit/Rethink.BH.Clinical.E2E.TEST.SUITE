@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { clockToSeconds } from '../../../src/pages/sessions/DataSheetPage';
 
 test.describe('US-19 Record a toileting visit', { tag: '@US-19' }, () => {
-  test('TC-US19-01 Time a sit, pick an outcome, submit, and see it in the metrics @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US19-01 [RHD-60292] Time a sit, pick an outcome, submit, and see it in the metrics @rbt', { tag: ['@xray', '@RHD-60292'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');

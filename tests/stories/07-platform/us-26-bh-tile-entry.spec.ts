@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { createPages } from '../../../src/fixtures/pages';
 
 test.describe('US-26 Enter the app from a BH tile already authenticated', { tag: '@US-26' }, () => {
-  test('TC-US26-01 Signed-out deep link asks for the BH hand-off; after sign-in the session is reused without a second sign-in', async ({ page, context, flows, signIn, shell, workspace, analyze, testData }) => {
+  test('TC-US26-01 [RHD-60358] Signed-out deep link asks for the BH hand-off; after sign-in the session is reused without a second sign-in', { tag: ['@xray', '@RHD-60358'] }, async ({ page, context, flows, signIn, shell, workspace, analyze, testData }) => {
     const client = testData.clients.seeded;
 
     await test.step('Signed-out deep link lands on the sign-in hand-off screen', async () => {
@@ -40,7 +40,7 @@ test.describe('US-26 Enter the app from a BH tile already authenticated', { tag:
     });
   });
 
-  test('TC-US26-02 The user lands with the correct role; the RBT view lands on RBT Home', async ({ page, flows, shell, rbtHome }) => {
+  test('TC-US26-02 [RHD-60358, RHD-60360] The user lands with the correct role; the RBT view lands on RBT Home', { tag: ['@xray', '@RHD-60358', '@RHD-60360'] }, async ({ page, flows, shell, rbtHome }) => {
     await test.step('BCBA lands on the clinical shell', async () => {
       await flows.signInAs('bcba');
       await expect(page).not.toHaveURL(/\/rbt(\/|$)/);
@@ -69,7 +69,7 @@ test.describe('US-26 Enter the app from a BH tile already authenticated', { tag:
     });
   });
 
-  test('TC-US26-03 Header link back to Rethink BH; the session survives an idle gap', async ({ page, flows, shell, signIn, testData }) => {
+  test('TC-US26-03 [RHD-60359] Header link back to Rethink BH; the session survives an idle gap', { tag: ['@xray', '@RHD-60359'] }, async ({ page, flows, shell, signIn, testData }) => {
     const idleMinutes = Number(process.env.SESSION_IDLE_MINUTES ?? '2');
     test.setTimeout((idleMinutes + 5) * 60_000);
     await flows.signInAs('bcba');
@@ -91,6 +91,6 @@ test.describe('US-26 Enter the app from a BH tile already authenticated', { tag:
     });
   });
 
-  test.fixme('TC-US26-04 Launch from the BH dashboard tile — manual: no BH tile hand-off on dev2 (NGC-66)', async () => {});
-  test.fixme('TC-US26-05 No forced sign-out over a 90-minute session with idle gaps — manual long-running check', async () => {});
+  test.fixme('TC-US26-04 [RHD-60358] Launch from the BH dashboard tile — manual: no BH tile hand-off on dev2 (NGC-66)', { tag: ['@xray', '@RHD-60358'] }, async () => {});
+  test.fixme('TC-US26-05 [RHD-60359] No forced sign-out over a 90-minute session with idle gaps — manual long-running check', { tag: ['@xray', '@RHD-60359'] }, async () => {});
 });

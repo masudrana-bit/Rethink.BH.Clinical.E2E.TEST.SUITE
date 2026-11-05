@@ -19,6 +19,8 @@
 
 ## TC-US17-01 — Score a PEAK block, see totals, and start another scoring
 
+**Xray:** [RHD-60293](https://rethinkautism.atlassian.net/browse/RHD-60293)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a custom program (Touch nose, Clap hands, Stand up) → Manage Data Collection: **PEAK Scoring** → Save | Program Details shows "PEAK Scoring" |

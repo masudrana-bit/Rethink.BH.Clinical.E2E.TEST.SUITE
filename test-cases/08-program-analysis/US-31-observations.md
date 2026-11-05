@@ -17,6 +17,8 @@
 
 ## TC-US31-01 — A finalized session is listed in the Observations grid with staff and setting; correcting it updates the grid and chart
 
+**Xray:** [RHD-60365](https://rethinkautism.atlassian.net/browse/RHD-60365)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT (same browser): ad-hoc session on "Requesting preferred items" → Snack items: Correct, Incorrect → conclude and finalize | Session finalized |

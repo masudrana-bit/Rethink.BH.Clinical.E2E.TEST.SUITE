@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-40 Reach client-level and program-level analysis', { tag: '@US-40' }, () => {
-  test('TC-US40-01 Move between Analyze Data and a program chart without losing the client; legacy tabs open the same client', async ({ page, flows, shell, workspace, analyze, programDetails, programData, testData }) => {
+  test('TC-US40-01 [RHD-60362, RHD-60374] Move between Analyze Data and a program chart without losing the client; legacy tabs open the same client', { tag: ['@xray', '@RHD-60362', '@RHD-60374'] }, async ({ page, flows, shell, workspace, analyze, programDetails, programData, testData }) => {
     const client = testData.clients.seeded;
     let clientName = '';
 

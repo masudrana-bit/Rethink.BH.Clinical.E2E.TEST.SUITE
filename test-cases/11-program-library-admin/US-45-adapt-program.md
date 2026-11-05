@@ -16,6 +16,8 @@
 
 ## TC-US45-01 — Editing a standard program adapts a copy; the original stays Standard and unchanged
 
+**Xray:** [RHD-60125](https://rethinkautism.atlassian.net/browse/RHD-60125)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → Program Library → **Edit** on a Standard program | Prompt to adapt a copy, explaining the original is not changed for others (NGC-75) (**fails today**: editor opens directly) |

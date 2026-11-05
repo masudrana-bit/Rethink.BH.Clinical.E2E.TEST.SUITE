@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-24 Correct a previously recorded attempt or fact', { tag: '@US-24' }, () => {
-  test('TC-US24-01 Correct a trial outcome from the audit list; the summary and audit trail update @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US24-01 [RHD-61123] Correct a trial outcome from the audit list; the summary and audit trail update @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -42,7 +42,7 @@ test.describe('US-24 Correct a previously recorded attempt or fact', { tag: '@US
     });
   });
 
-  test('TC-US24-02 Undo in session and delete from the audit list leave an audit trail @rbt', async ({ flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US24-02 [RHD-61123] Undo in session and delete from the audit list leave an audit trail @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -84,7 +84,7 @@ test.describe('US-24 Correct a previously recorded attempt or fact', { tag: '@US
     });
   });
 
-  test('TC-US24-03 Correct or remove an ABC entry from the audit list (NGC-65) @rbt', async ({ page, flows, dataSheet, abc, sessionClose, testData }) => {
+  test('TC-US24-03 [RHD-61123] Correct or remove an ABC entry from the audit list (NGC-65) @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ page, flows, dataSheet, abc, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const behavior = testData.seeded.behavior;

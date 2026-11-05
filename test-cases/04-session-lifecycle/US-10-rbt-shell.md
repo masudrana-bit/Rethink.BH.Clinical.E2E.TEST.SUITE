@@ -17,6 +17,8 @@
 
 ## TC-US10-01 — RBT lands on RBT home and navigates the RBT shell
 
+**Xray:** [RHD-60360](https://rethinkautism.atlassian.net/browse/RHD-60360)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in and enter the RBT view | URL is `/rbt`; RBT header and nav are shown; no BCBA navigation (Staff, Settings) |
@@ -27,6 +29,8 @@
 | 6 | Nav → **Home** | Back on `/rbt` |
 
 ## TC-US10-02 — RBT view survives refresh on a deep page and re-login @edge
+
+**Xray:** [RHD-60360](https://rethinkautism.atlassian.net/browse/RHD-60360)
 
 | # | Action | Expected result |
 | --- | --- | --- |

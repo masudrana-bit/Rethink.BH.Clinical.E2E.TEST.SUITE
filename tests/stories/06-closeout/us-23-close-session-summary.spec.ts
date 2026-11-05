@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-23 Close a session and review summary, audit & note', { tag: '@US-23' }, () => {
-  test('TC-US23-01 Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed @rbt', async ({ page, flows, rbtHome, rbtSessions, sessionOpen, dataSheet, abc, sessionClose, testData }) => {
+  test('TC-US23-01 [RHD-61120, RHD-61121] Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed @rbt', { tag: ['@xray', '@RHD-61120', '@RHD-61121'] }, async ({ page, flows, rbtHome, rbtSessions, sessionOpen, dataSheet, abc, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -140,7 +140,7 @@ test.describe('US-23 Close a session and review summary, audit & note', { tag: '
     });
   });
 
-  test('TC-US23-02 Finalize stays locked until the session times are confirmed @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US23-02 [RHD-61121] Finalize stays locked until the session times are confirmed @rbt', { tag: ['@xray', '@RHD-61121'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;

@@ -18,6 +18,8 @@
 
 ## TC-US39-01 — Funder (payor) graph of a program exports as PNG and PDF with dated x-axis labels and US spelling
 
+**Xray:** [RHD-60372](https://rethinkautism.atlassian.net/browse/RHD-60372)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded program → Data → **Payor** | Funder graph with payor profile and export actions; x-axis labels carry session dates |
@@ -25,6 +27,8 @@
 | 3 | Read the funder view | US spelling (behavior, organization…) (**fails today** if British spellings, NGC-67) |
 
 ## TC-US39-02 — Funder report opens in the editor with required fields marked
+
+**Xray:** [RHD-60372](https://rethinkautism.atlassian.net/browse/RHD-60372)
 
 | # | Action | Expected result |
 | --- | --- | --- |

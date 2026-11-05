@@ -17,6 +17,8 @@
 
 ## TC-US28-01 — Each target gets its own chart with its session data; a phase change shows on that chart (NGC-61)
 
+**Xray:** [RHD-60306](https://rethinkautism.atlassian.net/browse/RHD-60306)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create an Opportunity Based program with targets Touch nose, Clap hands, Stand up | Program saved |

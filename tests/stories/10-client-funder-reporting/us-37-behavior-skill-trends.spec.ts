@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const today = () => new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
 test.describe('US-37 Review behavior & replacement-skill trends side by side', { tag: '@US-37' }, () => {
-  test('TC-US37-01 Behavior counts from a session appear in the plan Data tab beside the linked measures', async ({ flows, dataSheet, behavior, workspace, testData }) => {
+  test('TC-US37-01 [RHD-60370] Behavior counts from a session appear in the plan Data tab beside the linked measures', { tag: ['@xray', '@RHD-60370'] }, async ({ flows, dataSheet, behavior, workspace, testData }) => {
     test.setTimeout(8 * 60_000);
     const client = testData.clients.seeded;
     const behaviorName = testData.seeded.behavior;

@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-36 Review every program & behavior graph in one report', { tag: '@US-36' }, () => {
-  test('TC-US36-01 Bulk Graphs lists every program and behavior, then respects a narrowed selection (NGC-89)', async ({ flows, workspace, analyze, testData }) => {
+  test('TC-US36-01 [RHD-60368] Bulk Graphs lists every program and behavior, then respects a narrowed selection (NGC-89)', { tag: ['@xray', '@RHD-60368'] }, async ({ flows, workspace, analyze, testData }) => {
     const program = testData.seeded.obProgram;
     const behaviorName = testData.seeded.behavior;
     await flows.signInAs('bcba');

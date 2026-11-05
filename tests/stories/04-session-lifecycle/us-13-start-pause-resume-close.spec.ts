@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { clockPatterns } from '../../../src/data/dates';
 
 test.describe('US-13 Start, pause, resume, and close a session', { tag: '@US-13' }, () => {
-  test('TC-US13-01 Pause and resume keep the timer and recorded data; summary shows real times', async ({ page, flows, dataSheet, closeSession, rbtSessions, sessionClose, testData }) => {
+  test('TC-US13-01 [RHD-61114] Pause and resume keep the timer and recorded data; summary shows real times', { tag: ['@xray', '@RHD-61114'] }, async ({ page, flows, dataSheet, closeSession, rbtSessions, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -56,7 +56,7 @@ test.describe('US-13 Start, pause, resume, and close a session', { tag: '@US-13'
     });
   });
 
-  test('TC-US13-02 Transfer uses a staff picker; Cancel keeps the session running', async ({ flows, dataSheet, closeSession, testData }) => {
+  test('TC-US13-02 [RHD-61118] Transfer uses a staff picker; Cancel keeps the session running', { tag: ['@xray', '@RHD-61118'] }, async ({ flows, dataSheet, closeSession, testData }) => {
     await flows.signInAs('rbt');
     await flows.startLiveSessionAsRbt({ clientIds: [testData.clients.seeded] });
 

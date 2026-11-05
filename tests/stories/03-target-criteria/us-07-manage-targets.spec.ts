@@ -4,7 +4,7 @@ import { customProgramInput } from '../../../src/data/programs';
 const today = () => new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
 test.describe('US-7 Manage targets / steps within a program', { tag: '@US-7' }, () => {
-  test('TC-US07-01 Add, bulk add, rename, reorder and assign objective and group', async ({ flows, programDetails, targets, testData }) => {
+  test('TC-US07-01 [RHD-60294, RHD-60295] Add, bulk add, rename, reorder and assign objective and group', { tag: ['@xray', '@RHD-60294', '@RHD-60295'] }, async ({ flows, programDetails, targets, testData }) => {
     const program = customProgramInput('Targets Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -75,7 +75,7 @@ test.describe('US-7 Manage targets / steps within a program', { tag: '@US-7' }, 
     });
   });
 
-  test('TC-US07-02 Status lifecycle: In Progress, On hold, Mastered and un-master, with dated history', async ({ page, flows, programDetails, targets, testData }) => {
+  test('TC-US07-02 [RHD-60295, RHD-60314] Status lifecycle: In Progress, On hold, Mastered and un-master, with dated history', { tag: ['@xray', '@RHD-60295', '@RHD-60314'] }, async ({ page, flows, programDetails, targets, testData }) => {
     const program = customProgramInput('Status Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

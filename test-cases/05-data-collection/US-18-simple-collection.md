@@ -27,6 +27,8 @@
 
 ## TC-US18-01 — Quick-entry recorders: percentage, numeric, rating, tally
 
+**Xray:** [RHD-60290](https://rethinkautism.atlassian.net/browse/RHD-60290), [RHD-60291](https://rethinkautism.atlassian.net/browse/RHD-60291)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create four custom programs with collection types Percentage, Numeric, Rating Scale and Number of Occurrences | Each shows its type in Program Details |
@@ -40,6 +42,8 @@
 | 9 | Finalize; delete the programs | Programs removed |
 
 ## TC-US18-02 — Timed recorders: frequency, interval, duration, frequency + duration
+
+**Xray:** [RHD-60286](https://rethinkautism.atlassian.net/browse/RHD-60286), [RHD-60287](https://rethinkautism.atlassian.net/browse/RHD-60287), [RHD-60288](https://rethinkautism.atlassian.net/browse/RHD-60288), [RHD-60289](https://rethinkautism.atlassian.net/browse/RHD-60289)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -21,6 +21,8 @@
 
 ## TC-US15-01 — Every prompt level is recordable, shown trial by trial; on-hold targets stay off the sheet
 
+**Xray:** [RHD-60282](https://rethinkautism.atlassian.net/browse/RHD-60282)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a custom program (targets Touch nose, Clap hands, Stand up) → Manage Data Collection: Opportunity Based + Prompts → Save | Program Details shows "Opportunity Based" |
@@ -34,6 +36,8 @@
 | 9 | Finalize; switch back to BCBA and delete the program | Program removed |
 
 ## TC-US15-02 — Change and delete a recorded trial from the trial-by-trial view
+
+**Xray:** [RHD-60282](https://rethinkautism.atlassian.net/browse/RHD-60282)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe("US-32 Change a target's phase and see its history", { tag: '@US-32' }, () => {
-  test("TC-US32-01 Move a target from Baseline to Intervention and then Maintenance with reasons; history and the program-level phase follow", async ({ page, flows, programDetails, targets, phaseDialog, testData }) => {
+  test("TC-US32-01 [RHD-60305, RHD-60306] Move a target from Baseline to Intervention and then Maintenance with reasons; history and the program-level phase follow", { tag: ['@xray', '@RHD-60305', '@RHD-60306'] }, async ({ page, flows, programDetails, targets, phaseDialog, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     let targetId = '';
@@ -61,7 +61,7 @@ test.describe("US-32 Change a target's phase and see its history", { tag: '@US-3
     });
   });
 
-  test('TC-US32-02 Close baseline moves a target out of Baseline', async ({ page, flows, programDetails, targets, phaseDialog, testData }) => {
+  test('TC-US32-02 [RHD-60305] Close baseline moves a target out of Baseline', { tag: ['@xray', '@RHD-60305'] }, async ({ page, flows, programDetails, targets, phaseDialog, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await flows.createCollectionProgram('opportunity-based');

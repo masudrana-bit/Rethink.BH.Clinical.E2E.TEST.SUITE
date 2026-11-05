@@ -19,6 +19,8 @@
 
 ## TC-US37-01 — Behavior counts from a session appear in the plan Data tab beside the linked measures
 
+**Xray:** [RHD-60370](https://rethinkautism.atlassian.net/browse/RHD-60370)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: session on the seeded client with "Self Injury" → **+1** twice → conclude and finalize | Behavior shows 2 |

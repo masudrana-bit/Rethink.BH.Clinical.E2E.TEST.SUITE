@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { customProgramInput } from '../../../src/data/programs';
 
 test.describe('US-5 Create a custom program', { tag: '@US-5' }, () => {
-  test('TC-US05-01 Build a full custom program with objectives, bulk targets, lesson plan and a material link @smoke', async ({ flows, plan, addProgram, customProgram, programDetails, targets, testData }) => {
+  test('TC-US05-01 [RHD-60117, RHD-60118] Build a full custom program with objectives, bulk targets, lesson plan and a material link @smoke', { tag: ['@xray', '@RHD-60117', '@RHD-60118'] }, async ({ flows, plan, addProgram, customProgram, programDetails, targets, testData }) => {
     const program = customProgramInput('Custom Program', {
       materialUrl: { title: 'E2E visual schedule', url: 'https://example.com/visual-schedule.pdf' },
     });
@@ -40,7 +40,7 @@ test.describe('US-5 Create a custom program', { tag: '@US-5' }, () => {
     });
   });
 
-  test('TC-US05-02 New custom program saved to My Programs is searchable in the library', async ({ flows, plan, addProgram, programDetails, testData }) => {
+  test('TC-US05-02 [RHD-60117] New custom program saved to My Programs is searchable in the library', { tag: ['@xray', '@RHD-60117'] }, async ({ flows, plan, addProgram, programDetails, testData }) => {
     const program = customProgramInput('My Library Program', { saveToMyPrograms: true });
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -60,7 +60,7 @@ test.describe('US-5 Create a custom program', { tag: '@US-5' }, () => {
     });
   });
 
-  test('TC-US05-03 Required-field validation', async ({ flows, plan, addProgram, customProgram, testData }) => {
+  test('TC-US05-03 [RHD-60117] Required-field validation', { tag: ['@xray', '@RHD-60117'] }, async ({ flows, plan, addProgram, customProgram, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await plan.openAddProgram();

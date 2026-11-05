@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-43 Find a program in the catalog', { tag: '@US-43' }, () => {
-  test('TC-US43-01 Search by name, filter by category / domain / area, and clear back to the full catalog', async ({ page, flows, programLibrary }) => {
+  test('TC-US43-01 [RHD-60123] Search by name, filter by category / domain / area, and clear back to the full catalog', { tag: ['@xray', '@RHD-60123'] }, async ({ page, flows, programLibrary }) => {
     await flows.signInAs('admin');
     await programLibrary.open();
     const { total } = await programLibrary.shownCount();

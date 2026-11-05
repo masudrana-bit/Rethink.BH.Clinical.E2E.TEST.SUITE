@@ -17,6 +17,8 @@
 
 ## TC-US35-01 — Two programs and a behavior plotted on one time axis; the report can be exported and saved
 
+**Xray:** [RHD-60367](https://rethinkautism.atlassian.net/browse/RHD-60367), [RHD-60375](https://rethinkautism.atlassian.net/browse/RHD-60375)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → Analyze Data → **Custom Graph** | Empty state; export disabled |

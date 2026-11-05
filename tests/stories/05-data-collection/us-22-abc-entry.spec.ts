@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { uniqueName } from '../../../src/helpers/data-factory';
 
 test.describe('US-22 Record an in-session ABC entry', { tag: '@US-22' }, () => {
-  test('TC-US22-01 Record a plan-defined and a novel behavior; audit shows context names @rbt', async ({ flows, dataSheet, abc, sessionClose, testData }) => {
+  test('TC-US22-01 [RHD-60302] Record a plan-defined and a novel behavior; audit shows context names @rbt', { tag: ['@xray', '@RHD-60302'] }, async ({ flows, dataSheet, abc, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const behavior = testData.seeded.behavior;
     const novel = uniqueName('Novel Behavior');
@@ -42,7 +42,7 @@ test.describe('US-22 Record an in-session ABC entry', { tag: '@US-22' }, () => {
     });
   });
 
-  test('TC-US22-02 In a group session, Record ABC Data from a client\'s card targets that client @rbt', async ({ flows, dataSheet, abc, sessionClose, testData }) => {
+  test('TC-US22-02 [RHD-61116] In a group session, Record ABC Data from a client\'s card targets that client @rbt', { tag: ['@xray', '@RHD-61116'] }, async ({ flows, dataSheet, abc, sessionClose, testData }) => {
     const seeded = testData.clients.seeded;
     const group = testData.clients.group;
     const program = testData.seeded.obProgram;

@@ -17,6 +17,8 @@
 
 ## TC-US09-01 — Mastery, baseline, generalization and maintenance save and display @smoke
 
+**Xray:** [RHD-60297](https://rethinkautism.atlassian.net/browse/RHD-60297), [RHD-60298](https://rethinkautism.atlassian.net/browse/RHD-60298)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client, create a custom program with 3 targets | Program opens |
@@ -32,6 +34,8 @@
 
 ## TC-US09-02 — Validation: percentage above 100 and empty required values @negative
 
+**Xray:** [RHD-60297](https://rethinkautism.atlassian.net/browse/RHD-60297)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, create a custom program, **Add Data Collection** → **Opportunity Based** → **Next** | Mastery step |
@@ -42,6 +46,8 @@
 | 6 | Clean-up: delete the program | Program removed |
 
 ## TC-US09-03 — Frequency/Rate programs use frequency-based criteria
+
+**Xray:** [RHD-60286](https://rethinkautism.atlassian.net/browse/RHD-60286), [RHD-60297](https://rethinkautism.atlassian.net/browse/RHD-60297)
 
 | # | Action | Expected result |
 | --- | --- | --- |

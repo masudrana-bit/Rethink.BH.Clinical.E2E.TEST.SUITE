@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { LIBRARY_PROGRAMS } from '../../../src/data/programs';
 
 test.describe('US-2 Search & browse the program library', { tag: '@US-2' }, () => {
-  test('TC-US02-01 Browse System Programs, search by keyword and preview a program @smoke', async ({ page, flows, plan, addProgram, testData }) => {
+  test('TC-US02-01 [RHD-60114, RHD-60363] Browse System Programs, search by keyword and preview a program @smoke', { tag: ['@xray', '@RHD-60114', '@RHD-60363'] }, async ({ page, flows, plan, addProgram, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
 
@@ -48,7 +48,7 @@ test.describe('US-2 Search & browse the program library', { tag: '@US-2' }, () =
     });
   });
 
-  test('TC-US02-02 Filter by Category / Domain / Area and switch to My Programs', async ({ flows, plan, addProgram, testData }) => {
+  test('TC-US02-02 [RHD-60114] Filter by Category / Domain / Area and switch to My Programs', { tag: ['@xray', '@RHD-60114'] }, async ({ flows, plan, addProgram, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await plan.openAddProgram();

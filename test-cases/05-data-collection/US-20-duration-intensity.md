@@ -19,6 +19,8 @@
 
 ## TC-US20-01 — Duration-intensity segments per level survive a pause
 
+**Xray:** [RHD-60301](https://rethinkautism.atlassian.net/browse/RHD-60301)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a custom program → Manage Data Collection: **Duration** → Save (maintenance workaround) | Program Details shows "Duration" |
@@ -31,6 +33,8 @@
 | 8 | Delete the program | Program removed |
 
 ## TC-US20-02 — Plan behavior offers the duration-intensity recorder
+
+**Xray:** [RHD-60301](https://rethinkautism.atlassian.net/browse/RHD-60301)
 
 | # | Action | Expected result |
 | --- | --- | --- |

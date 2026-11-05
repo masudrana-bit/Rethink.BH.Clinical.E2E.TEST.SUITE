@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, () => {
-  test('TC-US01-01 Find a client on the Clients page and open their workspace @smoke', async ({ flows, clientsList, workspace, shell, plan, testData }) => {
+  test('TC-US01-01 [RHD-60113] Find a client on the Clients page and open their workspace @smoke', { tag: ['@xray', '@RHD-60113'] }, async ({ flows, clientsList, workspace, shell, plan, testData }) => {
     await test.step('Sign in as BCBA and land on Clients', async () => {
       await flows.signInAs('bcba');
       await clientsList.expectLoaded();
@@ -40,7 +40,7 @@ test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, ()
     await flows.evidence('client workspace');
   });
 
-  test('TC-US01-02 Switch client from the header and every tab reloads for the new client', async ({ page, flows, workspace, shell, plan, testData }) => {
+  test('TC-US01-02 [RHD-60113] Switch client from the header and every tab reloads for the new client', { tag: ['@xray', '@RHD-60113'] }, async ({ page, flows, workspace, shell, plan, testData }) => {
     await flows.signInAs('bcba');
     const seededName = await flows.openClient(testData.clients.seeded);
     const seededPrograms = await plan.programNames();
@@ -78,7 +78,7 @@ test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, ()
     });
   });
 
-  test('TC-US01-03 Search by Client ID and hand-off to legacy BH', async ({ page, flows, clientsList, workspace }) => {
+  test('TC-US01-03 [RHD-60113, RHD-60362] Search by Client ID and hand-off to legacy BH', { tag: ['@xray', '@RHD-60113', '@RHD-60362'] }, async ({ page, flows, clientsList, workspace }) => {
     await flows.signInAs('bcba');
     await clientsList.expectLoaded();
 

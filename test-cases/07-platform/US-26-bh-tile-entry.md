@@ -20,6 +20,8 @@
 
 ## TC-US26-01 — Signed-out deep link asks for the BH hand-off; after sign-in the session is reused without a second sign-in
 
+**Xray:** [RHD-60358](https://rethinkautism.atlassian.net/browse/RHD-60358)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Signed out, open `/clients/{seeded}/analyze-data` directly | Redirected to **Sign in to continue** with "Open Clinical from your Rethink dashboard…" |
@@ -31,6 +33,8 @@
 
 ## TC-US26-02 — The user lands with the correct role; the RBT view lands on RBT Home
 
+**Xray:** [RHD-60358](https://rethinkautism.atlassian.net/browse/RHD-60358), [RHD-60360](https://rethinkautism.atlassian.net/browse/RHD-60360)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA | Lands on the clinical shell (not `/rbt`); user menu shows the role by name (**fails today**: "Role 4 a") |
@@ -39,6 +43,8 @@
 
 ## TC-US26-03 — Header link back to Rethink BH and session survives an idle gap
 
+**Xray:** [RHD-60359](https://rethinkautism.atlassian.net/browse/RHD-60359)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Signed in, check the **Rethink BH** header switch | Points to the BH dashboard and opens in a new tab |
@@ -46,6 +52,8 @@
 | 3 | Click Clients / open the seeded client | Works without being sent to the sign-in screen; no "session expired" message |
 
 ## TC-US26-04 — Launch from the BH dashboard tile (manual — not available on dev2, NGC-66)
+
+**Xray:** [RHD-60358](https://rethinkautism.atlassian.net/browse/RHD-60358)
 
 | # | Action | Expected result |
 | --- | --- | --- |
@@ -56,6 +64,8 @@
 | 5 | Repeat with the Program Administrator account | Settings is available |
 
 ## TC-US26-05 — No forced sign-out over a 90-minute session with idle gaps (manual) @edge
+
+**Xray:** [RHD-60359](https://rethinkautism.atlassian.net/browse/RHD-60359)
 
 | # | Action | Expected result |
 | --- | --- | --- |

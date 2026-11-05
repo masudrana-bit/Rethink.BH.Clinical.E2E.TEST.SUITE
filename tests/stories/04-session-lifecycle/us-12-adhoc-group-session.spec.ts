@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-12 Create an ad-hoc session, incl. multi-client group', { tag: '@US-12' }, () => {
-  test('TC-US12-01 Ad-hoc single-client session from RBT home', async ({ flows, rbtHome, newSession, sessionOpen, dataSheet, sessionClose, testData }) => {
+  test('TC-US12-01 [RHD-61115] Ad-hoc single-client session from RBT home', { tag: ['@xray', '@RHD-61115'] }, async ({ flows, rbtHome, newSession, sessionOpen, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -44,7 +44,7 @@ test.describe('US-12 Create an ad-hoc session, incl. multi-client group', { tag:
     });
   });
 
-  test('TC-US12-02 Start Live Session from the client page pre-selects the client', async ({ flows, workspace, clientSessions, newSession, sessionOpen, dataSheet, testData }) => {
+  test('TC-US12-02 [RHD-61115] Start Live Session from the client page pre-selects the client', { tag: ['@xray', '@RHD-61115'] }, async ({ flows, workspace, clientSessions, newSession, sessionOpen, dataSheet, testData }) => {
     const client = testData.clients.seeded;
     await flows.signInAs('bcba');
     const clientName = await flows.openClient(client);
@@ -79,7 +79,7 @@ test.describe('US-12 Create an ad-hoc session, incl. multi-client group', { tag:
     });
   });
 
-  test('TC-US12-03 Group session with two clients records data per client', async ({ flows, rbtHome, newSession, sessionOpen, dataSheet, sessionClose, testData }) => {
+  test('TC-US12-03 [RHD-61116, RHD-61128] Group session with two clients records data per client', { tag: ['@xray', '@RHD-61116', '@RHD-61128'] }, async ({ flows, rbtHome, newSession, sessionOpen, dataSheet, sessionClose, testData }) => {
     const seeded = testData.clients.seeded;
     const group = testData.clients.group;
     const program = testData.seeded.obProgram;

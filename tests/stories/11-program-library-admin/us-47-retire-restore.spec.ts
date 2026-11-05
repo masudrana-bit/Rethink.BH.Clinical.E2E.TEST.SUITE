@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { libraryProgramInput } from '../../../src/data/programs';
 
 test.describe('US-47 Retire and restore a program', { tag: '@US-47' }, () => {
-  test('TC-US47-01 Deactivate with confirmation hides the program from clients; Reactivate brings it back', async ({ flows, programLibrary, programEditor, testData }) => {
+  test('TC-US47-01 [RHD-60127, RHD-60383] Deactivate with confirmation hides the program from clients; Reactivate brings it back', { tag: ['@xray', '@RHD-60127', '@RHD-60383'] }, async ({ flows, programLibrary, programEditor, testData }) => {
     test.setTimeout(10 * 60_000);
     const input = libraryProgramInput('Library Retire');
     const client = testData.clients.clean;
@@ -50,7 +50,7 @@ test.describe('US-47 Retire and restore a program', { tag: '@US-47' }, () => {
     });
   });
 
-  test('TC-US47-02 Deactivating a standard program is either confirmed for this organization only or offers "Adapt a copy" (NGC-30)', async ({ page, flows, programLibrary }) => {
+  test('TC-US47-02 [RHD-60127] Deactivating a standard program is either confirmed for this organization only or offers "Adapt a copy" (NGC-30)', { tag: ['@xray', '@RHD-60127'] }, async ({ page, flows, programLibrary }) => {
     await flows.signInAs('admin');
     await programLibrary.open();
     const sources = (await programLibrary.columnValues('source')).filter((s) => s !== 'Source');

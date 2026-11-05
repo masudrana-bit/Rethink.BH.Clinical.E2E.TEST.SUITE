@@ -7,7 +7,7 @@ import { uniqueName } from '../../../src/helpers/data-factory';
 const tile = async (locator: Locator) => Number(((await locator.innerText()).match(/\d+/) ?? ['0'])[0]);
 
 test.describe("US-34 Review mastered targets across a client's plan", { tag: '@US-34' }, () => {
-  test('TC-US34-01 Mastered targets report: tiles add up, chart and grouping, any date range', async ({ flows, workspace, analyze, testData }) => {
+  test('TC-US34-01 [RHD-60365, RHD-60366] Mastered targets report: tiles add up, chart and grouping, any date range', { tag: ['@xray', '@RHD-60365', '@RHD-60366'] }, async ({ flows, workspace, analyze, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await workspace.openTab('analyze-data');
@@ -40,7 +40,7 @@ test.describe("US-34 Review mastered targets across a client's plan", { tag: '@U
     });
   });
 
-  test('TC-US34-02 A saved report stays available after reload and in a new browser session', async ({ page, browser, flows, workspace, analyze, testData }) => {
+  test('TC-US34-02 [RHD-60366] A saved report stays available after reload and in a new browser session', { tag: ['@xray', '@RHD-60366'] }, async ({ page, browser, flows, workspace, analyze, testData }) => {
     const name = uniqueName('Mastered report');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

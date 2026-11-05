@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { clockPatterns, daysFromToday, dayPattern, displayDate, isoDate } from '../../../src/data/dates';
 
 test.describe('US-14 Enter historical / backfill session data', { tag: '@US-14' }, () => {
-  test('TC-US14-01 Backfill a past date with times left blank and see it in the program data', async ({ page, flows, shell, rbtSessions, newSession, bulkEntry, sessionClose, programDetails, programData, testData }) => {
+  test('TC-US14-01 [RHD-61119] Backfill a past date with times left blank and see it in the program data', { tag: ['@xray', '@RHD-61119'] }, async ({ page, flows, shell, rbtSessions, newSession, bulkEntry, sessionClose, programDetails, programData, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;

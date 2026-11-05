@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { customProgramInput } from '../../../src/data/programs';
 
 test.describe('US-6 Edit, archive, or delete a program', { tag: '@US-6' }, () => {
-  test('TC-US06-01 Edit the goal and rename a program from the header', async ({ page, flows, plan, programDetails, testData }) => {
+  test('TC-US06-01 [RHD-60119] Edit the goal and rename a program from the header', { tag: ['@xray', '@RHD-60119'] }, async ({ page, flows, plan, programDetails, testData }) => {
     const program = customProgramInput('Editable Program');
     const renamed = `${program.title} (renamed)`;
     await flows.signInAs('bcba');
@@ -31,7 +31,7 @@ test.describe('US-6 Edit, archive, or delete a program', { tag: '@US-6' }, () =>
     });
   });
 
-  test('TC-US06-02 Discontinue (archive) a program, then delete it with confirmation', async ({ flows, plan, programDetails, testData }) => {
+  test('TC-US06-02 [RHD-60120] Discontinue (archive) a program, then delete it with confirmation', { tag: ['@xray', '@RHD-60120'] }, async ({ flows, plan, programDetails, testData }) => {
     const program = customProgramInput('Archive Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

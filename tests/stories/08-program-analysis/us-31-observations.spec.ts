@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const today = () => new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
 test.describe('US-31 Review and correct recorded observations', { tag: '@US-31' }, () => {
-  test('TC-US31-01 A finalized session is listed in the Observations grid with staff and setting; correcting it updates the grid and chart', async ({ page, flows, programDetails, programData, testData }) => {
+  test('TC-US31-01 [RHD-60365] A finalized session is listed in the Observations grid with staff and setting; correcting it updates the grid and chart', { tag: ['@xray', '@RHD-60365'] }, async ({ page, flows, programDetails, programData, testData }) => {
     test.setTimeout(8 * 60_000);
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;

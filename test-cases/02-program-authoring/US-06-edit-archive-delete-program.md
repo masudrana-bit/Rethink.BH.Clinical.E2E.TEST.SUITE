@@ -13,6 +13,8 @@
 
 ## TC-US06-01 — Edit the goal and rename a program from the header
 
+**Xray:** [RHD-60119](https://rethinkautism.atlassian.net/browse/RHD-60119)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open seeded client, create a custom program | Program detail opens |
@@ -21,6 +23,8 @@
 | 4 | Open **Program actions** menu | Items: Edit, Duplicate, Update Status, Delete — **Edit appears once** (RHD-58952) |
 
 ## TC-US06-02 — Discontinue (archive) a program, then delete it with confirmation
+
+**Xray:** [RHD-60120](https://rethinkautism.atlassian.net/browse/RHD-60120)
 
 | # | Action | Expected result |
 | --- | --- | --- |

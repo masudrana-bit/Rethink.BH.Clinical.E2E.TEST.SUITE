@@ -13,6 +13,8 @@
 
 ## TC-US05-01 — Build a full custom program with objectives, bulk targets, lesson plan and a material link @smoke
 
+**Xray:** [RHD-60117](https://rethinkautism.atlassian.net/browse/RHD-60117), [RHD-60118](https://rethinkautism.atlassian.net/browse/RHD-60118)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client, click **Add Program → Create Custom Program** | Form "Build a custom program shell…" opens |
@@ -28,12 +30,16 @@
 
 ## TC-US05-02 — New custom program saved to My Programs is searchable in the library
 
+**Xray:** [RHD-60117](https://rethinkautism.atlassian.net/browse/RHD-60117)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open seeded client, create a custom program with **Save to My Programs** on | Saved |
 | 2 | Open **Add Program → My Programs**, search its title | Program appears in results (NGC-25/NGC-52) |
 
 ## TC-US05-03 — Required-field validation @negative
+
+**Xray:** [RHD-60117](https://rethinkautism.atlassian.net/browse/RHD-60117)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { uniqueName } from '../../../src/helpers/data-factory';
 
 test.describe('US-35 Build a custom cross-program comparison graph', { tag: '@US-35' }, () => {
-  test('TC-US35-01 Two programs and a behavior plotted on one time axis; the report can be exported and saved', async ({ flows, workspace, analyze, testData }) => {
+  test('TC-US35-01 [RHD-60367, RHD-60375] Two programs and a behavior plotted on one time axis; the report can be exported and saved', { tag: ['@xray', '@RHD-60367', '@RHD-60375'] }, async ({ flows, workspace, analyze, testData }) => {
     const program = testData.seeded.obProgram;
     const behaviorName = testData.seeded.behavior;
     await flows.signInAs('bcba');

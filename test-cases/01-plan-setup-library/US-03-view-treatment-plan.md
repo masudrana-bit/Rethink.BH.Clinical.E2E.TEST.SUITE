@@ -13,6 +13,8 @@
 
 ## TC-US03-01 — Review the Current and Inactive plan lists with domain and last-recorded info
 
+**Xray:** [RHD-60115](https://rethinkautism.atlassian.net/browse/RHD-60115)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA and open the seeded client | **Current** tab of the program rail is selected and lists the seeded programs |
@@ -23,6 +25,8 @@
 | 6 | Scan all text | "Uncategorized" uses US spelling (NGC-16) |
 
 ## TC-US03-02 — Add a Future program and find it under the right list, then reorder
+
+**Xray:** [RHD-60115](https://rethinkautism.atlassian.net/browse/RHD-60115)
 
 | # | Action | Expected result |
 | --- | --- | --- |

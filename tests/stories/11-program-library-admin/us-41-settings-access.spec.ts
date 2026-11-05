@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const SECTIONS = ['program-library', 'data-collection-types', 'locations', 'custom-domains', 'abc-settings'] as const;
 
 test.describe('US-41 Reach the clinical settings area', { tag: '@US-41' }, () => {
-  test('TC-US41-01 Admin opens Settings from the navigation; every clinical section and the Locations list load', async ({ page, flows, shell, settings }) => {
+  test('TC-US41-01 [RHD-60122] Admin opens Settings from the navigation; every clinical section and the Locations list load', { tag: ['@xray', '@RHD-60122'] }, async ({ page, flows, shell, settings }) => {
     await flows.signInAs('admin');
 
     await test.step('Settings in the navigation opens the Program Library', async () => {
@@ -27,7 +27,7 @@ test.describe('US-41 Reach the clinical settings area', { tag: '@US-41' }, () =>
     });
   });
 
-  test('TC-US41-02 Settings is not offered in the RBT view', async ({ page, flows, shell, settings }) => {
+  test('TC-US41-02 [RHD-60360, RHD-60380] Settings is not offered in the RBT view', { tag: ['@xray', '@RHD-60360', '@RHD-60380'] }, async ({ page, flows, shell, settings }) => {
     await flows.signInAs('rbt');
 
     await test.step('RBT navigation has no Settings', async () => {

@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe("US-42 View the organization's program catalog", { tag: '@US-42' }, () => {
-  test('TC-US42-01 Catalog grid shows program details and row actions without side scrolling', async ({ flows, programLibrary }) => {
+  test('TC-US42-01 [RHD-60122] Catalog grid shows program details and row actions without side scrolling', { tag: ['@xray', '@RHD-60122'] }, async ({ flows, programLibrary }) => {
     await flows.signInAs('admin');
     await programLibrary.open();
 

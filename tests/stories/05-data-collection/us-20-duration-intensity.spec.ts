@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const T = 'Touch nose';
 
 test.describe('US-20 Record duration-intensity behavior data', { tag: '@US-20' }, () => {
-  test('TC-US20-01 Duration-intensity segments per level survive a pause @rbt', async ({ page, flows, dataSheet, closeSession, rbtSessions, sessionClose, testData }) => {
+  test('TC-US20-01 [RHD-60301] Duration-intensity segments per level survive a pause @rbt', { tag: ['@xray', '@RHD-60301'] }, async ({ page, flows, dataSheet, closeSession, rbtSessions, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');
@@ -81,7 +81,7 @@ test.describe('US-20 Record duration-intensity behavior data', { tag: '@US-20' }
     });
   });
 
-  test('TC-US20-02 Plan behavior offers the duration-intensity recorder @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US20-02 [RHD-60301] Plan behavior offers the duration-intensity recorder @rbt', { tag: ['@xray', '@RHD-60301'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const behavior = testData.seeded.durationIntensityBehavior;
     test.skip(!behavior, `no duration-intensity behavior seeded (set SEEDED_DI_BEHAVIOR); "${testData.seeded.behavior}" is Frequency/Rate`);

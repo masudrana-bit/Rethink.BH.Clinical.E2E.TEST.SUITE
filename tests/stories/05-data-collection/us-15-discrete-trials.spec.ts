@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { ALL_PROMPT_LEVELS } from '../../../src/pages/sessions/DataSheetPage';
 
 test.describe('US-15 Record standard discrete-trial attempts', { tag: '@US-15' }, () => {
-  test('TC-US15-01 Every prompt level is recordable, shown trial by trial; on-hold targets stay off the sheet @rbt', async ({ flows, programDetails, targets, dataSheet, sessionClose, testData }) => {
+  test('TC-US15-01 [RHD-60282] Every prompt level is recordable, shown trial by trial; on-hold targets stay off the sheet @rbt', { tag: ['@xray', '@RHD-60282'] }, async ({ flows, programDetails, targets, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');
@@ -63,7 +63,7 @@ test.describe('US-15 Record standard discrete-trial attempts', { tag: '@US-15' }
     });
   });
 
-  test('TC-US15-02 Change and delete a recorded trial from the trial-by-trial view @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US15-02 [RHD-60282] Change and delete a recorded trial from the trial-by-trial view @rbt', { tag: ['@xray', '@RHD-60282'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');

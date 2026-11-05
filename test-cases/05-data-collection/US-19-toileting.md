@@ -18,6 +18,8 @@
 
 ## TC-US19-01 — Time a sit, pick an outcome, submit, and see it in the metrics
 
+**Xray:** [RHD-60292](https://rethinkautism.atlassian.net/browse/RHD-60292)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a custom program → Manage Data Collection: **Toileting** → Save | Program Details shows "Toileting" |

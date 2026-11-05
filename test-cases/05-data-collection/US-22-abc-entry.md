@@ -19,6 +19,8 @@
 
 ## TC-US22-01 — Record a plan-defined and a novel behavior; audit shows context names
 
+**Xray:** [RHD-60302](https://rethinkautism.atlassian.net/browse/RHD-60302)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: New Session → seeded client → pick `Requesting preferred items` and the behavior `Self Injury` → Start | Data sheet with the behavior support card |
@@ -31,6 +33,8 @@
 | 8 | Finalize | Session finalized |
 
 ## TC-US22-02 — In a group session, Record ABC Data from a client's card targets that client
+
+**Xray:** [RHD-61116](https://rethinkautism.atlassian.net/browse/RHD-61116)
 
 | # | Action | Expected result |
 | --- | --- | --- |

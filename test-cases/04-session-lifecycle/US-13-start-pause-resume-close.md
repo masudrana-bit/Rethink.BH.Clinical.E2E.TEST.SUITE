@@ -21,6 +21,8 @@
 
 ## TC-US13-01 — Pause and resume keep the timer and recorded data; summary shows real times
 
+**Xray:** [RHD-61114](https://rethinkautism.atlassian.net/browse/RHD-61114)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as RBT, start an ad-hoc session for the seeded client with `Requesting preferred items` | Data sheet; clock runs |
@@ -31,6 +33,8 @@
 | 6 | Finalize | Session finalized |
 
 ## TC-US13-02 — Transfer uses a staff picker; Cancel keeps the session running
+
+**Xray:** [RHD-61118](https://rethinkautism.atlassian.net/browse/RHD-61118)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -16,6 +16,8 @@
 
 ## TC-US43-01 — Search by name, filter by category / domain / area, and clear back to the full catalog
 
+**Xray:** [RHD-60123](https://rethinkautism.atlassian.net/browse/RHD-60123)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → Program Library; note the total | — |

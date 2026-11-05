@@ -21,6 +21,8 @@
 
 ## TC-US21-01 — Session, program and interval timers run, pause and stop
 
+**Xray:** [RHD-60289](https://rethinkautism.atlassian.net/browse/RHD-60289), [RHD-60300](https://rethinkautism.atlassian.net/browse/RHD-60300)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a **Frequency/Rate** program and an **Interval** program | Saved (maintenance workaround for Frequency/Rate) |

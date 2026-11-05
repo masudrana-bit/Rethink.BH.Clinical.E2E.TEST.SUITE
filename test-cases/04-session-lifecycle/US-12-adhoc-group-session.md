@@ -19,6 +19,8 @@
 
 ## TC-US12-01 — Ad-hoc single-client session from RBT home
 
+**Xray:** [RHD-61115](https://rethinkautism.atlassian.net/browse/RHD-61115)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as RBT, Home → **New Session** | Wizard with **LIVE** badge on step 1 |
@@ -31,6 +33,8 @@
 
 ## TC-US12-02 — Start Live Session from the client page pre-selects the client
 
+**Xray:** [RHD-61115](https://rethinkautism.atlassian.net/browse/RHD-61115)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client → **Sessions** tab | Start Live Session and Post-Session Entry shown |
@@ -39,6 +43,8 @@
 | 4 | Conclude and finalize | Session finalized |
 
 ## TC-US12-03 — Group session with two clients records data per client
+
+**Xray:** [RHD-61116](https://rethinkautism.atlassian.net/browse/RHD-61116), [RHD-61128](https://rethinkautism.atlassian.net/browse/RHD-61128)
 
 | # | Action | Expected result |
 | --- | --- | --- |

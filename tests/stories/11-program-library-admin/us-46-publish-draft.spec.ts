@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { libraryProgramInput } from '../../../src/data/programs';
 
 test.describe('US-46 Publish a draft', { tag: '@US-46' }, () => {
-  test('TC-US46-01 A draft is not offered to clients; publishing asks for confirmation and makes it available in Add Program', async ({ flows, programLibrary, programEditor, testData }) => {
+  test('TC-US46-01 [RHD-60126] A draft is not offered to clients; publishing asks for confirmation and makes it available in Add Program', { tag: ['@xray', '@RHD-60126'] }, async ({ flows, programLibrary, programEditor, testData }) => {
     test.setTimeout(8 * 60_000);
     const input = libraryProgramInput('Library Publish');
     const client = testData.clients.clean;

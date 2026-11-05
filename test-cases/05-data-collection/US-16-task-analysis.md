@@ -19,6 +19,8 @@
 
 ## TC-US16-01 — Score every step, start a new series at step 1, see % in the summary
 
+**Xray:** [RHD-60283](https://rethinkautism.atlassian.net/browse/RHD-60283), [RHD-60285](https://rethinkautism.atlassian.net/browse/RHD-60285)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → create a custom program (steps Touch nose, Clap hands, Stand up) → Manage Data Collection: **Task Analysis** → Save | Program Details shows "Task Analysis", 3 steps |

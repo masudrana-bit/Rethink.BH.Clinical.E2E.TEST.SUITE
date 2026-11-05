@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-28 Review each target on its own chart', { tag: '@US-28' }, () => {
-  test('TC-US28-01 Each target gets its own chart with its session data; a phase change shows on that chart (NGC-61)', async ({ flows, programDetails, targets, phaseDialog, programData, dataSheet, testData }) => {
+  test('TC-US28-01 [RHD-60306] Each target gets its own chart with its session data; a phase change shows on that chart (NGC-61)', { tag: ['@xray', '@RHD-60306'] }, async ({ flows, programDetails, targets, phaseDialog, programData, dataSheet, testData }) => {
     test.setTimeout(10 * 60_000);
     const client = testData.clients.seeded;
     let program = '';

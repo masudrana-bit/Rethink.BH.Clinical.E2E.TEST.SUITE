@@ -17,6 +17,8 @@
 
 ## TC-US25-01 — Refresh mid-session: trials, behavior count, ABC entry and clock are kept; recording continues
 
+**Xray:** [RHD-60361](https://rethinkautism.atlassian.net/browse/RHD-60361), [RHD-61126](https://rethinkautism.atlassian.net/browse/RHD-61126)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: ad-hoc session with the seeded program and behavior | Data sheet opens |
@@ -28,6 +30,8 @@
 | 7 | Finalize | Session finalized |
 
 ## TC-US25-02 — Close the tab and come back: RBT Home offers the session under "Resume a session" with its data
+
+**Xray:** [RHD-60361](https://rethinkautism.atlassian.net/browse/RHD-60361), [RHD-61126](https://rethinkautism.atlassian.net/browse/RHD-61126)
 
 | # | Action | Expected result |
 | --- | --- | --- |

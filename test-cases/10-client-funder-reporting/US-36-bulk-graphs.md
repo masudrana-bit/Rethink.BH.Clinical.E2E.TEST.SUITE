@@ -16,6 +16,8 @@
 
 ## TC-US36-01 — Bulk Graphs lists every program and behavior, then respects a narrowed selection (NGC-89)
 
+**Xray:** [RHD-60368](https://rethinkautism.atlassian.net/browse/RHD-60368)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → Analyze Data → **Bulk Graphs**, Include Programs + behaviors | Count "N program(s) and M behavior(s)" with M > 0; a card for "Requesting preferred items" |

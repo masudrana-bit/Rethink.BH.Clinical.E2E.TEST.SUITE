@@ -3,7 +3,7 @@ import { createPages } from '../../../src/fixtures/pages';
 import { ClinicalFlows } from '../../../src/flows/ClinicalFlows';
 
 test.describe('US-25 Resume an in-progress session after a refresh', { tag: '@US-25' }, () => {
-  test('TC-US25-01 Refresh mid-session: trials, behavior count, ABC entry and clock are kept; recording continues @rbt', async ({ page, flows, dataSheet, abc, sessionClose, testData }) => {
+  test('TC-US25-01 [RHD-60361, RHD-61126] Refresh mid-session: trials, behavior count, ABC entry and clock are kept; recording continues @rbt', { tag: ['@xray', '@RHD-60361', '@RHD-61126'] }, async ({ page, flows, dataSheet, abc, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
@@ -53,7 +53,7 @@ test.describe('US-25 Resume an in-progress session after a refresh', { tag: '@US
     });
   });
 
-  test('TC-US25-02 Close the tab and come back: RBT Home offers the session under "Resume a session" with its data @rbt', async ({ page, context, flows, dataSheet, testData }, testInfo) => {
+  test('TC-US25-02 [RHD-60361, RHD-61126] Close the tab and come back: RBT Home offers the session under "Resume a session" with its data @rbt', { tag: ['@xray', '@RHD-60361', '@RHD-61126'] }, async ({ page, context, flows, dataSheet, testData }, testInfo) => {
     const client = testData.clients.seeded;
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;

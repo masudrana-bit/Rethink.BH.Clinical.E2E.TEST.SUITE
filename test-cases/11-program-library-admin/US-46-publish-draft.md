@@ -13,6 +13,8 @@
 
 ## TC-US46-01 — A draft is not offered to clients; publishing asks for confirmation and makes it available in Add Program
 
+**Xray:** [RHD-60126](https://rethinkautism.atlassian.net/browse/RHD-60126)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → New Program → fill → **Save as Draft** | Status Draft |

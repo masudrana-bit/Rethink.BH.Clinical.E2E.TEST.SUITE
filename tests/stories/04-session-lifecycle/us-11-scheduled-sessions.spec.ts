@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-11 View and open scheduled sessions', { tag: '@US-11' }, () => {
-  test('TC-US11-01 Sessions list is limited to own clients and shows correct counts', async ({ page, flows, shell, clientsList, rbtHome, rbtSessions, newSession, testData }) => {
+  test('TC-US11-01 [RHD-60360, RHD-61112] Sessions list is limited to own clients and shows correct counts', { tag: ['@xray', '@RHD-60360', '@RHD-61112'] }, async ({ page, flows, shell, clientsList, rbtHome, rbtSessions, newSession, testData }) => {
     await flows.signInAs('rbt');
     let caseload: string[] = [];
     let seededName = '';
@@ -61,7 +61,7 @@ test.describe('US-11 View and open scheduled sessions', { tag: '@US-11' }, () =>
     });
   });
 
-  test('TC-US11-02 Open a scheduled session: pre-session page, then data sheet', async ({ page, flows, rbtHome, sessionOpen, dataSheet }) => {
+  test('TC-US11-02 [RHD-61113] Open a scheduled session: pre-session page, then data sheet', { tag: ['@xray', '@RHD-61113'] }, async ({ page, flows, rbtHome, sessionOpen, dataSheet }) => {
     await flows.signInAs('rbt');
     await rbtHome.expectLoaded();
     await expect(rbtHome.scheduledRows.first().or(page.getByTestId('scheduled-sessions-empty'))).toBeVisible();
@@ -96,7 +96,7 @@ test.describe('US-11 View and open scheduled sessions', { tag: '@US-11' }, () =>
     });
   });
 
-  test('TC-US11-03 Concluded session appears in "Incomplete session notes" for its client only', async ({ page, flows, rbtHome, dataSheet, sessionClose, testData }) => {
+  test('TC-US11-03 [RHD-61112] Concluded session appears in "Incomplete session notes" for its client only', { tag: ['@xray', '@RHD-61112'] }, async ({ page, flows, rbtHome, dataSheet, sessionClose, testData }) => {
     const program = testData.seeded.obProgram;
     const target = testData.seeded.obTarget;
     await flows.signInAs('rbt');

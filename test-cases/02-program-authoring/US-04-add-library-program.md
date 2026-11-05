@@ -13,6 +13,8 @@
 
 ## TC-US04-01 — Add a system program as Current and confirm goal, targets and lesson plan were copied
 
+**Xray:** [RHD-60116](https://rethinkautism.atlassian.net/browse/RHD-60116)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the clean client | Skills Programs shown |
@@ -28,6 +30,8 @@
 
 ## TC-US04-02 — Duplicate protection: "Already added" in the catalog and a warning from a stale second tab @negative
 
+**Xray:** [RHD-60116](https://rethinkautism.atlassian.net/browse/RHD-60116)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the clean client (program from TC-01 is on the plan) | Skills Programs shown |
@@ -40,6 +44,8 @@
 | 8 | Clean-up: delete `Identifying Objects` | Removed |
 
 ## TC-US04-03 — Add a program as Future and move it to Current
+
+**Xray:** [RHD-60116](https://rethinkautism.atlassian.net/browse/RHD-60116)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -21,6 +21,8 @@
 
 ## TC-US07-01 — Add, bulk add, rename, reorder and assign objective and group
 
+**Xray:** [RHD-60294](https://rethinkautism.atlassian.net/browse/RHD-60294), [RHD-60295](https://rethinkautism.atlassian.net/browse/RHD-60295)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA, open the seeded client, create a custom program with 2 objectives and targets `Touch nose`, `Clap hands`, `Stand up` | Program opens on Program Details |
@@ -35,6 +37,8 @@
 | 10 | Clean-up: delete the program | Program removed |
 
 ## TC-US07-02 — Status lifecycle: In Progress, On hold, Mastered and un-master, with dated history
+
+**Xray:** [RHD-60295](https://rethinkautism.atlassian.net/browse/RHD-60295), [RHD-60314](https://rethinkautism.atlassian.net/browse/RHD-60314)
 
 | # | Action | Expected result |
 | --- | --- | --- |

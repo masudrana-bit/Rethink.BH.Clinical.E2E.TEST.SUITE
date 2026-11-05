@@ -19,6 +19,8 @@
 
 ## TC-US44-01 — Create a program with objectives, targets and a link material and save it as a draft
 
+**Xray:** [RHD-60124](https://rethinkautism.atlassian.net/browse/RHD-60124), [RHD-60393](https://rethinkautism.atlassian.net/browse/RHD-60393), [RHD-60394](https://rethinkautism.atlassian.net/browse/RHD-60394)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → Program Library → **New Program** | Draft vs Publish notice; required fields marked with * (Title, Category…) |

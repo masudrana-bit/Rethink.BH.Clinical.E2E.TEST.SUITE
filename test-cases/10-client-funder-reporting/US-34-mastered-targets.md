@@ -19,6 +19,8 @@
 
 ## TC-US34-01 — Mastered targets report: tiles add up, chart and grouping, any date range
 
+**Xray:** [RHD-60365](https://rethinkautism.atlassian.net/browse/RHD-60365), [RHD-60366](https://rethinkautism.atlassian.net/browse/RHD-60366)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → Analyze Data | Mastered Targets report with tiles and chart |
@@ -27,6 +29,8 @@
 | 4 | Compare with the plan: every target with status Mastered is counted (manual spot-check, NGC-45) | — |
 
 ## TC-US34-02 — A saved report stays available after reload and in a new browser session
+
+**Xray:** [RHD-60366](https://rethinkautism.atlassian.net/browse/RHD-60366)
 
 | # | Action | Expected result |
 | --- | --- | --- |

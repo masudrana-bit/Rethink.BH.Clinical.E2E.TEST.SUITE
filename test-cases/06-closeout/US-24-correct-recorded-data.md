@@ -21,6 +21,8 @@
 
 ## TC-US24-01 — Correct a trial outcome from the audit list; the summary and audit trail update
 
+**Xray:** [RHD-61123](https://rethinkautism.atlassian.net/browse/RHD-61123)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: ad-hoc session on the seeded program → record Correct, Incorrect → Conclude | Overall 50% |
@@ -31,6 +33,8 @@
 
 ## TC-US24-02 — Undo in session and delete from the audit list leave an audit trail
 
+**Xray:** [RHD-61123](https://rethinkautism.atlassian.net/browse/RHD-61123)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | RBT: ad-hoc session → record Correct, Incorrect, Correct | 3 trial chips |
@@ -40,6 +44,8 @@
 | 5 | Finalize | Session finalized |
 
 ## TC-US24-03 — Correct or remove an ABC entry from the audit list (NGC-65)
+
+**Xray:** [RHD-61123](https://rethinkautism.atlassian.net/browse/RHD-61123)
 
 | # | Action | Expected result |
 | --- | --- | --- |

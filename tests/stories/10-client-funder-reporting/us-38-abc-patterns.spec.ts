@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-38 Review ABC patterns for a behavior plan', { tag: '@US-38' }, () => {
-  test('TC-US38-01 ABC entries recorded in a session show up in the plan ABC breakdown', async ({ page, flows, dataSheet, abc, behavior, workspace, testData }) => {
+  test('TC-US38-01 [RHD-60369, RHD-60371] ABC entries recorded in a session show up in the plan ABC breakdown', { tag: ['@xray', '@RHD-60369', '@RHD-60371'] }, async ({ page, flows, dataSheet, abc, behavior, workspace, testData }) => {
     test.setTimeout(8 * 60_000);
     const client = testData.clients.seeded;
     const behaviorName = testData.seeded.behavior;

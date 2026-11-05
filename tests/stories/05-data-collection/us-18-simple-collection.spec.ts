@@ -4,7 +4,7 @@ import { CollectionType } from '../../../src/pages/program/DataCollectionWizard'
 const T = 'Touch nose';
 
 test.describe('US-18 Record simple collection data (8 types)', { tag: '@US-18' }, () => {
-  test('TC-US18-01 Quick-entry recorders: percentage, numeric, rating, tally @rbt', async ({ flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US18-01 [RHD-60290, RHD-60291] Quick-entry recorders: percentage, numeric, rating, tally @rbt', { tag: ['@xray', '@RHD-60290', '@RHD-60291'] }, async ({ flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const types: CollectionType[] = ['percentage', 'numeric', 'rating-scale', 'number-of-occurrences'];
     const programs: Partial<Record<CollectionType, string>> = {};
@@ -56,7 +56,7 @@ test.describe('US-18 Record simple collection data (8 types)', { tag: '@US-18' }
     });
   });
 
-  test('TC-US18-02 Timed recorders: frequency, interval, duration, frequency + duration @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US18-02 [RHD-60286, RHD-60287, RHD-60288, RHD-60289] Timed recorders: frequency, interval, duration, frequency + duration @rbt', { tag: ['@xray', '@RHD-60286', '@RHD-60287', '@RHD-60288', '@RHD-60289'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     const types: CollectionType[] = ['frequency-rate', 'interval', 'duration', 'frequency-duration'];
     const programs: Partial<Record<CollectionType, string>> = {};

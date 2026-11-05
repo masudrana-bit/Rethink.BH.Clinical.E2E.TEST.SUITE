@@ -64,7 +64,8 @@ const specs = [];
 })(results.suites);
 
 const storyKeyOf = (sp) => {
-  const fromTag = (sp.tags ?? []).map((t) => t.match(KEY_RE)?.[1]).find(Boolean);
+  // Xray test keys (@RHD-…) are also tags; they name the manual test a spec covers, not its story.
+  const fromTag = (sp.tags ?? []).map((t) => t.match(KEY_RE)?.[1]).find((k) => k && !/^RHD-/.test(k));
   if (fromTag) return fromTag;
   // Titles such as "TC-US26-01 …" contain key-like fragments, so only accept a title match for a known story.
   const fromTitle = sp.title.match(KEY_RE)?.[1];

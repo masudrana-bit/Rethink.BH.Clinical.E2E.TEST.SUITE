@@ -13,6 +13,8 @@
 
 ## TC-US01-01 — Find a client on the Clients page and open their workspace @smoke
 
+**Xray:** [RHD-60113](https://rethinkautism.atlassian.net/browse/RHD-60113)
+
 **Preconditions:** BCBA account; seeded client exists (`SEEDED_CLIENT_ID`).TC-01: Templates page lists the built-in Phase 1 template as Default
 Preconditions:
 
@@ -272,6 +274,8 @@ After step 3, the Default chip is on the copy and stays there after the reload.
 
 ## TC-US01-02 — Switch client from the header and every tab reloads for the new client
 
+**Xray:** [RHD-60113](https://rethinkautism.atlassian.net/browse/RHD-60113)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Sign in as BCBA and open the seeded client | Skills Programs shows the seeded client's programs |
@@ -281,6 +285,8 @@ After step 3, the Default chip is on the copy and stays there after the reload.
 | 5 | Switch back to the seeded client | Seeded client's programs are visible again |
 
 ## TC-US01-03 — Search by Client ID and hand-off to legacy BH
+
+**Xray:** [RHD-60113](https://rethinkautism.atlassian.net/browse/RHD-60113), [RHD-60362](https://rethinkautism.atlassian.net/browse/RHD-60362)
 
 | # | Action | Expected result |
 | --- | --- | --- |

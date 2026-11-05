@@ -3,7 +3,7 @@ import { test, expect } from '../../../src/fixtures/test';
 const T = 'Touch nose';
 
 test.describe('US-21 Track session and program timers', { tag: '@US-21' }, () => {
-  test('TC-US21-01 Session, program and interval timers run, pause and stop @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  test('TC-US21-01 [RHD-60289, RHD-60300] Session, program and interval timers run, pause and stop @rbt', { tag: ['@xray', '@RHD-60289', '@RHD-60300'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
     test.setTimeout(10 * 60_000);
     const client = testData.clients.seeded;
     let frequency = '';

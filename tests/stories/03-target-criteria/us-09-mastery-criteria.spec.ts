@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { customProgramInput } from '../../../src/data/programs';
 
 test.describe('US-9 Configure mastery, maintenance & generalization criteria', { tag: '@US-9' }, () => {
-  test('TC-US09-01 Mastery, baseline, generalization and maintenance save and display @smoke', async ({ flows, programDetails, dataCollection, testData }) => {
+  test('TC-US09-01 [RHD-60297, RHD-60298] Mastery, baseline, generalization and maintenance save and display @smoke', { tag: ['@xray', '@RHD-60297', '@RHD-60298'] }, async ({ flows, programDetails, dataCollection, testData }) => {
     const program = customProgramInput('Mastery Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -62,7 +62,7 @@ test.describe('US-9 Configure mastery, maintenance & generalization criteria', {
     });
   });
 
-  test('TC-US09-02 Validation: percentage above 100 and empty required values', async ({ flows, programDetails, dataCollection, testData }) => {
+  test('TC-US09-02 [RHD-60297] Validation: percentage above 100 and empty required values', { tag: ['@xray', '@RHD-60297'] }, async ({ flows, programDetails, dataCollection, testData }) => {
     const program = customProgramInput('Mastery Validation Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -102,7 +102,7 @@ test.describe('US-9 Configure mastery, maintenance & generalization criteria', {
     });
   });
 
-  test('TC-US09-03 Frequency/Rate programs use frequency-based criteria', async ({ flows, programDetails, dataCollection, testData }) => {
+  test('TC-US09-03 [RHD-60286, RHD-60297] Frequency/Rate programs use frequency-based criteria', { tag: ['@xray', '@RHD-60286', '@RHD-60297'] }, async ({ flows, programDetails, dataCollection, testData }) => {
     const program = customProgramInput('Frequency Mastery Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

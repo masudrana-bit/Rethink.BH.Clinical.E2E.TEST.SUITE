@@ -20,6 +20,8 @@
 
 ## TC-US33-01 — Meeting the criteria raises a determination; confirm masters one target and reject keeps the other in progress
 
+**Xray:** [RHD-60311](https://rethinkautism.atlassian.net/browse/RHD-60311), [RHD-60312](https://rethinkautism.atlassian.net/browse/RHD-60312)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → custom program (Touch nose, Clap hands, Stand up) → Add Data Collection → Opportunity Based → mastery: skip baseline (pick a reason), **Automatic with Confirmation**, 80%, min trials 1, **1 session** → Save | Data Settings says "require BCBA confirmation"; review panel empty |
@@ -32,6 +34,8 @@
 | 7 | Clean-up: delete the program | Removed |
 
 ## TC-US33-02 — Program without pending determinations shows the empty review state @edge
+
+**Xray:** [RHD-60312](https://rethinkautism.atlassian.net/browse/RHD-60312)
 
 | # | Action | Expected result |
 | --- | --- | --- |

@@ -17,6 +17,8 @@
 
 ## TC-US40-01 — Move between Analyze Data and a program chart without losing the client; legacy tabs open the same client
 
+**Xray:** [RHD-60362](https://rethinkautism.atlassian.net/browse/RHD-60362), [RHD-60374](https://rethinkautism.atlassian.net/browse/RHD-60374)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | BCBA: seeded client → **Analyze Data** | `/clients/{id}/analyze-data` |

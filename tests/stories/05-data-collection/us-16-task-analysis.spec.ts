@@ -1,7 +1,7 @@
 import { test, expect } from '../../../src/fixtures/test';
 
 test.describe('US-16 Record task-analysis attempts', { tag: '@US-16' }, () => {
-  test('TC-US16-01 Score every step, start a new series at step 1, see % in the summary @rbt', async ({ flows, programDetails, dataSheet, sessionClose, testData }) => {
+  test('TC-US16-01 [RHD-60283, RHD-60285] Score every step, start a new series at step 1, see % in the summary @rbt', { tag: ['@xray', '@RHD-60283', '@RHD-60285'] }, async ({ flows, programDetails, dataSheet, sessionClose, testData }) => {
     const client = testData.clients.seeded;
     let program = '';
     await flows.signInAs('bcba');

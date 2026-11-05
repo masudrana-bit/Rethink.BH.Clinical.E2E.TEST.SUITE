@@ -3,7 +3,7 @@ import { customProgramInput } from '../../../src/data/programs';
 import { COLLECTION_TYPE_LABELS, CollectionType } from '../../../src/pages/program/DataCollectionWizard';
 
 test.describe('US-8 Configure data-collection type & dimensions', { tag: '@US-8' }, () => {
-  test('TC-US08-01 Opportunity Based with prompts and location; settings persist and show in Program Details @smoke', async ({ flows, programDetails, dataCollection, targets, testData }) => {
+  test('TC-US08-01 [RHD-60282] Opportunity Based with prompts and location; settings persist and show in Program Details @smoke', { tag: ['@xray', '@RHD-60282'] }, async ({ flows, programDetails, dataCollection, targets, testData }) => {
     const program = customProgramInput('Collection Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -63,7 +63,7 @@ test.describe('US-8 Configure data-collection type & dimensions', { tag: '@US-8'
     });
   });
 
-  test('TC-US08-02 Every collection type can be selected and shows its mastery wording', async ({ flows, programDetails, dataCollection, testData }) => {
+  test('TC-US08-02 [RHD-60296] Every collection type can be selected and shows its mastery wording', { tag: ['@xray', '@RHD-60296'] }, async ({ flows, programDetails, dataCollection, testData }) => {
     const program = customProgramInput('All Types Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
@@ -91,7 +91,7 @@ test.describe('US-8 Configure data-collection type & dimensions', { tag: '@US-8'
     });
   });
 
-  test('TC-US08-03 Change the collection type of a configured program', async ({ flows, programDetails, dataCollection, testData }) => {
+  test('TC-US08-03 [RHD-60296] Change the collection type of a configured program', { tag: ['@xray', '@RHD-60296'] }, async ({ flows, programDetails, dataCollection, testData }) => {
     const program = customProgramInput('Change Type Program');
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);

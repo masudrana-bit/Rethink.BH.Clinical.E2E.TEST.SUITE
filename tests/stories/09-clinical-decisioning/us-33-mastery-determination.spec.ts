@@ -4,7 +4,7 @@ import { customProgramInput } from '../../../src/data/programs';
 const TARGETS = ['Touch nose', 'Clap hands', 'Stand up'] as const;
 
 test.describe('US-33 Review and confirm automatic mastery determinations', { tag: '@US-33' }, () => {
-  test('TC-US33-01 Meeting the criteria raises a determination; confirm masters one target and reject keeps the other in progress', async ({ page, flows, programDetails, dataCollection, targets, phaseDialog, dataSheet, testData }) => {
+  test('TC-US33-01 [RHD-60311, RHD-60312] Meeting the criteria raises a determination; confirm masters one target and reject keeps the other in progress', { tag: ['@xray', '@RHD-60311', '@RHD-60312'] }, async ({ page, flows, programDetails, dataCollection, targets, phaseDialog, dataSheet, testData }) => {
     test.setTimeout(12 * 60_000);
     const client = testData.clients.seeded;
     const input = customProgramInput('Mastery Program', { targets: [...TARGETS] });
@@ -106,7 +106,7 @@ test.describe('US-33 Review and confirm automatic mastery determinations', { tag
     });
   });
 
-  test('TC-US33-02 Program without pending determinations shows the empty review state', async ({ flows, programDetails, testData }) => {
+  test('TC-US33-02 [RHD-60312] Program without pending determinations shows the empty review state', { tag: ['@xray', '@RHD-60312'] }, async ({ flows, programDetails, testData }) => {
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.seeded);
     await flows.openProgram(testData.seeded.obProgram);

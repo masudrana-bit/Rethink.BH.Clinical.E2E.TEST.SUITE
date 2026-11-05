@@ -2,7 +2,7 @@ import { test, expect } from '../../../src/fixtures/test';
 import { libraryProgramInput } from '../../../src/data/programs';
 
 test.describe('US-44 Create a new program', { tag: '@US-44' }, () => {
-  test('TC-US44-01 Create a program with objectives, targets and a link material and save it as a draft', async ({ flows, programLibrary, programEditor }) => {
+  test('TC-US44-01 [RHD-60124, RHD-60393, RHD-60394] Create a program with objectives, targets and a link material and save it as a draft', { tag: ['@xray', '@RHD-60124', '@RHD-60393', '@RHD-60394'] }, async ({ flows, programLibrary, programEditor }) => {
     const input = libraryProgramInput('Library Draft');
     await flows.signInAs('admin');
     await programLibrary.open();

@@ -13,6 +13,8 @@
 
 ## TC-US47-01 — Deactivate with confirmation hides the program from clients; Reactivate brings it back
 
+**Xray:** [RHD-60127](https://rethinkautism.atlassian.net/browse/RHD-60127), [RHD-60383](https://rethinkautism.atlassian.net/browse/RHD-60383)
+
 | # | Action | Expected result |
 | --- | --- | --- |
 | 1 | Admin → New Program → fill → **Publish** | Status Active; offered in the clean client's Add Program |
@@ -22,6 +24,8 @@
 | 5 | Clean-up: deactivate | — |
 
 ## TC-US47-02 — Deactivating a standard program is either confirmed for this organization only or offers "Adapt a copy" (NGC-30)
+
+**Xray:** [RHD-60127](https://rethinkautism.atlassian.net/browse/RHD-60127)
 
 | # | Action | Expected result |
 | --- | --- | --- |
