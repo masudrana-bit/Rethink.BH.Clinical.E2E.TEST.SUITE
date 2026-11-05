@@ -85,6 +85,8 @@ export const env = {
     rbt: credentialsFor('RBT'),
     admin: credentialsFor('ADMIN'),
   } satisfies Record<Role, Credentials>,
+  /** Legacy BH login reached from Client Info / File Cabinet; defaults to the BCBA login (same account). */
+  legacyBhAccount: { ...(ownLogin('LEGACY_BH') ?? credentialsFor('BCBA')), usesRoleToggle: false } as Credentials,
   clients: {
     clean: read('CLEAN_CLIENT_ID', '260967'),
     seeded: read('SEEDED_CLIENT_ID', '472748'),

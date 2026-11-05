@@ -1,4 +1,5 @@
 import { test, expect } from '../../../src/fixtures/test';
+import { LegacyBhSignInPage } from '../../../src/pages/auth/LegacyBhSignInPage';
 
 test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, () => {
   test('TC-US01-01 [RHD-60113] Find a client on the Clients page and open their workspace @smoke', { tag: ['@xray', '@RHD-60113'] }, async ({ flows, clientsList, workspace, shell, plan, testData }) => {
@@ -78,7 +79,8 @@ test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, ()
     });
   });
 
-  test('TC-US01-03 [RHD-60113, RHD-60362] Search by Client ID and hand-off to legacy BH', { tag: ['@xray', '@RHD-60113', '@RHD-60362'] }, async ({ page, flows, clientsList, workspace }) => {
+  test('TC-US01-03 [RHD-60113, RHD-60362] Search by Client ID and hand-off to legacy BH', { tag: ['@xray', '@RHD-60113', '@RHD-60362'] }, async ({ page, flows, clientsList, workspace, testData }) => {
+    test.setTimeout(5 * 60_000);
     await flows.signInAs('bcba');
     await clientsList.expectLoaded();
 
@@ -92,10 +94,45 @@ test.describe('US-1 Select / switch active client context', { tag: '@US-1' }, ()
       for (const id of ids) expect(id).toContain(clientNumber);
     });
 
-    await test.step('Client Info and File Cabinet open legacy BH for the same client in a new tab', async () => {
-      await clientsList.openClient(internalId);
-      expect(await workspace.openLegacyTab('client-info')).toMatch(new RegExp(`/core/clients/${internalId}$`));
-      expect(await workspace.openLegacyTab('file-cabinet')).toMatch(new RegExp(`/core/clients/${internalId}/files`));
+    let clientName = '';
+    const clientPage = new RegExp(`/core/clients/${internalId}$`, 'i');
+    const filesPage = new RegExp(`/core/clients/${internalId}/files`, 'i');
+
+    await test.step('Client Info and File Cabinet point to legacy BH for the same client, in a new tab', async () => {
+      clientName = await clientsList.openClient(internalId);
+      for (const [name, expected] of [['client-info', clientPage], ['file-cabinet', filesPage]] as const) {
+        const { href, newTab } = await workspace.legacyLink(name);
+        test.info().annotations.push({ type: `${name} link`, description: `${href} (new tab: ${newTab})` });
+        expect(href).toMatch(expected);
+        expect.soft(newTab, `${name} opens legacy BH in a new tab`).toBe(true);
+      }
+    });
+
+    await test.step('Client Info in a new tab: sign in to legacy BH with the same account and land on the same client', async () => {
+      const legacy = await workspace.openLegacyInNewTab('client-info');
+      const legacySignIn = new LegacyBhSignInPage(legacy);
+      await expect(legacySignIn.userInput.or(legacy.locator('body').filter({ hasText: clientName.split(' ')[0] }))).toBeVisible({ timeout: 60_000 });
+      const separateSignIn = await legacySignIn.isShown();
+      test.info().annotations.push({ type: 'legacy BH sign-in', description: separateSignIn ? 'separate sign-in required (same account)' : 'already signed in' });
+      if (separateSignIn) await legacySignIn.signIn(testData.legacyBhAccount);
+      if (!clientPage.test(legacy.url())) await legacy.goto((await workspace.legacyLink('client-info')).href);
+      await expect(legacy).toHaveURL(clientPage, { timeout: 60_000 });
+      await expect(legacy.locator('body')).toContainText(clientName.split(' ')[0], { timeout: 60_000 });
+      await test.info().attach('legacy-client-info', { body: await legacy.screenshot(), contentType: 'image/png' });
+      await legacy.close();
+    });
+
+    await test.step('File Cabinet in a new tab opens the same client in legacy BH without signing in again', async () => {
+      const legacy = await workspace.openLegacyInNewTab('file-cabinet');
+      await expect(legacy).toHaveURL(filesPage, { timeout: 60_000 });
+      expect(await new LegacyBhSignInPage(legacy).isShown(), 'legacy session is reused').toBe(false);
+      await expect(legacy.locator('body')).toContainText(clientName.split(' ')[0], { timeout: 60_000 });
+      await test.info().attach('legacy-file-cabinet', { body: await legacy.screenshot(), contentType: 'image/png' });
+      await legacy.close();
+    });
+
+    await test.step('NextGen stays on the client', async () => {
+      await expect(page).toHaveURL(new RegExp(`/clients/${internalId}`));
     });
   });
 });

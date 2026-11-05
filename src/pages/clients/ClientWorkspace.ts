@@ -39,12 +39,34 @@ export class ClientWorkspace extends BasePage {
     await this.waitForLoaded();
   }
 
-  /** Client Info / File Cabinet open legacy BH in a new tab; returns that tab's URL. */
+  /** Where a legacy tab (Client Info / File Cabinet) points and whether it is set to open in a new browser tab. */
+  async legacyLink(name: 'client-info' | 'file-cabinet'): Promise<{ href: string; newTab: boolean }> {
+    const link = this.tab(name);
+    return { href: (await link.getAttribute('href')) ?? '', newTab: (await link.getAttribute('target')) === '_blank' };
+  }
+
+  /**
+   * Opens a legacy tab in a separate browser tab and returns it, leaving this page on NextGen.
+   * Links without target=_blank would replace NextGen, so their address is opened in a new tab instead.
+   */
+  async openLegacyInNewTab(name: 'client-info' | 'file-cabinet'): Promise<Page> {
+    const { href, newTab } = await this.legacyLink(name);
+    let legacy: Page;
+    if (newTab) {
+      [legacy] = await Promise.all([this.page.context().waitForEvent('page'), this.tab(name).click()]);
+    } else {
+      legacy = await this.page.context().newPage();
+      await legacy.goto(href);
+    }
+    await legacy.waitForLoadState('domcontentloaded').catch(() => undefined);
+    return legacy;
+  }
+
+  /** Opens a legacy tab in a new browser tab and returns the address it was opened with. */
   async openLegacyTab(name: 'client-info' | 'file-cabinet'): Promise<string> {
-    const [popup] = await Promise.all([this.page.context().waitForEvent('page'), this.tab(name).click()]);
-    await popup.waitForLoadState('domcontentloaded').catch(() => undefined);
-    const url = popup.url();
-    await popup.close();
-    return url;
+    const { href } = await this.legacyLink(name);
+    const legacy = await this.openLegacyInNewTab(name);
+    await legacy.close();
+    return href;
   }
 }
