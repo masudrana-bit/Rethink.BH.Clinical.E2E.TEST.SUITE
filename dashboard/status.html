@@ -98,27 +98,27 @@
 <main class="wrap">
   <div class="hero">
     <div>
-      <p class="eyebrow">Report date · November 3, 2026</p>
+      <p class="eyebrow">Report date · November 3, 2026 · coverage updated November 5, 2026</p>
       <p class="word">At risk</p>
-      <p class="why">Coverage is strong: 87 of 106 test scenarios (82%) now run automatically. The 106 are our 94 e2e test cases plus the 12 Xray tests they don't cover; the other 71 Xray tests overlap with e2e and are counted once. dev3 is not release-ready yet, and the manual Xray execution has not started.</p>
+      <p class="why">Coverage is strong: 87 of 107 test scenarios (81%) now run automatically. The 107 are our 94 e2e test cases plus the 13 Xray tests they don't cover; the other 70 Xray tests overlap with e2e and are counted once. Coverage of the Xray tests is now compared step by step. dev3 is not release-ready yet, and the manual Xray execution has not started.</p>
       <div class="meta"><span class="pill">Environments: dev2, dev3, UAT</span><span class="pill">Latest run: dev3, Oct 27, 2026</span><span class="pill">GitHub Actions</span></div>
     </div>
     <div>
-      <div class="rate">82%<small>of 106 combined scenarios automated</small></div>
-      <div class="bar" role="img" aria-label="Xray tests: 44 covered, 27 partly covered, 12 not covered">
-        <span style="width:53%;background:var(--green)"></span><span style="width:32.5%;background:var(--amber)"></span><span style="width:14.5%;background:var(--red)"></span>
+      <div class="rate">81%<small>of 107 combined scenarios automated</small></div>
+      <div class="bar" role="img" aria-label="Xray tests: 38 covered, 32 partly covered, 13 not covered">
+        <span style="width:45.8%;background:var(--green)"></span><span style="width:38.6%;background:var(--amber)"></span><span style="width:15.6%;background:var(--red)"></span>
       </div>
-      <div class="legend"><span><i style="background:var(--green)"></i>44 Xray tests covered</span><span><i style="background:var(--amber)"></i>27 partly</span><span><i style="background:var(--red)"></i>12 not covered</span></div>
+      <div class="legend"><span><i style="background:var(--green)"></i>38 Xray tests covered</span><span><i style="background:var(--amber)"></i>32 partly</span><span><i style="background:var(--red)"></i>13 not covered</span></div>
     </div>
   </div>
 
   <section>
     <div class="stats">
-      <div class="stat"><div class="n">106</div><div class="l">total test scenarios: 94 e2e + 12 Xray-only</div></div>
-      <div class="stat"><div class="n green">87 of 106</div><div class="l">automated (82%)</div></div>
+      <div class="stat"><div class="n">107</div><div class="l">total test scenarios: 94 e2e + 13 Xray-only</div></div>
+      <div class="stat"><div class="n green">87 of 107</div><div class="l">automated (81%)</div></div>
       <div class="stat"><div class="n green">87 of 94</div><div class="l">automated test cases</div></div>
       <div class="stat"><div class="n">42 of 47</div><div class="l">stories fully automated</div></div>
-      <div class="stat"><div class="n">71 of 83</div><div class="l">Xray tests with automated coverage</div></div>
+      <div class="stat"><div class="n">70 of 83</div><div class="l">Xray tests with automated coverage</div></div>
       <div class="stat"><div class="n amber">65.2%</div><div class="l">dev3 pass rate (Oct 27)</div></div>
       <div class="stat"><div class="n red">8</div><div class="l">dev3 failures to triage</div></div>
       <div class="stat"><div class="n">15</div><div class="l">defects raised by the manual execution</div></div>
@@ -159,7 +159,7 @@
           <tr><td><span class="badge red">High</span> The dev3 data sheet stays blank for clients with large plans. About 1,000 requests fire at session start and a third time out.</td><td>RBTs cannot record data for those clients</td><td>Log a defect and route it to engineering (not in Jira yet)</td><td>QA → Engineering</td></tr>
           <tr><td><span class="badge red">High</span> 8 dev3 failures in the Oct 27 CI run</td><td>Release verdict "Not ready"</td><td>Triage and fix, then re-run dev3 in GitHub Actions</td><td>QA automation</td></tr>
           <tr><td><span class="badge amber">Medium</span> 17 product defects still reproduce on dev3 (e.g. NGC-49 caseload filter, NGC-86 note template, NGC-68 catalog columns)</td><td>Session close-out and catalog flows</td><td>Prioritise fixes before release</td><td>Product / Engineering</td></tr>
-          <tr><td><span class="badge amber">Medium</span> Manual execution RHD-60204 not started (0%)</td><td>12 scenarios are only covered once it runs</td><td>Assign testers and start the execution</td><td>QA lead</td></tr>
+          <tr><td><span class="badge amber">Medium</span> Manual execution RHD-60204 not started (0%)</td><td>13 scenarios are only covered once it runs</td><td>Assign testers and start the execution</td><td>QA lead</td></tr>
           <tr><td><span class="badge grey">Low</span> Four-client group sessions and staff transfer cannot be automated yet</td><td>Gaps in session coverage</td><td>Two more test clients and a second staff account on dev3</td><td>Environment owner</td></tr>
         </tbody>
       </table>
@@ -174,15 +174,15 @@
         <tbody>
           <tr><td>Session lifecycle and closeout</td><td class="num">13</td><td class="num">10</td><td class="num">2</td><td class="num">1</td><td class="num">18 of 18</td></tr>
           <tr><td>Plan setup and program authoring</td><td class="num">9</td><td class="num">6</td><td class="num">2</td><td class="num">1</td><td class="num">15 of 15</td></tr>
-          <tr><td>Program types: create and collect data</td><td class="num">12</td><td class="num">7</td><td class="num">4</td><td class="num">1</td><td class="num">7 of 7</td></tr>
-          <tr><td>Targets and criteria</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">9 of 9</td></tr>
-          <tr><td>Recording during a session</td><td class="num">5</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">5 of 5</td></tr>
+          <tr><td>Program types: create and collect data</td><td class="num">12</td><td class="num">2</td><td class="num">9</td><td class="num">1</td><td class="num">7 of 7</td></tr>
+          <tr><td>Targets and criteria</td><td class="num">6</td><td class="num">2</td><td class="num">3</td><td class="num">1</td><td class="num">9 of 9</td></tr>
+          <tr><td>Recording during a session</td><td class="num">5</td><td class="num">2</td><td class="num">1</td><td class="num">2</td><td class="num">5 of 5</td></tr>
           <tr><td>Phases and mastery</td><td class="num">7</td><td class="num">2</td><td class="num">3</td><td class="num">2</td><td class="num">4 of 4</td></tr>
           <tr><td>Platform and cross-cutting</td><td class="num">8</td><td class="num">1</td><td class="num">6</td><td class="num">1</td><td class="num">3 of 5</td></tr>
           <tr><td>Program analysis charts</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">8 of 9</td></tr>
           <tr><td>Client and funder reporting</td><td class="num">10</td><td class="num">7</td><td class="num">2</td><td class="num">1</td><td class="num">9 of 10</td></tr>
           <tr><td>Program library admin</td><td class="num">13</td><td class="num">6</td><td class="num">4</td><td class="num">3</td><td class="num">9 of 12</td></tr>
-          <tr class="total"><td>Total</td><td class="num">83</td><td class="num">44</td><td class="num">27</td><td class="num">12</td><td class="num">87 of 94</td></tr>
+          <tr class="total"><td>Total</td><td class="num">83</td><td class="num">38</td><td class="num">32</td><td class="num">13</td><td class="num">87 of 94</td></tr>
         </tbody>
       </table>
     </div>
@@ -190,7 +190,7 @@
 
   <section class="two">
     <div class="panel">
-      <h2>12 Xray scenarios with no automation yet</h2>
+      <h2>13 Xray scenarios with no automation yet</h2>
       <table>
         <thead><tr><th>Xray test</th><th>Scenario</th><th>Effort</th></tr></thead>
         <tbody>
@@ -201,6 +201,7 @@
           <tr><td>RHD-60121</td><td>Copy a program</td><td>Small</td></tr>
           <tr><td>RHD-60299</td><td>Edit criteria on a program that has data</td><td>Medium</td></tr>
           <tr><td>RHD-60303</td><td>ABC archived and unused options</td><td>Medium</td></tr>
+          <tr><td>RHD-60304</td><td>Recording page: select all, entry modes, long names</td><td>Medium</td></tr>
           <tr><td>RHD-60313</td><td>Mastery paths: maintenance, goals only, days-based</td><td>Medium</td></tr>
           <tr><td>RHD-60373</td><td>Funder-ready behavior graphs</td><td>Medium</td></tr>
           <tr><td>RHD-60307</td><td>Auto-switch from baseline to intervention</td><td>Medium</td></tr>
@@ -243,7 +244,7 @@
       <li>Automate the 5 small gaps: backward chain, publishing a revision, the two adapted-copy scenarios, and copying a program.</li>
       <li>Add automated checks for RHD-61215, RHD-60576, RHD-60578, RHD-59598 and RHD-61011.</li>
       <li>Tag each automated test with its Xray key so results can be reported in RHD-60204.</li>
-      <li>Start the manual execution RHD-60204, focusing on the 12 scenarios with no automation.</li>
+      <li>Start the manual execution RHD-60204, focusing on the 13 scenarios with no automation.</li>
     </ol>
   </section>
 

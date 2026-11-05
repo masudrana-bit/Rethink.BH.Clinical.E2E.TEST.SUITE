@@ -9,18 +9,18 @@
 
 ## Executive summary
 
-- **82% of all test scenarios run automatically.** Combining the 83 manual Xray tests with our 94 automated test cases gives 106 scenarios; 87 of them are automated.
+- **81% of all test scenarios run automatically.** Combining the 83 manual Xray tests with our 94 automated test cases gives 107 scenarios; 87 of them are automated. (Updated Nov 5: Xray coverage is now compared step by step.)
 - **dev3 is "Not ready"** after the latest run (Oct 27): pass rate 65.2%, with 8 failures to investigate and 17 product defects that still reproduce.
 - **Manual execution RHD-60204 is at 0%.** All 83 Xray tests are still in Draft, but it has already produced 15 defect tickets.
-- **12 manual scenarios have no automation yet**, mostly program-type variants, mastery paths and library revisions.
+- **13 manual scenarios have no automation yet**, mostly program-type variants, mastery paths and library revisions.
 
 ## Key metrics
 
 | Metric | Value |
 |---|---|
-| Combined scenarios (automated suite + Xray tests not yet covered) | 106 |
-| Automated | 87 (82%) |
-| Xray tests covered by automation: fully / partly / not at all | 44 / 27 / 12 of 83 |
+| Combined scenarios (automated suite + Xray tests not yet covered) | 107 |
+| Automated | 87 (81%) |
+| Xray tests covered by automation: fully / partly / not at all | 38 / 32 / 13 of 83 |
 | Automated suite: test cases automated | 87 of 94 |
 | Automated suite: stories fully automated | 42 of 47 |
 | Latest dev3 run (GitHub Actions, Oct 27) | 58 passed, 17 known defects, 8 failed, 6 skipped of 89 |
@@ -40,7 +40,7 @@
 | **dev3 data sheet stays blank for clients with large plans.** About 1,000 requests fire at session start, and a third time out. | RBTs cannot record data for those clients. | Log a defect and route it to engineering (not in Jira yet). | QA → Engineering |
 | **8 dev3 failures in the Oct 27 CI run** | Release verdict "Not ready" | Triage: 2 are likely CI-only (legacy BH new tab), 1 known defect now passes, 5 follow dev3 changes since Oct 22. | QA automation |
 | **17 product defects still reproduce on dev3.** Examples: NGC-49 caseload filter, NGC-86 note template not applied, NGC-68 catalog columns. | Release-critical session close-out and catalog flows are affected. | Prioritise fixes before release. | Product / Engineering |
-| **Manual execution RHD-60204 not started (0%)** | The 12 uncovered scenarios are only covered once it runs. | Assign testers and start the execution. | QA lead |
+| **Manual execution RHD-60204 not started (0%)** | The 13 uncovered scenarios are only covered once it runs. | Assign testers and start the execution. | QA lead |
 | **Four-client group sessions and staff transfer cannot be automated yet** | Gaps remain in session coverage. | Provide two more test clients and a second staff account on dev3. | Environment owner |
 
 ## Coverage by product area
@@ -49,15 +49,15 @@
 |---|---:|---:|---:|---:|---:|
 | Session lifecycle and closeout | 13 | 10 | 2 | 1 | 18 of 18 |
 | Plan setup and program authoring | 9 | 6 | 2 | 1 | 15 of 15 |
-| Program types: create and collect data | 12 | 7 | 4 | 1 | 7 of 7 |
-| Targets and criteria | 6 | 3 | 2 | 1 | 9 of 9 |
-| Recording during a session | 5 | 2 | 2 | 1 | 5 of 5 |
+| Program types: create and collect data | 12 | 2 | 9 | 1 | 7 of 7 |
+| Targets and criteria | 6 | 2 | 3 | 1 | 9 of 9 |
+| Recording during a session | 5 | 2 | 1 | 2 | 5 of 5 |
 | Phases and mastery | 7 | 2 | 3 | 2 | 4 of 4 |
 | Platform and cross-cutting | 8 | 1 | 6 | 1 | 3 of 5 |
 | Program analysis charts | — | — | — | — | 8 of 9 |
 | Client and funder reporting | 10 | 7 | 2 | 1 | 9 of 10 |
 | Program library admin | 13 | 6 | 4 | 3 | 9 of 12 |
-| **Total** | **83** | **44** | **27** | **12** | **87 of 94** |
+| **Total** | **83** | **38** | **32** | **13** | **87 of 94** |
 
 ## Defects raised from the manual execution (RHD-60204)
 
@@ -86,7 +86,7 @@
 3. Automate 5 quick gaps: TA backward chain, publishing a revision, the two adapted-copy scenarios, and copying a program.
 4. Add automated checks for 5 manual-execution defects: RHD-61215, RHD-60576, RHD-60578, RHD-59598 and RHD-61011.
 5. Tag each automated test with its Xray key so automated results can be reported in RHD-60204.
-6. Start the manual execution RHD-60204, focusing on the 12 scenarios with no automation.
+6. Start the manual execution RHD-60204, focusing on the 13 scenarios with no automation.
 
 ---
 
