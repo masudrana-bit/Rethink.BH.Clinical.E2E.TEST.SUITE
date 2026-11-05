@@ -111,6 +111,10 @@ test.describe('US-4 Add a library program to a plan (Current / Future)', { tag: 
     await flows.signInAs('bcba');
     await flows.openClient(testData.clients.clean);
 
+    await test.step('Precondition: the program is not on the plan yet', async () => {
+      await flows.removeProgramIfPresent(LIBRARY_PROGRAMS.future);
+    });
+
     await test.step('Add as Future', async () => {
       await flows.addLibraryProgram(LIBRARY_PROGRAMS.future, 'future');
       await plan.expectProgramNotListed(LIBRARY_PROGRAMS.future, 'current');
@@ -121,6 +125,10 @@ test.describe('US-4 Add a library program to a plan (Current / Future)', { tag: 
       await plan.openProgram(LIBRARY_PROGRAMS.future);
       await programDetails.updateStatus('Current');
       await plan.expectProgramListed(LIBRARY_PROGRAMS.future, 'current');
+    });
+
+    await test.step('Clean-up', async () => {
+      await flows.removeProgramIfPresent(LIBRARY_PROGRAMS.future);
     });
   });
 });
