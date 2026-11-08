@@ -147,7 +147,7 @@ const run = {
   schemaVersion: 1,
   runId,
   runNumber: Number(env.GITHUB_RUN_NUMBER ?? 0),
-  runUrl: env.GITHUB_SERVER_URL && env.GITHUB_REPOSITORY ? `${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${runId}` : null,
+  runUrl: env.GITHUB_SERVER_URL && env.GITHUB_REPOSITORY ? `${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID ?? runId}` : null,
   release: arg('release', env.GITHUB_REF_NAME ?? 'local'),
   kind: arg('kind', 'release'),
   branch: env.GITHUB_REF_NAME ?? arg('branch', 'local'),

@@ -10,8 +10,8 @@
 #   Hosting:             verified locally first; this workflow publishes to GitHub Pages (gh-pages branch) once
 #                        the repository has a GitHub remote and Pages is enabled.
 #
-# Schedule: every day at 06:00 Bangladesh time the workflow runs dev3, then uat, as "nightly" runs (tick
-# "Include nightly and PR runs" on the dashboard to see them). GitHub may start scheduled runs a few minutes late.
+# Schedule: every day at 06:00 Bangladesh time the workflow runs dev3, then uat, as "nightly" runs (shown on the
+# dashboard unless "Include nightly and PR runs" is unticked). GitHub often starts scheduled runs hours late.
 #
 # Environments: pick dev2, dev3 or uat when starting the run by hand. The job uses the GitHub Environment of the same name
 # (Settings → Environments), so each one can hold its own secrets and variables; anything not set there falls back to
@@ -113,6 +113,8 @@ jobs:
           RELEASE="${INPUT_RELEASE:-$TEST_ENV-$(date -u +%Y.%m.%d)}"
           echo "RELEASE=$RELEASE" >> "$GITHUB_ENV"
           echo "BUILD_ID=$RELEASE" >> "$GITHUB_ENV"
+          # A scheduled run tests several environments under one run id; each needs its own run file and report.
+          echo "RUN_KEY=${GITHUB_RUN_ID}-${TEST_ENV}" >> "$GITHUB_ENV"
 
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
@@ -131,8 +133,8 @@ jobs:
           node scripts/build-run-summary.mjs \
             --results test-results/results.json \
             --out site/runs \
-            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
-            --report-url "reports/${{ github.run_id }}/index.html" \
+            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" --run-id "$RUN_KEY" \
+            --report-url "reports/$RUN_KEY/index.html" \
             --stories stories.json
           node scripts/build-coverage.mjs --out site/coverage.json
 
@@ -152,15 +154,15 @@ jobs:
           cp dashboard/index.html published/index.html
           cp dashboard/status.html published/status.html
           [ -f stories.json ] && cp stories.json published/stories.json || true
-          rm -rf "published/reports/${{ github.run_id }}"
-          cp -r playwright-report "published/reports/${{ github.run_id }}"
+          rm -rf "published/reports/$RUN_KEY"
+          cp -r playwright-report "published/reports/$RUN_KEY"
           # gh-pages is public and traces record what was typed into the login form, so publish the report without them.
-          rm -rf "published/reports/${{ github.run_id }}/trace"
-          find "published/reports/${{ github.run_id }}/data" -name '*.zip' -delete 2>/dev/null || true
+          rm -rf "published/reports/$RUN_KEY/trace"
+          find "published/reports/$RUN_KEY/data" -name '*.zip' -delete 2>/dev/null || true
           # rebuild index.json against everything now present
           node scripts/build-run-summary.mjs --results test-results/results.json --out published/runs \
-            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" \
-            --report-url "reports/${{ github.run_id }}/index.html" --stories stories.json
+            --release "$RELEASE" --kind "$KIND" --env-name "$TEST_ENV" --run-id "$RUN_KEY" \
+            --report-url "reports/$RUN_KEY/index.html" --stories stories.json
           node scripts/prune-old-runs.mjs published   # retention rule from Step 4
           node scripts/mask-secrets.mjs published   # fails the job before publishing if a login value is left
           

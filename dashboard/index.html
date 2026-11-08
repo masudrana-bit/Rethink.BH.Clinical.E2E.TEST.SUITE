@@ -236,7 +236,7 @@
         <button type="button" class="tab" role="tab" id="tab-coverage" data-view="coverage" aria-selected="false">Automation coverage</button>
       </div>
       <div class="controls" style="padding-bottom:8px">
-        <label class="toggle"><input type="checkbox" id="include-all"> Include nightly and PR runs</label>
+        <label class="toggle"><input type="checkbox" id="include-all" checked> Include nightly and PR runs</label>
         <button type="button" class="ghost theme-toggle" id="theme-toggle" aria-label="Switch colour theme">Theme: auto</button>
       </div>
     </div>
@@ -277,7 +277,7 @@
   const TYPE_WORD = { happy: 'Happy path', negative: 'Error or validation check', edge: 'Edge case' };
 
   const state = {
-    index: null, runs: [], selected: null, cache: new Map(), filter: 'all', query: '', expanded: new Set(), includeAll: false,
+    index: null, runs: [], selected: null, cache: new Map(), filter: 'all', query: '', expanded: new Set(), includeAll: true,
     env: null, view: 'results', coverage: null, covFilter: 'all', covQuery: '', covExpanded: new Set(),
   };
   const $ = (id) => document.getElementById(id);
