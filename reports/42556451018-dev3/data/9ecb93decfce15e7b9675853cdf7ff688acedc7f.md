@@ -1,0 +1,431 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: stories/10-client-funder-reporting/us-37-behavior-skill-trends.spec.ts >> US-37 Review behavior & replacement-skill trends side by side >> TC-US37-01 [RHD-60370] Behavior counts from a session appear in the plan Data tab beside the linked measures
+- Location: tests/stories/10-client-funder-reporting/us-37-behavior-skill-trends.spec.ts:6:7
+
+# Error details
+
+```
+TimeoutError: locator.getAttribute: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByTestId('behavior-support-page').locator('[data-testid^="plan-card-"]').filter({ hasText: 'test1' }).first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=f2e3]:
+  - generic [ref=f2e4]:
+    - link "Back to Rethink BH (opens in new tab)" [ref=f2e6] [cursor=pointer]:
+      - /url: https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Main
+      - generic [aria-hidden] [ref=f2e7]: 
+    - generic "Rethink Clinical" [ref=f2e8]:
+      - banner [ref=f2e9]:
+        - heading "Rethink Clinical" [level=1] [ref=f2e13]
+        - generic [ref=f2e16]:
+          - generic [ref=f2e17]: Client
+          - generic [ref=f2e18] [cursor=pointer]:
+            - combobox "!*!Billy!*! !*!Billerson!*!" [ref=f2e19]
+            - button "dropdown trigger" [ref=f2e20]
+          - generic [ref=f2e23]:
+            - generic [ref=f2e24]: DOB
+            - text: Jul 19, 2010
+        - button "Account menu" [ref=f2e28] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f2e29]: DD
+          - generic [ref=f2e30]:
+            - generic [ref=f2e31]: *** ***
+            - generic [ref=f2e32]: Role 4.
+          - generic [aria-hidden] [ref=f2e33]: 
+  - generic [ref=f2e34]:
+    - navigation "Application navigation" [ref=f2e36]:
+      - text: 
+      - link "Clients" [ref=f2e37] [cursor=pointer]:
+        - /url: /clients
+        - generic [aria-hidden] [ref=f2e38]: 
+      - link "Staff" [ref=f2e40] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/core/staff
+        - generic [aria-hidden] [ref=f2e41]: 
+      - link "Settings" [ref=f2e43] [cursor=pointer]:
+        - /url: /settings
+        - generic [aria-hidden] [ref=f2e44]: 
+      - link "Training" [ref=f2e46] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Training
+        - generic [aria-hidden] [ref=f2e47]: 
+      - link "Reporting" [ref=f2e49] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/Healthcare#/ReportingDashboard
+        - generic [aria-hidden] [ref=f2e50]: 
+      - link "Template" [ref=f2e52] [cursor=pointer]:
+        - /url: /templates
+        - generic [aria-hidden] [ref=f2e53]: 
+      - link "Schedule" [ref=f2e55] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/core/scheduler/individual
+        - generic [aria-hidden] [ref=f2e56]: 
+      - link "Notifications" [ref=f2e58] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/Healthcare#/TasksAndNotifications
+        - generic [aria-hidden] [ref=f2e59]: 
+      - generic "Billing (coming soon)" [ref=f2e61]:
+        - generic [aria-hidden] [ref=f2e62]: 
+        - generic [ref=f2e63]: Billing
+      - link "Analytics" [ref=f2e64] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/core/analytics
+        - generic [aria-hidden] [ref=f2e65]: 
+      - link "Action Dashboard" [ref=f2e67] [cursor=pointer]:
+        - /url: https://rta-bh-stage-web.azurewebsites.net/core/action-dashboard
+        - generic [aria-hidden] [ref=f2e68]: 
+    - main [ref=f2e70]:
+      - generic [ref=f2e71]:
+        - navigation "Client sections" [ref=f2e73]:
+          - list [ref=f2e74]:
+            - listitem [ref=f2e75]:
+              - link "Client Info" [ref=f2e76] [cursor=pointer]:
+                - /url: https://rta-bh-stage-web.azurewebsites.net/core/clients/394036
+            - listitem [ref=f2e77]:
+              - link "File Cabinet" [ref=f2e78] [cursor=pointer]:
+                - /url: https://rta-bh-stage-web.azurewebsites.net/core/clients/394036/files
+            - listitem [ref=f2e79]:
+              - link "Assessments" [ref=f2e80] [cursor=pointer]:
+                - /url: https://rta-bh-stage-web.azurewebsites.net/core/clients/394036/assessment
+            - listitem [ref=f2e81]:
+              - link "Sessions" [ref=f2e82] [cursor=pointer]:
+                - /url: /clients/394036/sessions
+            - listitem [ref=f2e83]:
+              - link "Skills Programs" [ref=f2e84] [cursor=pointer]:
+                - /url: /clients/394036
+            - listitem [ref=f2e85]:
+              - link "Behavior Support" [active] [ref=f2e86] [cursor=pointer]:
+                - /url: /clients/394036/behavior-support
+            - listitem [ref=f2e87]:
+              - link "Analyze Data" [ref=f2e88] [cursor=pointer]:
+                - /url: /clients/394036/analyze-data
+            - listitem [ref=f2e89]:
+              - link "Funder Reports" [ref=f2e90] [cursor=pointer]:
+                - /url: /clients/394036/reports
+        - generic [ref=f2e91]:
+          - generic [ref=f2e92]:
+            - status [ref=f2e93]:
+              - generic [aria-hidden] [ref=f2e94]: 
+              - generic [ref=f2e95]: 2 plans need review
+              - generic [ref=f2e96]:
+                - button "Plan 1 · Review overdue by 676 days" [ref=f2e97] [cursor=pointer]
+                - button "Plan 1 · Review overdue by 676 days" [ref=f2e98] [cursor=pointer]
+              - button "Dismiss review reminder" [ref=f2e99] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f2e100]: 
+            - complementary [ref=f2e101]:
+              - generic [ref=f2e103]:
+                - group "Behavior support timeline" [ref=f2e105]:
+                  - button "Current" [pressed] [ref=f2e106] [cursor=pointer]
+                  - button "Inactive" [ref=f2e108] [cursor=pointer]
+                - generic [ref=f2e110]:
+                  - heading "Plan List" [level=2] [ref=f2e111]
+                  - generic [ref=f2e112]:
+                    - button "Add New" [ref=f2e113] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e114]: 
+                    - button "Search behavior plans" [ref=f2e116] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e117]: 
+                    - button "More plan list actions" [ref=f2e119] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e120]: 
+                - list [ref=f2e121]:
+                  - listitem [ref=f2e122]:
+                    - 'button "Active Plan Plan 1 test2 Date Last Recorded: Jun 24, 2025 Review overdue by 676 days" [ref=f2e123] [cursor=pointer]':
+                      - paragraph [ref=f2e125]: Active Plan
+                      - heading "Plan 1" [level=3] [ref=f2e126]
+                      - generic [ref=f2e127]: test2
+                      - generic [ref=f2e129]: "Date Last Recorded: Jun 24, 2025"
+                      - generic [ref=f2e130]: Review overdue by 676 days
+                  - listitem [ref=f2e131]:
+                    - 'button "Active Plan Plan 1 Date Last Recorded: Nov 8, 2026 Review overdue by 676 days" [ref=f2e132] [cursor=pointer]':
+                      - paragraph [ref=f2e134]: Active Plan
+                      - heading "Plan 1" [level=3] [ref=f2e135]
+                      - generic [ref=f2e136]: "Date Last Recorded: Nov 8, 2026"
+                      - generic [ref=f2e137]: Review overdue by 676 days
+                - generic [ref=f2e139]:
+                  - heading [level=3] [ref=f2e140]:
+                    - button "Emerging behaviors 8" [expanded] [ref=f2e141] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e142]: 
+                      - generic [ref=f2e143]: Emerging behaviors
+                      - generic [ref=f2e144]: "8"
+                  - generic [ref=f2e145]:
+                    - paragraph [ref=f2e146]: Observed in sessions or created by a clinician but not part of any plan. Review, then start a plan or merge into an existing behavior.
+                    - list [ref=f2e147]:
+                      - listitem [ref=f2e148]:
+                        - button "From Session ABC E2E-2610221027-3c8w Novel Behavior 1 ABC entry · last observed Oct 22, 2026" [ref=f2e149] [cursor=pointer]:
+                          - paragraph [ref=f2e151]: From Session ABC
+                          - paragraph [ref=f2e152]: E2E-2610221027-3c8w Novel Behavior
+                          - generic [ref=f2e153]: 1 ABC entry · last observed Oct 22, 2026
+                      - listitem [ref=f2e154]:
+                        - button "From Session ABC E2E-2610221222-hbcs Novel Behavior 1 ABC entry · last observed Oct 22, 2026" [ref=f2e155] [cursor=pointer]:
+                          - paragraph [ref=f2e157]: From Session ABC
+                          - paragraph [ref=f2e158]: E2E-2610221222-hbcs Novel Behavior
+                          - generic [ref=f2e159]: 1 ABC entry · last observed Oct 22, 2026
+                      - listitem [ref=f2e160]:
+                        - button "From Session ABC E2E-2610221607-fku3 Novel Behavior 1 ABC entry · last observed Oct 22, 2026" [ref=f2e161] [cursor=pointer]:
+                          - paragraph [ref=f2e163]: From Session ABC
+                          - paragraph [ref=f2e164]: E2E-2610221607-fku3 Novel Behavior
+                          - generic [ref=f2e165]: 1 ABC entry · last observed Oct 22, 2026
+                      - listitem [ref=f2e166]:
+                        - button "From Session ABC E2E-2610270931-guz4 Novel Behavior 1 ABC entry · last observed Oct 27, 2026" [ref=f2e167] [cursor=pointer]:
+                          - paragraph [ref=f2e169]: From Session ABC
+                          - paragraph [ref=f2e170]: E2E-2610270931-guz4 Novel Behavior
+                          - generic [ref=f2e171]: 1 ABC entry · last observed Oct 27, 2026
+                      - listitem [ref=f2e172]:
+                        - button "From Session ABC E2E-2611060447-y81i Novel Behavior 1 ABC entry · last observed Nov 5, 2026" [ref=f2e173] [cursor=pointer]:
+                          - paragraph [ref=f2e175]: From Session ABC
+                          - paragraph [ref=f2e176]: E2E-2611060447-y81i Novel Behavior
+                          - generic [ref=f2e177]: 1 ABC entry · last observed Nov 5, 2026
+                      - listitem [ref=f2e178]:
+                        - button "From Session ABC E2E-2611070438-2n4b Novel Behavior 1 ABC entry · last observed Nov 6, 2026" [ref=f2e179] [cursor=pointer]:
+                          - paragraph [ref=f2e181]: From Session ABC
+                          - paragraph [ref=f2e182]: E2E-2611070438-2n4b Novel Behavior
+                          - generic [ref=f2e183]: 1 ABC entry · last observed Nov 6, 2026
+                      - listitem [ref=f2e184]:
+                        - button "From Session ABC E2E-2611080410-os3y Novel Behavior 1 ABC entry · last observed Nov 7, 2026" [ref=f2e185] [cursor=pointer]:
+                          - paragraph [ref=f2e187]: From Session ABC
+                          - paragraph [ref=f2e188]: E2E-2611080410-os3y Novel Behavior
+                          - generic [ref=f2e189]: 1 ABC entry · last observed Nov 7, 2026
+                      - listitem [ref=f2e190]:
+                        - button "From Session ABC E2E-2611090439-izr1 Novel Behavior 1 ABC entry · last observed Nov 8, 2026" [ref=f2e191] [cursor=pointer]:
+                          - paragraph [ref=f2e193]: From Session ABC
+                          - paragraph [ref=f2e194]: E2E-2611090439-izr1 Novel Behavior
+                          - generic [ref=f2e195]: 1 ABC entry · last observed Nov 8, 2026
+            - generic [ref=f2e196]:
+              - generic [ref=f2e198]:
+                - generic [ref=f2e199]:
+                  - heading "Plan 1" [level=2] [ref=f2e200]
+                  - generic [ref=f2e201]:
+                    - button "Record data" [ref=f2e203] [cursor=pointer]
+                    - button "Print Behavior Plan" [ref=f2e208] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e209]: 
+                    - button "More" [ref=f2e211] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e212]: 
+                - generic [ref=f2e213]:
+                  - button "v1 · In effect. Choose which version of the plan to show" [ref=f2e214] [cursor=pointer]:
+                    - generic [ref=f2e216]: v1 · In effect
+                    - generic [aria-hidden] [ref=f2e217]: 
+                  - generic [ref=f2e218]: Published Dec 1, 2024
+                  - group "Plan actions" [ref=f2e219]:
+                    - button "Start revision" [ref=f2e220] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f2e221]: 
+              - tablist "Behavior plan sections" [ref=f2e223]:
+                - tab "Plan" [selected] [ref=f2e224] [cursor=pointer]
+                - tab "Quick Reference" [ref=f2e225] [cursor=pointer]
+                - tab "Data" [ref=f2e226] [cursor=pointer]
+                - tab "Review" [ref=f2e227] [cursor=pointer]
+              - generic [ref=f2e229]:
+                - generic [ref=f2e231]:
+                  - generic [ref=f2e232]:
+                    - generic [ref=f2e233]: Goal
+                    - paragraph [ref=f2e235]: Not written yet.
+                  - generic [ref=f2e236]:
+                    - generic [ref=f2e237]: Function summary
+                    - paragraph [ref=f2e239]: Function not yet determined.
+                  - generic [ref=f2e240]:
+                    - generic [ref=f2e241]:
+                      - generic [ref=f2e242]: Review
+                      - button "Change review due date" [ref=f2e243] [cursor=pointer]:
+                        - generic [aria-hidden] [ref=f2e244]: 
+                    - paragraph [ref=f2e245]: Review overdue by 676 days
+                - generic [ref=f2e246]:
+                  - heading "Behaviors in this plan" [level=3] [ref=f2e248]
+                  - article [ref=f2e250]:
+                    - heading "test2" [level=4] [ref=f2e252]
+                    - generic [ref=f2e253]:
+                      - strong [ref=f2e255]: Frequency
+                      - generic [ref=f2e256]: Legacy setup, carried over from Rethink BH
+                - generic [ref=f2e257]:
+                  - generic [ref=f2e259]:
+                    - heading "Functions" [level=3] [ref=f2e260]
+                    - paragraph [ref=f2e261]: Select one or more functions and tag each to the behaviors it controls. Untagged functions apply plan-wide. At least one function must apply to a behavior before replacement or adaptive skills can be linked to it.
+                  - paragraph [ref=f2e262]: No function determined yet. Add at least one to enable linking replacement and adaptive skills.
+                - generic [ref=f2e263]:
+                  - generic [ref=f2e264]:
+                    - heading "Strategies" [level=3] [ref=f2e265]
+                    - paragraph [ref=f2e266]: Untagged strategies apply to every behavior in the plan. Tagged strategies apply only to the behaviors listed.
+                  - generic [ref=f2e267]:
+                    - heading "Antecedent (prevent)" [level=4] [ref=f2e269]
+                    - paragraph [ref=f2e270]: None recorded.
+                  - generic [ref=f2e271]:
+                    - heading "Consequence (respond)" [level=4] [ref=f2e273]
+                    - paragraph [ref=f2e274]: None recorded.
+                  - generic [ref=f2e275]:
+                    - heading "Safety" [level=4] [ref=f2e277]
+                    - paragraph [ref=f2e278]: None recorded.
+                - generic [ref=f2e279]:
+                  - generic [ref=f2e281]:
+                    - heading "Assessments" [level=3] [ref=f2e282]
+                    - paragraph [ref=f2e283]: Record assessments used to determine function — with a date range and notes. Untagged assessments apply plan-wide; tag one or more behaviors to scope it.
+                  - paragraph [ref=f2e284]: No assessments recorded.
+                - generic [ref=f2e285]:
+                  - generic [ref=f2e287]:
+                    - heading "Linked Skills" [level=3] [ref=f2e288]
+                    - paragraph [ref=f2e289]: "Functionally Equivalent Replacement Behaviors: replacement and adaptive skills are real skills programs linked here explicitly, never auto-added to the program list."
+                  - paragraph [ref=f2e290]: No skills linked yet.
+          - generic "Move to intervention"
+```
+
+# Test source
+
+```ts
+  1   | import { expect, Locator, Page } from '@playwright/test';
+  2   | import { BasePage } from '../BasePage';
+  3   | import { readPrimeOptions, selectPrimeOption } from '../../helpers/primeng';
+  4   | 
+  5   | export type BehaviorTab = 'plan' | 'quick-reference' | 'data' | 'review';
+  6   | 
+  7   | /** Client "Behavior Support" tab: plan rail, emerging behaviours, plan detail, data and review (US-37, US-38, E2E-05). */
+  8   | export class BehaviorSupportPage extends BasePage {
+  9   |   readonly root: Locator;
+  10  |   readonly timeline: Locator;
+  11  |   readonly addNew: Locator;
+  12  |   readonly planCards: Locator;
+  13  |   readonly novelPanel: Locator;
+  14  |   readonly novelToggle: Locator;
+  15  |   readonly novelCount: Locator;
+  16  |   readonly novelEmpty: Locator;
+  17  |   readonly planName: Locator;
+  18  |   readonly recordData: Locator;
+  19  |   readonly statePill: Locator;
+  20  |   readonly stateMeta: Locator;
+  21  |   readonly startRevision: Locator;
+  22  |   readonly goal: Locator;
+  23  |   readonly functionSummary: Locator;
+  24  |   readonly linkedSkillsEmpty: Locator;
+  25  |   readonly linkedMeasureCards: Locator;
+  26  |   readonly pairedCoGraph: Locator;
+  27  |   readonly graphSelect: Locator;
+  28  |   readonly behaviorSelect: Locator;
+  29  |   readonly sessionDataRows: Locator;
+  30  |   readonly sessionDataExport: Locator;
+  31  |   readonly versions: Locator;
+  32  |   readonly reviewLog: Locator;
+  33  | 
+  34  |   constructor(page: Page) {
+  35  |     super(page);
+  36  |     this.root = this.tid('behavior-support-page');
+  37  |     this.timeline = this.tid('plan-rail-timeline');
+  38  |     this.addNew = this.tid('behavior-support-add-new');
+  39  |     this.planCards = this.root.locator('[data-testid^="plan-card-"]');
+  40  |     this.novelPanel = this.tid('novel-behaviors-panel');
+  41  |     this.novelToggle = this.tid('novel-behaviors-toggle');
+  42  |     this.novelCount = this.tid('novel-behaviors-count');
+  43  |     this.novelEmpty = this.tid('novel-behaviors-empty');
+  44  |     this.planName = this.tid('plan-detail-name');
+  45  |     this.recordData = this.tid('plan-record-data');
+  46  |     this.statePill = this.tid('plan-state-pill');
+  47  |     this.stateMeta = this.tid('plan-state-meta');
+  48  |     this.startRevision = this.tid('plan-start-revision');
+  49  |     this.goal = this.tid('plan-goal');
+  50  |     this.functionSummary = this.tid('plan-function-summary');
+  51  |     this.linkedSkillsEmpty = this.tid('plan-skills-empty');
+  52  |     this.linkedMeasureCards = this.tid('linked-measure-cards');
+  53  |     this.pairedCoGraph = this.tid('paired-co-graph');
+  54  |     this.graphSelect = this.tid('data-filter-graph');
+  55  |     this.behaviorSelect = this.tid('data-filter-behavior');
+  56  |     this.sessionDataRows = this.tid('session-data').locator('[data-testid^="session-data-row-"]');
+  57  |     this.sessionDataExport = this.tid('session-data-export');
+  58  |     this.versions = this.root.locator('[data-testid^="review-version-"]:not([data-testid*="author"])');
+  59  |     this.reviewLog = this.tid('review-log');
+  60  |   }
+  61  | 
+  62  |   tab(name: BehaviorTab): Locator {
+  63  |     return this.tid(`behavior-support-tab-${name}`);
+  64  |   }
+  65  | 
+  66  |   planCard(name: string | RegExp): Locator {
+  67  |     return this.planCards.filter({ hasText: name }).first();
+  68  |   }
+  69  | 
+  70  |   async expectLoaded(): Promise<void> {
+  71  |     await expect(this.root).toBeVisible();
+  72  |     await expect(this.planCards.first().or(this.novelPanel).first()).toBeVisible({ timeout: 60_000 });
+  73  |   }
+  74  | 
+  75  |   /** Plan header shows the plan's own name (e.g. "SIB"), which can differ from the behavior on the card, so match by plan id. */
+  76  |   async openPlan(name: string | RegExp): Promise<string> {
+  77  |     const card = this.planCard(name);
+> 78  |     const planId = ((await card.getAttribute('data-testid')) ?? '').replace('plan-card-', '');
+      |                                 ^ TimeoutError: locator.getAttribute: Timeout 20000ms exceeded.
+  79  |     await card.click();
+  80  |     await expect(this.page).toHaveURL(new RegExp(`/behavior-support/${planId}`));
+  81  |     await expect(this.planName).toBeVisible();
+  82  |     return planId;
+  83  |   }
+  84  | 
+  85  |   async graphOptions(): Promise<string[]> {
+  86  |     return readPrimeOptions(this.page, this.graphSelect);
+  87  |   }
+  88  | 
+  89  |   get linkedMeasureCount(): Locator {
+  90  |     return this.tid('linked-measures-count');
+  91  |   }
+  92  | 
+  93  |   get coGraphChart(): Locator {
+  94  |     return this.pairedCoGraph.getByTestId('clinical-chart-canvas');
+  95  |   }
+  96  | 
+  97  |   async openTab(name: BehaviorTab): Promise<void> {
+  98  |     await this.tab(name).click();
+  99  |     if (name !== 'plan') await expect(this.page).toHaveURL(new RegExp(`[?&]tab=${name}`));
+  100 |     await this.waitForLoaded();
+  101 |   }
+  102 | 
+  103 |   novelBehavior(name: string | RegExp): Locator {
+  104 |     return this.novelPanel.locator('li, article, [data-testid^="novel-behavior-"]').filter({ hasText: name }).first();
+  105 |   }
+  106 | 
+  107 |   /** Emerging behaviour from a session -> "Start a Plan" (E2E-05). */
+  108 |   async startPlanFromNovel(name: string | RegExp): Promise<void> {
+  109 |     if ((await this.novelToggle.getAttribute('aria-expanded')) === 'false') await this.novelToggle.click();
+  110 |     await this.novelBehavior(name).getByRole('button', { name: /start (a )?plan/i }).click();
+  111 |     await expect(this.planName).toContainText(name, { timeout: 30_000 });
+  112 |   }
+  113 | 
+  114 |   /** Edits a section of the draft plan (goal / functions / strategies) using its inline Edit control. */
+  115 |   async editSection(section: RegExp, text: string): Promise<void> {
+  116 |     const block = this.tid('plan-tab').locator('section, div').filter({ has: this.page.getByText(section) }).first();
+  117 |     await block.getByRole('button', { name: /edit|add/i }).first().click();
+  118 |     const editor = this.page.locator('.p-dialog:visible, .p-drawer:visible').last().or(block);
+  119 |     await editor.locator('textarea:visible, input[type=text]:visible').first().fill(text);
+  120 |     await editor.getByRole('button', { name: /save|done|apply/i }).last().click();
+  121 |   }
+  122 | 
+  123 |   async addFunction(fn: string | RegExp): Promise<void> {
+  124 |     const block = this.tid('plan-tab').locator('section, div').filter({ has: this.page.getByText(/function/i) }).first();
+  125 |     await block.getByRole('button', { name: /add|edit/i }).first().click();
+  126 |     const editor = this.page.locator('.p-dialog:visible, .p-drawer:visible').last();
+  127 |     await editor.getByRole('button', { name: fn }).or(editor.getByRole('checkbox', { name: fn })).first().click();
+  128 |     await editor.getByRole('button', { name: /save|done|apply/i }).last().click();
+  129 |   }
+  130 | 
+  131 |   async linkReplacementSkill(programName: string | RegExp): Promise<void> {
+  132 |     const block = this.tid('plan-tab').locator('section, div').filter({ has: this.linkedSkillsEmpty.or(this.page.getByText(/replacement skill|linked skill/i)) }).first();
+  133 |     await block.getByRole('button', { name: /link|add/i }).first().click();
+  134 |     const dialog = this.page.locator('.p-dialog:visible, .p-drawer:visible').last();
+  135 |     await dialog.getByText(programName).first().click();
+  136 |     await dialog.getByRole('button', { name: /link|save|add/i }).last().click();
+  137 |   }
+  138 | 
+  139 |   async publish(note = 'E2E publish'): Promise<void> {
+  140 |     await this.openTab('review');
+  141 |     await this.root.getByRole('button', { name: /^publish/i }).first().click();
+  142 |     const dialog = this.page.locator('.p-dialog:visible, .p-confirmdialog:visible').last();
+  143 |     if (await dialog.waitFor({ state: 'visible', timeout: 3_000 }).then(() => true, () => false)) {
+  144 |       const box = dialog.locator('textarea, input[type=text]').first();
+  145 |       if (await box.isVisible().catch(() => false)) await box.fill(note);
+  146 |       await dialog.getByRole('button', { name: /publish|confirm/i }).last().click();
+  147 |     }
+  148 |     await expect(this.statePill).toContainText(/in effect|published/i);
+  149 |   }
+  150 | 
+  151 |   async chooseGraph(option: string | RegExp): Promise<void> {
+  152 |     await selectPrimeOption(this.page, this.graphSelect, option);
+  153 |   }
+  154 | }
+  155 | 
+```
