@@ -1,0 +1,333 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: stories/06-closeout/us-24-correct-recorded-data.spec.ts >> US-24 Correct a previously recorded attempt or fact >> TC-US24-03 [RHD-61123] Correct or remove an ABC entry from the audit list (NGC-65) @rbt
+- Location: tests/stories/06-closeout/us-24-correct-recorded-data.spec.ts:87:7
+
+# Error details
+
+```
+Error: expect(locator).toHaveCount(expected) failed
+
+Locator:  getByTestId('session-audit-abc-section').getByTestId('audit-entry').filter({ hasText: 'test1' })
+Expected: 1
+Received: 0
+Timeout:  20000ms
+
+Call log:
+  - Expect "toHaveCount" getByTestId('session-audit-abc-section').getByTestId('audit-entry').filter({ hasText: 'test1' }) with timeout 20000ms
+  - waiting for getByTestId('session-audit-abc-section').getByTestId('audit-entry').filter({ hasText: 'test1' })
+    44 × locator resolved to 0 elements
+       - unexpected value "0"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=f2e4]:
+  - banner [ref=f2e6]:
+    - generic [ref=f2e7]:
+      - button "Back to Sessions" [ref=f2e8] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f2e9]: 
+        - generic [ref=f2e10]: Sessions
+      - generic [ref=f2e11]:
+        - generic [ref=f2e12]: "!*!Billy!*! !*!Billerson!*!"
+        - generic [ref=f2e13]: Nov 9, 2026 · 6s
+    - generic [ref=f2e16]:
+      - button "Finalize Session" [disabled]
+  - main [ref=f2e17]:
+    - heading "Session Summary" [level=1] [ref=f2e18]
+    - paragraph [ref=f2e19]: Confirm the session times below before finalizing.
+    - generic [ref=f2e20]:
+      - complementary [ref=f2e21]:
+        - region [ref=f2e23]:
+          - generic [ref=f2e24]:
+            - heading "Verify Times" [level=2] [ref=f2e26]
+            - strong [ref=f2e27]: 6s
+          - generic [ref=f2e28]:
+            - generic [ref=f2e29]:
+              - generic [ref=f2e30]: Start Time
+              - textbox "Start Time" [ref=f2e31]: 2026-11-09T20:45
+            - generic [ref=f2e32]:
+              - generic [ref=f2e33]: End Time
+              - textbox "End Time" [ref=f2e34]: 2026-11-09T20:45
+            - generic [ref=f2e35]:
+              - generic [ref=f2e36]: Reviewed Duration
+              - strong [ref=f2e37]: 6s
+              - generic [ref=f2e38]: Gross 6s minus 0m paused.
+          - generic [ref=f2e39]:
+            - checkbox "I confirm these are the session start and end times." [ref=f2e40]
+            - generic [ref=f2e41]: I confirm these are the session start and end times.
+        - region [ref=f2e43]:
+          - generic [ref=f2e44]: Collected data
+          - heading "Session Summary" [level=2] [ref=f2e45]
+          - generic [ref=f2e46]:
+            - generic [ref=f2e47]:
+              - term [ref=f2e48]: Overall
+              - definition [ref=f2e49]: "--"
+            - generic [ref=f2e50]:
+              - term [ref=f2e51]: Scored
+              - definition [ref=f2e52]: "0"
+            - generic [ref=f2e53]:
+              - term [ref=f2e54]: Targets
+              - definition [ref=f2e55]: "0"
+            - generic [ref=f2e56]:
+              - term [ref=f2e57]: Programs
+              - definition [ref=f2e58]: "0"
+          - region [ref=f2e59]:
+            - heading "Performance by Target" [level=3] [ref=f2e60]
+            - paragraph [ref=f2e61]: No collected trials or prompts are available yet.
+          - region [ref=f2e62]:
+            - heading "Program Totals" [level=3] [ref=f2e63]
+            - paragraph [ref=f2e64]: Program totals will populate after data collection.
+          - region [ref=f2e65]:
+            - heading "Collected Targets" [level=3] [ref=f2e66]
+            - paragraph [ref=f2e67]: No trials or prompts were recorded for this client — see ABC Data below for what was.
+          - region [ref=f2e68]:
+            - heading "Target Notes" [level=3] [ref=f2e69]
+            - paragraph [ref=f2e70]: No target notes were added during the run.
+          - region [ref=f2e71]:
+            - heading "ABC Data" [level=3] [ref=f2e72]
+            - article [ref=f2e73]:
+              - generic [ref=f2e74]:
+                - strong [ref=f2e75]: test1
+                - generic [ref=f2e76]: 8:45 PM
+              - generic [ref=f2e77]:
+                - generic [ref=f2e78]:
+                  - term [ref=f2e79]: Context
+                  - definition [ref=f2e80]: Academics
+                - generic [ref=f2e81]:
+                  - term [ref=f2e82]: Antecedent
+                  - definition [ref=f2e83]: Task/command given
+                - generic [ref=f2e84]:
+                  - term [ref=f2e85]: Consequence
+                  - definition [ref=f2e86]: Ignored
+                - generic [ref=f2e87]:
+                  - term [ref=f2e88]: Function
+                  - definition [ref=f2e89]: —
+              - paragraph [ref=f2e90]: E2E ABC to correct
+        - region [ref=f2e92]:
+          - generic [ref=f2e93]: Staff handoff
+          - heading "Quick Note" [level=2] [ref=f2e94]
+          - paragraph [ref=f2e95]: No Quick Note was entered during the run.
+          - generic [ref=f2e96]: Staff handoff remains separate from claim documentation.
+          - button "Add Quick Note" [ref=f2e97] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f2e98]: 
+      - region [ref=f2e102]:
+        - generic [ref=f2e103]:
+          - generic [ref=f2e104]:
+            - generic [ref=f2e105]: Insurance requirement
+            - heading "Session Note Draft" [level=2] [ref=f2e106]
+            - paragraph [ref=f2e107]: "Draft saved: 11/10/2026 06:45 AM by *** ***"
+          - generic [ref=f2e108]:
+            - strong [ref=f2e109]: Concluded Service
+            - generic [ref=f2e110]: Ready to complete the session note.
+        - generic [ref=f2e111]:
+          - generic [ref=f2e112]:
+            - generic [ref=f2e113]:
+              - term [ref=f2e114]: Template
+              - definition [ref=f2e115]: Shameful
+            - generic [ref=f2e116]:
+              - term [ref=f2e117]: Service Code
+              - definition [ref=f2e118]: —
+            - generic [ref=f2e119]:
+              - term [ref=f2e120]: Place of Service
+              - definition [ref=f2e121]: —
+            - generic [ref=f2e122]:
+              - term [ref=f2e123]: Participants
+              - definition [ref=f2e124]: "!*!Billy!*! !*!Billerson!*!; *** ***, RBT"
+          - generic [ref=f2e125]: Shameful
+          - generic [ref=f2e126]:
+            - generic [ref=f2e128]:
+              - generic [ref=f2e129]: Text Input
+              - textbox "Text Input" [ref=f2e130]
+            - generic [ref=f2e132]:
+              - generic [ref=f2e133]: Text Area
+              - textbox "Text Area" [ref=f2e134]
+            - generic [ref=f2e137] [cursor=pointer]:
+              - checkbox "Signature checkbox" [ref=f2e138]
+              - generic [ref=f2e139]: Signature checkbox
+            - region [ref=f2e140]:
+              - heading "Collected Data" [level=3] [ref=f2e141]
+              - generic [ref=f2e142]:
+                - table [ref=f2e144]:
+                  - caption [ref=f2e145]: Recorded in this session
+                  - rowgroup [ref=f2e146]:
+                    - row [ref=f2e147]:
+                      - columnheader "Program" [ref=f2e148]
+                      - columnheader "Target" [ref=f2e149]
+                      - columnheader "Result" [ref=f2e150]
+                      - columnheader "Detail" [ref=f2e151]
+                  - rowgroup [ref=f2e152]:
+                    - row [ref=f2e153]:
+                      - cell "No data was recorded in this session." [ref=f2e154]
+                - table [ref=f2e156]:
+                  - caption [ref=f2e157]: ABC data recorded in this session
+                  - rowgroup [ref=f2e158]:
+                    - row [ref=f2e159]:
+                      - columnheader "Time" [ref=f2e160]
+                      - columnheader "Behavior" [ref=f2e161]
+                      - columnheader "Context" [ref=f2e162]
+                      - columnheader "Antecedent" [ref=f2e163]
+                      - columnheader "Consequence" [ref=f2e164]
+                      - columnheader "Possible function" [ref=f2e165]
+                  - rowgroup [ref=f2e166]:
+                    - row [ref=f2e167]:
+                      - cell "8:45 PM" [ref=f2e168]
+                      - cell "test1 E2E ABC to correct" [ref=f2e169]:
+                        - text: test1
+                        - generic [ref=f2e170]: E2E ABC to correct
+                      - cell "Academics" [ref=f2e171]
+                      - cell "Task/command given" [ref=f2e172]
+                      - cell "Ignored" [ref=f2e173]
+                      - cell "—" [ref=f2e174]
+          - generic [ref=f2e175]:
+            - button "Cancel note" [ref=f2e176] [cursor=pointer]
+            - button "Save draft" [disabled] [ref=f2e177]
+            - button "Submit note" [ref=f2e178] [cursor=pointer]
+    - region [ref=f2e180]:
+      - generic [ref=f2e181]:
+        - generic [ref=f2e182]: Audit
+        - heading "Session Data Audit" [level=2] [ref=f2e183]
+        - generic [ref=f2e184]: 0 correction(s)
+        - button "Show Audit" [ref=f2e185] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f2e186]: 
+          - text: Show Audit
+```
+
+# Test source
+
+```ts
+  1   | import { test, expect } from '../../../src/fixtures/test';
+  2   | 
+  3   | test.describe('US-24 Correct a previously recorded attempt or fact', { tag: '@US-24' }, () => {
+  4   |   test('TC-US24-01 [RHD-61123] Correct a trial outcome from the audit list; the summary and audit trail update @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  5   |     const client = testData.clients.seeded;
+  6   |     const program = testData.seeded.obProgram;
+  7   |     const target = testData.seeded.obTarget;
+  8   |     await flows.signInAs('rbt');
+  9   |     await flows.startLiveSessionAsRbt({ clientIds: [client], programs: { [client]: [program] } });
+  10  | 
+  11  |     await test.step('Record Correct and Incorrect, then conclude', async () => {
+  12  |       await dataSheet.recordOutcome(program, target, 'Correct');
+  13  |       await dataSheet.recordOutcome(program, target, 'Incorrect');
+  14  |       await flows.concludeToSummary();
+  15  |       await expect(sessionClose.overallPercent).toHaveText('50%');
+  16  |     });
+  17  | 
+  18  |     await test.step('Correct the Incorrect trial to Correct with a reason', async () => {
+  19  |       const trials = await sessionClose.auditTrialEntries(program);
+  20  |       const incorrect = trials.filter({ hasText: /Outcome: incorrect/ }).first();
+  21  |       const dialog = await sessionClose.openCorrection(incorrect);
+  22  |       await expect(dialog.getByTestId('correction-original-values')).toContainText('Outcome: incorrect');
+  23  |       await expect(page.getByTestId('outcome-editor')).toContainText(/Correct\s*Incorrect\s*N\/A/);
+  24  |       await sessionClose.cancelCorrection();
+  25  |       await sessionClose.correctTrialOutcome(incorrect, 'correct', 'E2E: pressed the wrong button');
+  26  |     });
+  27  | 
+  28  |     await test.step('Correction count, audit trail and summary reflect the change', async () => {
+  29  |       await expect.poll(() => sessionClose.corrections()).toBe(1);
+  30  |       const group = await sessionClose.auditProgramGroup(program);
+  31  |       const text = (await group.innerText()).replace(/\s+/g, ' ');
+  32  |       test.info().annotations.push({ type: 'audit after correction', description: text });
+  33  |       expect(text, 'corrected value is shown').toMatch(/Outcome: correct.*Outcome: correct|Correct(ed)?.*Outcome: correct/i);
+  34  |       expect.soft(text, 'audit keeps the original value').toMatch(/incorrect/i);
+  35  |       expect.soft(text, 'audit shows the correction reason').toContain('pressed the wrong button');
+  36  |       await expect(sessionClose.overallPercent).toHaveText('100%');
+  37  |       await flows.evidence('trial-corrected');
+  38  |     });
+  39  | 
+  40  |     await test.step('Finalize', async () => {
+  41  |       await sessionClose.finalize();
+  42  |     });
+  43  |   });
+  44  | 
+  45  |   test('TC-US24-02 [RHD-61123] Undo in session and delete from the audit list leave an audit trail @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ flows, dataSheet, sessionClose, testData }) => {
+  46  |     const client = testData.clients.seeded;
+  47  |     const program = testData.seeded.obProgram;
+  48  |     const target = testData.seeded.obTarget;
+  49  |     await flows.signInAs('rbt');
+  50  |     await flows.startLiveSessionAsRbt({ clientIds: [client], programs: { [client]: [program] } });
+  51  |     const card = dataSheet.card(program);
+  52  | 
+  53  |     await test.step('Record three trials and undo the last one on the data sheet', async () => {
+  54  |       await dataSheet.recordOutcome(program, target, 'Correct');
+  55  |       await dataSheet.recordOutcome(program, target, 'Incorrect');
+  56  |       await dataSheet.recordOutcome(program, target, 'Correct');
+  57  |       await expect(dataSheet.trialChips(card, target)).toHaveCount(3);
+  58  |       await card.getByRole('button', { name: `Undo last trial for ${target}` }).click();
+  59  |       await expect(dataSheet.trialChips(card, target)).toHaveCount(2);
+  60  |       await expect.poll(() => dataSheet.targetScore(program, undefined, target)).toBe('50%');
+  61  |     });
+  62  | 
+  63  |     await test.step('Summary counts only the remaining trials; the undo is traceable', async () => {
+  64  |       await flows.concludeToSummary();
+  65  |       await expect.poll(() => sessionClose.scored()).toBe(2);
+  66  |       const trials = await sessionClose.auditTrialEntries(program);
+  67  |       const texts = (await trials.allInnerTexts()).map((t) => t.replace(/\s+/g, ' '));
+  68  |       test.info().annotations.push({ type: 'audit entries', description: JSON.stringify(texts) });
+  69  |       expect.soft(texts.some((t) => /undo|undone|removed|deleted/i.test(t)), 'undone trial appears in the audit trail').toBe(true);
+  70  |     });
+  71  | 
+  72  |     await test.step('Delete the Incorrect trial from the audit list', async () => {
+  73  |       const trials = await sessionClose.auditTrialEntries(program);
+  74  |       const message = await sessionClose.deleteAuditRecord(trials.filter({ hasText: /Outcome: incorrect/ }).first());
+  75  |       test.info().annotations.push({ type: 'delete confirmation', description: message });
+  76  |       await expect.poll(() => sessionClose.scored()).toBe(1);
+  77  |       await expect(sessionClose.overallPercent).toHaveText('100%');
+  78  |       const group = await sessionClose.auditProgramGroup(program);
+  79  |       expect.soft((await group.innerText()).replace(/\s+/g, ' '), 'deleted trial stays visible as removed in the audit trail').toMatch(/removed|deleted/i);
+  80  |     });
+  81  | 
+  82  |     await test.step('Finalize', async () => {
+  83  |       await sessionClose.finalize();
+  84  |     });
+  85  |   });
+  86  | 
+  87  |   test('TC-US24-03 [RHD-61123] Correct or remove an ABC entry from the audit list (NGC-65) @rbt', { tag: ['@xray', '@RHD-61123'] }, async ({ page, flows, dataSheet, abc, sessionClose, testData }) => {
+  88  |     const client = testData.clients.seeded;
+  89  |     const program = testData.seeded.obProgram;
+  90  |     const behavior = testData.seeded.behavior;
+  91  |     await flows.signInAs('rbt');
+  92  |     await flows.startLiveSessionAsRbt({ clientIds: [client], programs: { [client]: [program] }, behaviors: { [client]: [behavior] } });
+  93  | 
+  94  |     await test.step('Record an ABC entry and conclude', async () => {
+  95  |       await dataSheet.openAbcEntry();
+  96  |       await abc.record({ behavior, context: 'Academics', antecedents: ['Task/command given'], consequences: ['Ignored'], note: 'E2E ABC to correct' });
+  97  |       await flows.concludeToSummary();
+> 98  |       await expect(sessionClose.auditAbcEntries.filter({ hasText: behavior })).toHaveCount(1);
+      |                                                                                ^ Error: expect(locator).toHaveCount(expected) failed
+  99  |     });
+  100 | 
+  101 |     await test.step('Correct the ABC entry', async () => {
+  102 |       const entry = sessionClose.auditAbcEntries.filter({ hasText: behavior }).first();
+  103 |       await sessionClose.openCorrection(entry);
+  104 |       await expect(page.getByTestId('correction-original-values')).toContainText('Context: Academics');
+  105 |       await expect.soft(sessionClose.correctionUnavailable, 'ABC entries can be corrected (NGC-65)').toBeHidden();
+  106 |       if (await sessionClose.correctionUnavailable.isVisible()) {
+  107 |         test.info().annotations.push({ type: 'defect', description: `NGC-65: ${(await sessionClose.correctionUnavailable.innerText()).replace(/\s+/g, ' ')}` });
+  108 |       }
+  109 |       await sessionClose.cancelCorrection();
+  110 |     });
+  111 | 
+  112 |     await test.step('Remove the ABC entry instead; it leaves the summary', async () => {
+  113 |       const entry = sessionClose.auditAbcEntries.filter({ hasText: behavior }).first();
+  114 |       const message = await sessionClose.deleteAuditRecord(entry);
+  115 |       test.info().annotations.push({ type: 'delete confirmation', description: message });
+  116 |       await expect(page.locator('[data-testid^="session-data-summary-abc-"]')).toHaveCount(0);
+  117 |       await expect(page.getByText('No ABC entries were recorded during the run.')).toBeVisible();
+  118 |     });
+  119 | 
+  120 |     await test.step('Finalize', async () => {
+  121 |       await sessionClose.finalize();
+  122 |     });
+  123 |   });
+  124 | });
+  125 | 
+```
