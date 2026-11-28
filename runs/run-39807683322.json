@@ -1,0 +1,2837 @@
+{
+  "schemaVersion": 1,
+  "runId": "39807683322",
+  "runNumber": 3,
+  "runUrl": "https://github.com/masudrana-bit/Rethink.BH.Clinical.E2E.TEST.SUITE/actions/runs/39807683322",
+  "release": "dev3-2026.10.22",
+  "kind": "release",
+  "branch": "main",
+  "sha": "2aedf35",
+  "environment": "https://clinical.dev3.rethinkbhtech.com",
+  "environmentName": "dev3",
+  "startedAt": "2026-10-22T15:45:12.382Z",
+  "durationSec": 3472,
+  "reportUrl": "reports/39807683322/index.html",
+  "totals": {
+    "passed": 76,
+    "flaky": 0,
+    "skipped": 7,
+    "failed": 6,
+    "total": 89,
+    "knownDefects": 18,
+    "untagged": 0
+  },
+  "stories": [
+    {
+      "key": "US-1",
+      "title": "Select / switch active client context",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/01-plan-setup-library/US-01-select-switch-client.md",
+      "tests": [
+        {
+          "id": "0de1be9121eca766bda8-edec75d70a0b22f13922",
+          "name": "TC-US01-01 Find a client on the Clients page and open their workspace",
+          "file": "stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 6393,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "0de1be9121eca766bda8-539d94dc26df41d4b214",
+          "name": "TC-US01-02 Switch client from the header and every tab reloads for the new client",
+          "file": "stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "line": 43,
+          "status": "passed",
+          "durationMs": 20109,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "0de1be9121eca766bda8-0b84f00e2288f6bd9813",
+          "name": "TC-US01-03 Search by Client ID and hand-off to legacy BH",
+          "file": "stories/01-plan-setup-library/us-01-select-switch-client.spec.ts",
+          "line": 81,
+          "status": "failed",
+          "durationMs": 18933,
+          "attempts": 3,
+          "error": "Error: expect(received).toMatch(expected)\n\nExpected pattern: /\\/core\\/clients\\/212769$/\nReceived string:  \"https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Login\"\n\n   95 |     await test.step('Client Info and File Cabinet open legacy BH for the same client in a new tab', async () => {\n   96 |       await clientsList.openClient(internalId);\n>  97 |       expect(await workspace.openLegacyTab('",
+          "traceUrl": "reports/39807683322/index.html#?testId=0de1be9121eca766bda8-0b84f00e2288f6bd9813",
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-2",
+      "title": "Search & browse the program library",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/01-plan-setup-library/US-02-search-browse-library.md",
+      "tests": [
+        {
+          "id": "69d328eb9c77b2d09eb2-d756947356f1f6475710",
+          "name": "TC-US02-01 Browse System Programs, search by keyword and preview a program",
+          "file": "stories/01-plan-setup-library/us-02-search-browse-library.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 31805,
+          "attempts": 1,
+          "error": "Error: Domain should not be blank (NGC-22)\n\nexpect(received).not.toMatch(expected)\n\nExpected pattern: not /^—?$/\nReceived string:      \"—\"\n\n  44 |       await expect(addProgram.row(/Matching Identical Pictures/)).toBeVisible();\n  45 |       const cells = await addProgram.rowCells(/Matching Identical Pictures/);\n> 46 |       expect.soft(cells[2], 'Domain should not be blank ( (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=69d328eb9c77b2d09eb2-d756947356f1f6475710",
+          "knownDefect": "TC-US02-01: Library keyword search takes 4–4.6 s (target 3 s); NGC-22: Area blank on system programs",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "69d328eb9c77b2d09eb2-c816f2327bb171bddffc",
+          "name": "TC-US02-02 Filter by Category / Domain / Area and switch to My Programs",
+          "file": "stories/01-plan-setup-library/us-02-search-browse-library.spec.ts",
+          "line": 51,
+          "status": "passed",
+          "durationMs": 12903,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-3",
+      "title": "View client treatment plan",
+      "epic": "01 Plan setup & library",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/01-plan-setup-library/US-03-view-treatment-plan.md",
+      "tests": [
+        {
+          "id": "69a099dc7fce528f9892-ad410bf4d2ed7b08d574",
+          "name": "TC-US03-01 Review the Current and Inactive plan lists with domain and last-recorded info",
+          "file": "stories/01-plan-setup-library/us-03-view-treatment-plan.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 8287,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "69a099dc7fce528f9892-d3550ab099c25003ee58",
+          "name": "TC-US03-02 Add a Future program and find it under the right list, then reorder",
+          "file": "stories/01-plan-setup-library/us-03-view-treatment-plan.spec.ts",
+          "line": 37,
+          "status": "passed",
+          "durationMs": 16382,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-4",
+      "title": "Add a library program to a plan (Current / Future)",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/02-program-authoring/US-04-add-library-program.md",
+      "tests": [
+        {
+          "id": "487969fdf32f605773ef-5725cf7829b91f9c38d9",
+          "name": "TC-US04-01 Add a system program as Current and confirm goal, targets and lesson plan were copied",
+          "file": "stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 59221,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "test-data gap",
+              "description": "\"Following One-Step Instructions\" has no catalog targets or lesson plan on this environment"
+            }
+          ]
+        },
+        {
+          "id": "487969fdf32f605773ef-8820cd035b4da03e1119",
+          "name": "TC-US04-02 Duplicate protection: \"Already added\" in the catalog and a warning from a stale second tab",
+          "file": "stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "line": 55,
+          "status": "passed",
+          "durationMs": 97673,
+          "attempts": 1,
+          "error": "Error: duplicate warning should appear when the list is stale (NGC-21)\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n   95 |       await page.bringToFront();\n   96 |       const warned = await addProgram.addProgram(LIBRARY_PROGRAMS.crossTab, 'current');\n>  97 |       expect.soft(warned, 'duplicate warning should appear when the list  (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=487969fdf32f605773ef-8820cd035b4da03e1119",
+          "knownDefect": "TC-US04-02: NGC-21: no duplicate warning when adding from a stale second tab",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "487969fdf32f605773ef-79d61a492ee185de5d3f",
+          "name": "TC-US04-03 Add a program as Future and move it to Current",
+          "file": "stories/02-program-authoring/us-04-add-library-program.spec.ts",
+          "line": 110,
+          "status": "passed",
+          "durationMs": 35593,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-5",
+      "title": "Create a custom program",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/02-program-authoring/US-05-create-custom-program.md",
+      "tests": [
+        {
+          "id": "00ec2b7bca03e8a426a4-96fa7fe21219f82b422d",
+          "name": "TC-US05-01 Build a full custom program with objectives, bulk targets, lesson plan and a material link",
+          "file": "stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 19443,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "00ec2b7bca03e8a426a4-f0d81fa7435e8a34438a",
+          "name": "TC-US05-02 New custom program saved to My Programs is searchable in the library",
+          "file": "stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "line": 43,
+          "status": "passed",
+          "durationMs": 53040,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "00ec2b7bca03e8a426a4-6792a7f90e09439bc434",
+          "name": "TC-US05-03 Required-field validation",
+          "file": "stories/02-program-authoring/us-05-create-custom-program.spec.ts",
+          "line": 63,
+          "status": "passed",
+          "durationMs": 7281,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-6",
+      "title": "Edit, archive, or delete a program",
+      "epic": "02 Program authoring",
+      "priority": "P2",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/02-program-authoring/US-06-edit-archive-delete-program.md",
+      "tests": [
+        {
+          "id": "79b453451b46d7c3ce00-dfd2e39d4aca3b99c051",
+          "name": "TC-US06-01 Edit the goal and rename a program from the header",
+          "file": "stories/02-program-authoring/us-06-edit-archive-delete-program.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 54602,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "79b453451b46d7c3ce00-5d5b2098def6445bb9a5",
+          "name": "TC-US06-02 Discontinue (archive) a program, then delete it with confirmation",
+          "file": "stories/02-program-authoring/us-06-edit-archive-delete-program.spec.ts",
+          "line": 34,
+          "status": "failed",
+          "durationMs": 104776,
+          "attempts": 3,
+          "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('[data-testid^=\"program-rail-item-\"]').filter({ hasText: /E2E-2610221553-6svl Archive Program/ })\nExpected: 0\nReceived: 1\nTimeout:  20000ms\n\nCall log:\n  - Expect \"toHaveCount\" locator('[data-testid^=\"program-rail-item-\"]').filter({ hasText: /E2E-2610221553-6svl Archive Program/ }) with timeout 20000ms\n  - waiting for locator('[",
+          "traceUrl": "reports/39807683322/index.html#?testId=79b453451b46d7c3ce00-5d5b2098def6445bb9a5",
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221553-6svl Archive Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-7",
+      "title": "Manage targets / steps within a program",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/03-target-criteria/US-07-manage-targets.md",
+      "tests": [
+        {
+          "id": "22349f3300dd2aaf410f-f1410ea76f164b045051",
+          "name": "TC-US07-01 Add, bulk add, rename, reorder and assign objective and group",
+          "file": "stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "line": 7,
+          "status": "passed",
+          "durationMs": 73171,
+          "attempts": 1,
+          "error": "Error: rename + group/objective changes in one save (412 Conflict/StaleVersion on PATCH target)\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  35 |       await flows.evidence('targets edited');\n  36 |       const saved = await targets.trySave();\n> 37 |       expect.soft(saved, 'rename + group/objective changes in one save (412 Conflict/StaleVersion on PAT",
+          "traceUrl": "reports/39807683322/index.html#?testId=22349f3300dd2aaf410f-f1410ea76f164b045051",
+          "knownDefect": "TC-US07-01: Renaming a target and changing another target's group in one save fails (412 StaleVersion)",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "objective required",
+              "description": "\"Choose an objective for Point to dog, Wave, Jump.\" — set Objective 1"
+            },
+            {
+              "type": "workaround",
+              "description": "Rename/reorder and group/objective saved separately"
+            }
+          ]
+        },
+        {
+          "id": "22349f3300dd2aaf410f-ec64d7e1d5f22440a21f",
+          "name": "TC-US07-02 Status lifecycle: In Progress, On hold, Mastered and un-master, with dated history",
+          "file": "stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "line": 78,
+          "status": "passed",
+          "durationMs": 61093,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "22349f3300dd2aaf410f-4924fb55c91aee4156fe",
+          "name": "TC-US07-03 Remove a target (cancel and save) and delete a group",
+          "file": "stories/03-target-criteria/us-07-manage-targets.spec.ts",
+          "line": 145,
+          "status": "passed",
+          "durationMs": 57267,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-8",
+      "title": "Configure data-collection type & dimensions",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/03-target-criteria/US-08-data-collection-type.md",
+      "tests": [
+        {
+          "id": "73267730a106f92c669a-ce91c27f5cdc60529715",
+          "name": "TC-US08-01 Opportunity Based with prompts and location; settings persist and show in Program Details",
+          "file": "stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 54554,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "73267730a106f92c669a-34598c7dc900d7eaf0a1",
+          "name": "TC-US08-02 Every collection type can be selected and shows its mastery wording",
+          "file": "stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "line": 66,
+          "status": "passed",
+          "durationMs": 51599,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "73267730a106f92c669a-06983a49ba739902edab",
+          "name": "TC-US08-03 Change the collection type of a configured program",
+          "file": "stories/03-target-criteria/us-08-data-collection-type.spec.ts",
+          "line": 94,
+          "status": "passed",
+          "durationMs": 51388,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-9",
+      "title": "Configure mastery, maintenance & generalization criteria",
+      "epic": "03 Target & criteria",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/03-target-criteria/US-09-mastery-criteria.md",
+      "tests": [
+        {
+          "id": "29431af5dd55e992da2c-c4a5c4d0937495d6b992",
+          "name": "TC-US09-01 Mastery, baseline, generalization and maintenance save and display",
+          "file": "stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 58616,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "29431af5dd55e992da2c-fbf7319ea5e58a3a9bff",
+          "name": "TC-US09-02 Validation: percentage above 100 and empty required values",
+          "file": "stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "line": 65,
+          "status": "passed",
+          "durationMs": 49339,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "29431af5dd55e992da2c-ced0bdf79735b7f727b8",
+          "name": "TC-US09-03 Frequency/Rate programs use frequency-based criteria",
+          "file": "stories/03-target-criteria/us-09-mastery-criteria.spec.ts",
+          "line": 105,
+          "status": "passed",
+          "durationMs": 49355,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-10",
+      "title": "Access the RBT shell and navigate to sessions",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/04-session-lifecycle/US-10-rbt-shell.md",
+      "tests": [
+        {
+          "id": "6a332f699ee3a122d6fe-c201839c6dd8496cdcd3",
+          "name": "TC-US10-01 RBT lands on RBT home and navigates the RBT shell",
+          "file": "stories/04-session-lifecycle/us-10-rbt-shell.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 13259,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "6a332f699ee3a122d6fe-481feefd38e7850a1945",
+          "name": "TC-US10-02 RBT view survives refresh on a deep page and re-login",
+          "file": "stories/04-session-lifecycle/us-10-rbt-shell.spec.ts",
+          "line": 50,
+          "status": "passed",
+          "durationMs": 6401,
+          "attempts": 1,
+          "error": "Error: the RBT view chosen before signing out is kept after re-login (NGC-47)\n\nexpect(received).toMatch(expected)\n\nExpected pattern: /\\/rbt/\nReceived string:  \"https://clinical.dev3.rethinkbhtech.com/clients\"\n\n  67 |         test.info().annotations.push({ type: 'observation', description: `after re-login the shared account landed on ${new URL(page.url()).pathname}` });\n  68 |         if (/\\/client",
+          "traceUrl": "reports/39807683322/index.html#?testId=6a332f699ee3a122d6fe-481feefd38e7850a1945",
+          "knownDefect": "TC-US10-02: NGC-47: RBT view is not kept after signing in again",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "observation",
+              "description": "after re-login the shared account landed on /clients"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-11",
+      "title": "View and open scheduled sessions",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 1,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/04-session-lifecycle/US-11-scheduled-sessions.md",
+      "tests": [
+        {
+          "id": "c283c9a1817b7e6699a4-43a20d87f3d860a47c3e",
+          "name": "TC-US11-01 Sessions list is limited to own clients and shows correct counts",
+          "file": "stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 11727,
+          "attempts": 1,
+          "error": "Error: every scheduled row belongs to a caseload client (NGC-49)\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 90\n\n- Array []\n+ Array [\n+   \"Oct 23\n+ 10:30 AM\n+ 12:00 PM / 1 hr 30 min\n+ 101Years 101Years\n+\n+ ABA Therapy\n+\n+ Future\n+ Home ABA / Family home\n+ Shameful\n+ Open\",\n+   \"Oct 23\n+ 12:00 PM\n+ 1:30 PM / 1 hr 30 min\n+ 123 123\n+\n+ A (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=c283c9a1817b7e6699a4-43a20d87f3d860a47c3e",
+          "knownDefect": "TC-US11-01: NGC-49: RBT schedule and client filter include clients outside the caseload (passes on dev2 and UAT)",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "c283c9a1817b7e6699a4-9b58286e03c983808b6c",
+          "name": "TC-US11-02 Open a scheduled session: pre-session page, then data sheet",
+          "file": "stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "line": 64,
+          "status": "skipped",
+          "durationMs": 3652,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": "no open scheduled session today",
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "c283c9a1817b7e6699a4-e26af92e5d43c8f5df52",
+          "name": "TC-US11-03 Concluded session appears in \"Incomplete session notes\" for its client only",
+          "file": "stories/04-session-lifecycle/us-11-scheduled-sessions.spec.ts",
+          "line": 99,
+          "status": "passed",
+          "durationMs": 16827,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-12",
+      "title": "Create an ad-hoc session, incl. multi-client group",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 1
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/04-session-lifecycle/US-12-adhoc-group-session.md",
+      "tests": [
+        {
+          "id": "792ddb0ac0982b6c727b-5f638ef07ae8f4336350",
+          "name": "TC-US12-01 Ad-hoc single-client session from RBT home",
+          "file": "stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 15972,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "792ddb0ac0982b6c727b-2e4de7b3f1aaa29ce04c",
+          "name": "TC-US12-02 Start Live Session from the client page pre-selects the client",
+          "file": "stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "line": 47,
+          "status": "passed",
+          "durationMs": 9824,
+          "attempts": 1,
+          "error": "Error: client should be pre-selected when starting from the client page\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  61 |       await expect(box).toBeAttached();\n  62 |       const preselected = await box.isChecked();\n> 63 |       expect.soft(preselected, 'client should be pre-selected when starting from the client page').toBe(true);\n     |             ",
+          "traceUrl": "reports/39807683322/index.html#?testId=792ddb0ac0982b6c727b-2e4de7b3f1aaa29ce04c",
+          "knownDefect": "TC-US12-02: Start Live Session from the client page does not pre-select the client",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "workaround",
+              "description": "client ticked manually in the wizard"
+            }
+          ]
+        },
+        {
+          "id": "792ddb0ac0982b6c727b-d65a969552c3263998f3",
+          "name": "TC-US12-03 Group session with two clients records data per client",
+          "file": "stories/04-session-lifecycle/us-12-adhoc-group-session.spec.ts",
+          "line": 82,
+          "status": "failed",
+          "durationMs": 23298,
+          "attempts": 3,
+          "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 2\nReceived: 1\n\n  104 |       await sessionOpen.start();\n  105 |       await dataSheet.expectLoaded();\n> 106 |       expect((await dataSheet.title()).split(',').length).toBe(2);\n      |                                                           ^\n  107 |     });\n  108 |\n  109 |     const targets: Record<string, string> = {};\n   ",
+          "traceUrl": "reports/39807683322/index.html#?testId=792ddb0ac0982b6c727b-d65a969552c3263998f3",
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-13",
+      "title": "Start, pause, resume, and close a session",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/04-session-lifecycle/US-13-start-pause-resume-close.md",
+      "tests": [
+        {
+          "id": "88181675ebf7f6f5336d-a8b563f4cf9219dc0d6b",
+          "name": "TC-US13-01 Pause and resume keep the timer and recorded data; summary shows real times",
+          "file": "stories/04-session-lifecycle/us-13-start-pause-resume-close.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 25406,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "88181675ebf7f6f5336d-2bf9a25b3f8778920f84",
+          "name": "TC-US13-02 Transfer uses a staff picker; Cancel keeps the session running",
+          "file": "stories/04-session-lifecycle/us-13-start-pause-resume-close.spec.ts",
+          "line": 59,
+          "status": "passed",
+          "durationMs": 17067,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-14",
+      "title": "Enter historical / backfill session data",
+      "epic": "04 Session lifecycle",
+      "priority": "P1",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/04-session-lifecycle/US-14-historical-entry.md",
+      "tests": [
+        {
+          "id": "2da53fa7b270dc31dc3d-72df286e84234a4299a3",
+          "name": "TC-US14-01 Backfill a past date with times left blank and see it in the program data",
+          "file": "stories/04-session-lifecycle/us-14-historical-entry.spec.ts",
+          "line": 5,
+          "status": "failed",
+          "durationMs": 148249,
+          "attempts": 3,
+          "error": "Error: blank session times should not default to the entry time (Session times Started at: Oct 15, 4:07 PM · Ended at: Oct 15, 4:07 PM Oct 15, 4:07 PM Current Correct)\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n\n  49 |       const times = (await page.getByTestId('session-audit-times-section').innerText()).replace(/\\s+/g, ' ');\n  50 (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=2da53fa7b270dc31dc3d-72df286e84234a4299a3",
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "not the known defect",
+              "description": "Error: expect(locator).toBeVisible() failed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-15",
+      "title": "Record standard discrete-trial attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-15-discrete-trials.md",
+      "tests": [
+        {
+          "id": "beaa463d8d0b478a5110-9fd6956f8f37f52de41d",
+          "name": "TC-US15-01 Every prompt level is recordable, shown trial by trial; on-hold targets stay off the sheet",
+          "file": "stories/05-data-collection/us-15-discrete-trials.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 36387,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-kmoq Opportunity Based Program\""
+            }
+          ]
+        },
+        {
+          "id": "beaa463d8d0b478a5110-90091cbebe0509f4522e",
+          "name": "TC-US15-02 Change and delete a recorded trial from the trial-by-trial view",
+          "file": "stories/05-data-collection/us-15-discrete-trials.spec.ts",
+          "line": 66,
+          "status": "passed",
+          "durationMs": 34734,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-6s3n Opportunity Based Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-16",
+      "title": "Record task-analysis attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-16-task-analysis.md",
+      "tests": [
+        {
+          "id": "3d3750c824a4f453e59d-afc7dc45e45539d63d18",
+          "name": "TC-US16-01 Score every step, start a new series at step 1, see % in the summary",
+          "file": "stories/05-data-collection/us-16-task-analysis.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 35774,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-zabz Task Analysis Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-17",
+      "title": "Record PEAK attempts",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-17-peak.md",
+      "tests": [
+        {
+          "id": "62444c7b1974424ce955-a86a3cb64182ce2d829a",
+          "name": "TC-US17-01 Score a PEAK block, see totals, and start another scoring",
+          "file": "stories/05-data-collection/us-17-peak.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 35275,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-odrw PEAK Scoring Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-18",
+      "title": "Record simple collection data (8 types)",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-18-simple-collection.md",
+      "tests": [
+        {
+          "id": "c1334c8a37fa395dbb03-009aedeb0ce5a97bd73d",
+          "name": "TC-US18-01 Quick-entry recorders: percentage, numeric, rating, tally",
+          "file": "stories/05-data-collection/us-18-simple-collection.spec.ts",
+          "line": 7,
+          "status": "passed",
+          "durationMs": 81100,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "workaround",
+              "description": "Numeric: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "workaround",
+              "description": "Number of Occurrences: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-2pw0 Percentage Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-t4as Numeric Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-e9mw Rating Scale Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-r84w Number of Occurrences Program\""
+            }
+          ]
+        },
+        {
+          "id": "c1334c8a37fa395dbb03-899e7bbede26a35b5614",
+          "name": "TC-US18-02 Timed recorders: frequency, interval, duration, frequency + duration",
+          "file": "stories/05-data-collection/us-18-simple-collection.spec.ts",
+          "line": 59,
+          "status": "passed",
+          "durationMs": 86731,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "workaround",
+              "description": "Frequency/Rate: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "workaround",
+              "description": "Duration: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "workaround",
+              "description": "Frequency + Duration: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"This metric requires a secondary threshold value.\",\"Intervention to Mastered: enter a threshold value.\\nThis metric requires a second"
+            },
+            {
+              "type": "timers",
+              "description": "Close Session You have 1 timer running: Program Timer — E2E-2610221607-mtq9 Frequency/Rate Program. Stop it and continue, or go back to the session? Go Back Stop Timers and Continue"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-mtq9 Frequency/Rate Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-ylqm Interval Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-aq66 Duration Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-8alh Frequency + Duration Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-19",
+      "title": "Record a toileting visit",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-19-toileting.md",
+      "tests": [
+        {
+          "id": "f38cebf8878316f0e963-ea8fe36d481496a62dd7",
+          "name": "TC-US19-01 Time a sit, pick an outcome, submit, and see it in the metrics",
+          "file": "stories/05-data-collection/us-19-toileting.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 40119,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-2krf Toileting Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-20",
+      "title": "Record duration-intensity behavior data",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 1,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-20-duration-intensity.md",
+      "tests": [
+        {
+          "id": "b8ff11cba1a6fdec7049-959bb8e6842759bec3b1",
+          "name": "TC-US20-01 Duration-intensity segments per level survive a pause",
+          "file": "stories/05-data-collection/us-20-duration-intensity.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 45688,
+          "attempts": 1,
+          "error": "Error: Duration recorder offers High / Medium / Low intensity levels (offered on Oct 19, missing on Oct 20)\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  28 |       levels = await dataSheet.intensityLevelsOffered(program, T);\n  29 |       test.info().annotations.push({ type: 'duration recorder', description: levels ? 'intensity levels offered' : 'plain S",
+          "traceUrl": "reports/39807683322/index.html#?testId=b8ff11cba1a6fdec7049-959bb8e6842759bec3b1",
+          "knownDefect": "TC-US20-01: Duration recorder no longer offers High / Medium / Low intensity levels (confirm with product)",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "workaround",
+              "description": "Duration: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "duration recorder",
+              "description": "plain Start / Stop timer, no intensity levels"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-ew6g Duration Program\""
+            }
+          ]
+        },
+        {
+          "id": "b8ff11cba1a6fdec7049-cd8e853a94c10abae65f",
+          "name": "TC-US20-02 Plan behavior offers the duration-intensity recorder",
+          "file": "stories/05-data-collection/us-20-duration-intensity.spec.ts",
+          "line": 84,
+          "status": "skipped",
+          "durationMs": 152,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": "no duration-intensity behavior seeded (set SEEDED_DI_BEHAVIOR); \"test1\" is Frequency/Rate",
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-21",
+      "title": "Track session and program timers",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-21-timers.md",
+      "tests": [
+        {
+          "id": "3a88789f1efbb96070e8-d9596c5f1ee14df37e0c",
+          "name": "TC-US21-01 Session, program and interval timers run, pause and stop",
+          "file": "stories/05-data-collection/us-21-timers.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 119398,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "workaround",
+              "description": "Frequency/Rate: Save blocked by [\"Mastered: enter a threshold value.\",\"Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\",\"Intervention to Mastered: enter a threshold value.\"]; filled intervention and custom maintenance thresholds"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-d7zm Frequency/Rate Program\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221607-ytjm Interval Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-22",
+      "title": "Record an in-session ABC entry",
+      "epic": "05 Data collection",
+      "priority": "P1",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/05-data-collection/US-22-abc-entry.md",
+      "tests": [
+        {
+          "id": "6b733f7fd6ece05718c5-43be1e70fe34e5e97ebd",
+          "name": "TC-US22-01 Record a plan-defined and a novel behavior; audit shows context names",
+          "file": "stories/05-data-collection/us-22-abc-entry.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 19146,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "6b733f7fd6ece05718c5-028dfbb1b0242c93675d",
+          "name": "TC-US22-02 In a group session, Record ABC Data from a client's card targets that client",
+          "file": "stories/05-data-collection/us-22-abc-entry.spec.ts",
+          "line": 45,
+          "status": "failed",
+          "durationMs": 100206,
+          "attempts": 3,
+          "error": "Known defect no longer reproduces (TC-US22-02: Group session: Record ABC Data from a client card pre-selects the first client). Check it is fixed, then remove the test from src/data/known-defects.ts.",
+          "traceUrl": "reports/39807683322/index.html#?testId=6b733f7fd6ece05718c5-028dfbb1b0242c93675d",
+          "knownDefect": null,
+          "knownDefectFixed": true,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-23",
+      "title": "Close a session and review summary, audit & note",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/06-closeout/US-23-close-session-summary.md",
+      "tests": [
+        {
+          "id": "bc9b056795d2f13dace5-fbd5a7f56fbd5471bf5c",
+          "name": "TC-US23-01 Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed",
+          "file": "stories/06-closeout/us-23-close-session-summary.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 107225,
+          "attempts": 1,
+          "error": "Error: plan behavior test1 is on the session's behavior support card (loaded on Oct 19; missing on Oct 20, \"0 behavior plans\")\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  59 |       await expect.poll(() => dataSheet.targetScore(program, undefined, target)).toBe('50%');\n  60 |       behaviorOnSheet = await dataSheet.behaviorRow(c (+3 more failed checks)",
+          "traceUrl": "reports/39807683322/index.html#?testId=bc9b056795d2f13dace5-fbd5a7f56fbd5471bf5c",
+          "knownDefect": "TC-US23-01: Pre-session note template not applied; finalize says \"removed from this device\" (NGC-86); RBT Home still shows Open",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "appointment",
+              "description": "12:00 PM 1 hr 30 min !*!Billy!*! !*!Billerson!*! Missed Home ABA / Family home · ABA Therapy Open"
+            },
+            {
+              "type": "note templates",
+              "description": "offered [\"Billable Session Note\",\"Non-Billable Session Note\"]; pre-selected \"None\"; chose \"Billable Session Note\""
+            },
+            {
+              "type": "workaround",
+              "description": "note was not started; picked \"Shameful (Billable)\" in the note"
+            },
+            {
+              "type": "note template",
+              "description": "\"Shameful (Billable)\" has no required fields"
+            },
+            {
+              "type": "finalize prompt",
+              "description": "Finalize this session? Finalizing locks this summary. Changes after finalization are handled outside this application, and the session will be removed from this device. This cannot be undone. Cancel Finalize and remove"
+            }
+          ]
+        },
+        {
+          "id": "bc9b056795d2f13dace5-8dda6f36c5621411166a",
+          "name": "TC-US23-02 Finalize stays locked until the session times are confirmed",
+          "file": "stories/06-closeout/us-23-close-session-summary.spec.ts",
+          "line": 143,
+          "status": "passed",
+          "durationMs": 16986,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-24",
+      "title": "Correct a previously recorded attempt or fact",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 3,
+      "manualCases": 0,
+      "doc": "test-cases/06-closeout/US-24-correct-recorded-data.md",
+      "tests": [
+        {
+          "id": "1871f11bc54455f4dc2f-87489e20aa7d8a1e8ab6",
+          "name": "TC-US24-01 Correct a trial outcome from the audit list; the summary and audit trail update",
+          "file": "stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 18174,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "audit after correction",
+              "description": "Requesting preferred items 1 corrected Snack items Collection type: Opportunity based · Outcome: correct Oct 22, 4:20 PM Current Correct Collection type: Opportunity based · Outcome: incorrect Oct 22, 4:20 PM Correct Collection type: Opportunity based · Outcome: correct E2E: pressed the wrong button"
+            }
+          ]
+        },
+        {
+          "id": "1871f11bc54455f4dc2f-d49dd64a668c35b50a82",
+          "name": "TC-US24-02 Undo in session and delete from the audit list leave an audit trail",
+          "file": "stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "line": 45,
+          "status": "passed",
+          "durationMs": 17823,
+          "attempts": 1,
+          "error": "Error: undone trial appears in the audit trail\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  67 |       const texts = (await trials.allInnerTexts()).map((t) => t.replace(/\\s+/g, ' '));\n  68 |       test.info().annotations.push({ type: 'audit entries', description: JSON.stringify(texts) });\n> 69 |       expect.soft(texts.some((t) => /undo|undone|removed|d",
+          "traceUrl": "reports/39807683322/index.html#?testId=1871f11bc54455f4dc2f-d49dd64a668c35b50a82",
+          "knownDefect": "TC-US24-02: Undo last trial leaves no entry in the session audit trail",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "audit entries",
+              "description": "[\"Collection type: Opportunity based · Outcome: correct Oct 22, 4:21 PM Current Correct\",\"Collection type: Opportunity based · Outcome: incorrect Oct 22, 4:21 PM Current Correct\"]"
+            },
+            {
+              "type": "delete confirmation",
+              "description": "Delete Record SNACK ITEMS Collection type: Opportunity based · Outcome: incorrect It stays in the audit, marked deleted, and no longer counts in the summary. Reason for deleting Cancel Delete Record"
+            }
+          ]
+        },
+        {
+          "id": "1871f11bc54455f4dc2f-e0f1bf9a522e9920291a",
+          "name": "TC-US24-03 Correct or remove an ABC entry from the audit list (NGC-65)",
+          "file": "stories/06-closeout/us-24-correct-recorded-data.spec.ts",
+          "line": 87,
+          "status": "passed",
+          "durationMs": 17950,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "delete confirmation",
+              "description": "Delete Record TEST1 Behaviors: test1 · Context: Academics · Antecedent: Task/command given · Consequence: Ignored · Note: E2E ABC to correct It stays in the audit, marked deleted, and no longer counts in the summary. Reason for deleting Cancel Delete Record"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-25",
+      "title": "Resume an in-progress session after a refresh",
+      "epic": "06 Closeout",
+      "priority": "P1",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/06-closeout/US-25-resume-after-refresh.md",
+      "tests": [
+        {
+          "id": "c4c11161b29d9d740b37-ee0c8b162c1941e6cc99",
+          "name": "TC-US25-01 Refresh mid-session: trials, behavior count, ABC entry and clock are kept; recording continues",
+          "file": "stories/06-closeout/us-25-resume-after-refresh.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 21022,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        },
+        {
+          "id": "c4c11161b29d9d740b37-85d042d5dbda626c70fc",
+          "name": "TC-US25-02 Close the tab and come back: RBT Home offers the session under \"Resume a session\" with its data",
+          "file": "stories/06-closeout/us-25-resume-after-refresh.spec.ts",
+          "line": 56,
+          "status": "passed",
+          "durationMs": 20177,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-26",
+      "title": "Enter the app from a BH tile already authenticated",
+      "epic": "07 Platform",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 3,
+        "flaky": 0,
+        "skipped": 2,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 5,
+      "manualCases": 2,
+      "doc": "test-cases/07-platform/US-26-bh-tile-entry.md",
+      "tests": [
+        {
+          "id": "fa6a0f0bd48736a88606-109706406e1b2bf4de2b",
+          "name": "TC-US26-01 Signed-out deep link asks for the BH hand-off; after sign-in the session is reused without a second sign-in",
+          "file": "stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 10198,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "dev2",
+              "description": "sign-in options: Preview sign-in (no BH tile hand-off, NGC-66)"
+            }
+          ]
+        },
+        {
+          "id": "fa6a0f0bd48736a88606-1bf2b05d27248c510705",
+          "name": "TC-US26-02 The user lands with the correct role; the RBT view lands on RBT Home",
+          "file": "stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "line": 43,
+          "status": "passed",
+          "durationMs": 4490,
+          "attempts": 1,
+          "error": "Error: role is shown by name, not an internal id\n\nexpect(received).toMatch(expected)\n\nExpected pattern: /bcba|clinic|supervisor|analyst|admin|director|lead/i\nReceived string:  \"Role 4.\"\n\n  50 |       test.info().annotations.push({ type: 'user menu role', description: role });\n  51 |       expect(role, 'user menu shows a role').not.toBe('');\n> 52 |       expect.soft(role, 'role is shown by name, no",
+          "traceUrl": "reports/39807683322/index.html#?testId=fa6a0f0bd48736a88606-1bf2b05d27248c510705",
+          "knownDefect": "TC-US26-02: Role shown as \"Role 4 a\" instead of a role name",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "user menu role",
+              "description": "Role 4."
+            }
+          ]
+        },
+        {
+          "id": "fa6a0f0bd48736a88606-a028d394105edb22bd6a",
+          "name": "TC-US26-03 Header link back to Rethink BH; the session survives an idle gap",
+          "file": "stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "line": 72,
+          "status": "passed",
+          "durationMs": 127235,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "BH link",
+              "description": "https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Main"
+            }
+          ]
+        },
+        {
+          "id": "fa6a0f0bd48736a88606-1d55d0bcfeb89eb0d7f4",
+          "name": "TC-US26-04 Launch from the BH dashboard tile — manual: no BH tile hand-off on dev2 (NGC-66)",
+          "file": "stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "line": 94,
+          "status": "skipped",
+          "durationMs": 0,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "fa6a0f0bd48736a88606-4901fbef925a8db0da82",
+          "name": "TC-US26-05 No forced sign-out over a 90-minute session with idle gaps — manual long-running check",
+          "file": "stories/07-platform/us-26-bh-tile-entry.spec.ts",
+          "line": 95,
+          "status": "skipped",
+          "durationMs": 0,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-27",
+      "title": "Review a program's combined trend chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/08-program-analysis/US-27-combined-trend-chart.md",
+      "tests": [
+        {
+          "id": "7a2977fef21e777d5b3f-5333247507fb67f354e2",
+          "name": "TC-US27-01 A finalized session appears on the combined chart as a new point dated today",
+          "file": "stories/08-program-analysis/us-27-combined-trend-chart.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 27878,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "chart before",
+              "description": "Chart. Highcharts interactive chart. ChartCombination chart with 3 data series.Combined trend for 1 targets across 1 measure: % correctThe chart has 1 X axis displaying Session. Data ranges from 0.5 to 12.5.The chart has 1 Y axis displaying % correct. Data ranges from 50 to 100.Created with Highchar"
+            },
+            {
+              "type": "goal line",
+              "description": "plot lines: 2; description: Chart. Highcharts interactive chart. ChartCombination chart with 3 data series.Combined trend for 1 targets across 1 measure: % correctThe chart has 1 X axis displaying Session. Data ranges from 0.5 to 12.5.The chart has 1 Y axis displaying % correct. Data ranges from 50 "
+            }
+          ]
+        },
+        {
+          "id": "7a2977fef21e777d5b3f-ade8b95c4332017e40a9",
+          "name": "TC-US27-02 Date-range filter changes the sessions shown",
+          "file": "stories/08-program-analysis/us-27-combined-trend-chart.spec.ts",
+          "line": 49,
+          "status": "passed",
+          "durationMs": 14013,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "range options",
+              "description": "[\"Last 12 sessions\",\"All sessions\",\"Custom sessions\"]"
+            },
+            {
+              "type": "points",
+              "description": "Last 12 sessions: 12; All sessions: 30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-28",
+      "title": "Review each target on its own chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 0,
+        "flaky": 0,
+        "skipped": 1,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/08-program-analysis/US-28-per-target-charts.md",
+      "tests": [
+        {
+          "id": "311e583944df5d9a44e5-199985f6dae8d25cc8e2",
+          "name": "TC-US28-01 Each target gets its own chart with its session data; a phase change shows on that chart (NGC-61)",
+          "file": "stories/08-program-analysis/us-28-per-target-charts.spec.ts",
+          "line": 4,
+          "status": "skipped",
+          "durationMs": 41917,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": "dev3 environment outage: The program was saved, but these targets were not added: Stand up. You can add them from Manage Targets.",
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-29",
+      "title": "Add trend lines to a program's chart",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/08-program-analysis/US-29-trend-lines.md",
+      "tests": [
+        {
+          "id": "428a04e83c1dbb1582ed-921ab7d0a0e26b1ca859",
+          "name": "TC-US29-01 Trend line is added to a chart with 3+ points and removed again",
+          "file": "stories/08-program-analysis/us-29-trend-lines.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 11448,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        },
+        {
+          "id": "428a04e83c1dbb1582ed-017e1f4868f18b086b76",
+          "name": "TC-US29-02 With fewer than 3 points the trend control explains why no line is drawn (NGC-85)",
+          "file": "stories/08-program-analysis/us-29-trend-lines.spec.ts",
+          "line": 34,
+          "status": "passed",
+          "durationMs": 23621,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "trend hint",
+              "description": "toggle enabled: true; hint: \"A trend line needs at least 3 data points.\""
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221618-u2lx Opportunity Based Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-30",
+      "title": "Annotate a program's chart with clinical events",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 1,
+      "doc": "test-cases/08-program-analysis/US-30-annotations.md",
+      "tests": [
+        {
+          "id": "ead318ab1a3b847fa4cd-9559e24998caed4b7e8a",
+          "name": "TC-US30-01 Add a dated Medication Change annotation; it is listed on the rail and on the chart, then removed",
+          "file": "stories/08-program-analysis/us-30-annotations.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 20066,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "chart after annotation",
+              "description": "plot lines 3; Chart. Highcharts interactive chart. ChartCombination chart with 3 data series.Combined trend for 1 targets across 1 measure: % correctThe chart has 1 X axis displaying Session. Data ranges from 0.5 to 12.5.The chart has 1 Y axis displaying % correct. Data ranges from 50 to 100.Created"
+            }
+          ]
+        },
+        {
+          "id": "ead318ab1a3b847fa4cd-6614aae380fff37d56d8",
+          "name": "TC-US30-02 Annotation dialog: types offered, start date required, Cancel adds nothing",
+          "file": "stories/08-program-analysis/us-30-annotations.spec.ts",
+          "line": 43,
+          "status": "passed",
+          "durationMs": 12255,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "annotation types",
+              "description": "[\"Medication Change\",\"Prompt Fade\",\"Target Introduced\",\"Absence Gap\",\"Staff Change\",\"Criteria Change\",\"Note\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-31",
+      "title": "Review and correct recorded observations",
+      "epic": "08 Program analysis",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/08-program-analysis/US-31-observations.md",
+      "tests": [
+        {
+          "id": "2d3627a58a0fa5dcd975-1657646b172798be7026",
+          "name": "TC-US31-01 A finalized session is listed in the Observations grid with staff and setting; correcting it updates the grid and chart",
+          "file": "stories/08-program-analysis/us-31-observations.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 45979,
+          "attempts": 1,
+          "error": "Error: Setting / location filled in (NGC-44)\n\nexpect(received).toMatch(expected)\n\nExpected pattern: /\\w/\nReceived string:  \"—\"\n\n  33 |       const setting = await programData.observationColumn('Setting');\n  34 |       expect.soft(staff[0] ?? '', 'Staff filled in (NGC-44)').toMatch(/\\w/);\n> 35 |       expect.soft(setting[0] ?? '', 'Setting / location filled in (NGC-44)').toMa (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=2d3627a58a0fa5dcd975-1657646b172798be7026",
+          "knownDefect": "TC-US31-01: NGC-44: Observations grid Setting is \"—\" and the AG Grid trial watermark shows",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "observation row",
+              "description": "Oct 22, 2026Snack itemsBaseline (assumed)50%2 (1 / 1)—*** ***Original"
+            },
+            {
+              "type": "correction dialog",
+              "description": "Correct Data Point TARGET Snack items SESSION S1 CURRENT VALUE 50% PHASE Baseline (assumed) COMPUTED PREVIEW 50% (1 correct, 1 incorrect, 0 N/A) Trial Data # Result Prompt Latency 1 Correct — — 2 Incorrect — — Correction History 0 recorded No data corrections have been recorded. Correction reason Ca"
+            },
+            {
+              "type": "chart after correction",
+              "description": "g % correct. Data ranges from 50 to 100.Created with Highcharts 12.6.0Session% correctInterventionBaselineGoal 80%Goal 80%GoalGoalSnack itemsGoalS20 Oct 22S21 Oct 22S22 Oct 22S23 Oct 22S24 Oct 22S25 Oct 22S26 Oct 22S27 Oct 22S28 Oct 22S29 Oct 22S30 Oct 22S31 Oct 220255075100End of interactive chart."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-32",
+      "title": "Change a target's phase and see its history",
+      "epic": "09 Clinical decisioning",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/09-clinical-decisioning/US-32-phase-change.md",
+      "tests": [
+        {
+          "id": "fbf1266e9a1cc51c19d2-da998bbbc87cc9355ca2",
+          "name": "TC-US32-01 Move a target from Baseline to Intervention and then Maintenance with reasons; history and the program-level phase follow",
+          "file": "stories/09-clinical-decisioning/us-32-phase-change.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 30732,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "initial history",
+              "description": "HISTORY Status: Not Started MANUAL Oct 22, 2026, 4:28 PM *** ***"
+            },
+            {
+              "type": "phase history",
+              "description": "[\"Maintenance MANUAL Oct 22, 2026 *** *** E2E: criteria met, move to maintenance\",\"Intervention MANUAL Oct 22, 2026 *** *** E2E: baseline stable over 3 sessions\",\"Status: Not Started MANUAL Oct 22, 2026, 4:28 PM *** ***\"]"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221618-jg0t Opportunity Based Program\""
+            }
+          ]
+        },
+        {
+          "id": "fbf1266e9a1cc51c19d2-b6390ab16245b8cc5707",
+          "name": "TC-US32-02 Close baseline moves a target out of Baseline",
+          "file": "stories/09-clinical-decisioning/us-32-phase-change.spec.ts",
+          "line": 64,
+          "status": "passed",
+          "durationMs": 23275,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "close baseline",
+              "description": "opens the phase dialog"
+            },
+            {
+              "type": "phase after close baseline",
+              "description": "Intervention"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221618-qnjc Opportunity Based Program\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-33",
+      "title": "Review and confirm automatic mastery determinations",
+      "epic": "09 Clinical decisioning",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/09-clinical-decisioning/US-33-mastery-determination.md",
+      "tests": [
+        {
+          "id": "3ce69c91af42d071a610-c434bd41b10a6e1a740c",
+          "name": "TC-US33-01 Meeting the criteria raises a determination; confirm masters one target and reject keeps the other in progress",
+          "file": "stories/09-clinical-decisioning/us-33-mastery-determination.spec.ts",
+          "line": 7,
+          "status": "passed",
+          "durationMs": 165448,
+          "attempts": 1,
+          "error": "Error: skip baseline starts targets in Intervention\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  - 3\n+ Received  + 3\n\n  Array [\n-   \"Intervention\",\n-   \"Intervention\",\n-   \"Intervention\",\n+   \"Baseline\",\n+   \"Baseline\",\n+   \"Baseline\",\n  ]\n\n  36 |       const phases = await Promise.all(TARGETS.map((t) => targets.phaseOf(t)));\n  37 |       test.info().ann (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=3ce69c91af42d071a610-c434bd41b10a6e1a740c",
+          "knownDefect": "TC-US33-01: Skip baseline leaves targets in Baseline; no mastery determination raised",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "created program",
+              "description": "E2E-2610221618-xlky Mastery Program -> https://clinical.dev3.rethinkbhtech.com/clients/394036/programs/1843365"
+            },
+            {
+              "type": "phases after skipping baseline",
+              "description": "[\"Baseline\",\"Baseline\",\"Baseline\"]"
+            },
+            {
+              "type": "no determination raised",
+              "description": "https://clinical.dev3.rethinkbhtech.com/clients/394036/programs/1842025 | settings: Data Settings Collection preferences, mastery rules, and maintenance behavior. Manage Data Collection Opportunity Based No optional dimensions No mastery criteria configured. Use the Data Collection editor to set the"
+            },
+            {
+              "type": "cleanup",
+              "description": "deleted leftover program \"E2E-2610221618-xlky Mastery Program\""
+            }
+          ]
+        },
+        {
+          "id": "3ce69c91af42d071a610-07648a729c570eb6e658",
+          "name": "TC-US33-02 Program without pending determinations shows the empty review state",
+          "file": "stories/09-clinical-decisioning/us-33-mastery-determination.spec.ts",
+          "line": 109,
+          "status": "passed",
+          "durationMs": 6729,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-34",
+      "title": "Review mastered targets across a client's plan",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-34-mastered-targets.md",
+      "tests": [
+        {
+          "id": "4b76988979386fcbbb2d-e9f3ac14dcd5b163dcbc",
+          "name": "TC-US34-01 Mastered targets report: tiles add up, chart and grouping, any date range",
+          "file": "stories/10-client-funder-reporting/us-34-mastered-targets.spec.ts",
+          "line": 10,
+          "status": "passed",
+          "durationMs": 8109,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "tiles (90)",
+              "description": "mastered 0, in scope 20, remaining 20"
+            },
+            {
+              "type": "tiles (all)",
+              "description": "mastered 2, in scope 20, remaining 18"
+            },
+            {
+              "type": "grouping options",
+              "description": "[\"Domain\",\"Status\"]"
+            }
+          ]
+        },
+        {
+          "id": "4b76988979386fcbbb2d-4070591827a13afb6b8b",
+          "name": "TC-US34-02 A saved report stays available after reload and in a new browser session",
+          "file": "stories/10-client-funder-reporting/us-34-mastered-targets.spec.ts",
+          "line": 43,
+          "status": "passed",
+          "durationMs": 12326,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "saved reports in a fresh session",
+              "description": "E2E-2610221618-14fv Mastered report Saved by *** *** · Oct 22, 2026 Delete E2E-2610221320-j9ni Comparison Saved by *** *** · Oct 22, 2026 Delete E2E-2610221320-9nx3 Mastered report Saved by *** *** · Oct 22, 2026 Delete E2E-2610221129-8vrg Comparison Saved by Data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-35",
+      "title": "Build a custom cross-program comparison graph",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-35-custom-comparison-graph.md",
+      "tests": [
+        {
+          "id": "8dba839e1811811859f3-4e51f61c81bdf3438d01",
+          "name": "TC-US35-01 Two programs and a behavior plotted on one time axis; the report can be exported and saved",
+          "file": "stories/10-client-funder-reporting/us-35-custom-comparison-graph.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 15459,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "comparison chart",
+              "description": "Chart. Highcharts interactive chart."
+            },
+            {
+              "type": "series with behaviors",
+              "description": "10 options; behavior offered: true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-36",
+      "title": "Review every program & behavior graph in one report",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-36-bulk-graphs.md",
+      "tests": [
+        {
+          "id": "ea0a438ad2f1ea55df16-82e9f7a2650900617f3c",
+          "name": "TC-US36-01 Bulk Graphs lists every program and behavior, then respects a narrowed selection (NGC-89)",
+          "file": "stories/10-client-funder-reporting/us-36-bulk-graphs.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 8871,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "bulk count",
+              "description": "8 program(s) and 2 behavior(s) in this report"
+            },
+            {
+              "type": "cards after narrowing",
+              "description": "2 of 10: [\"Requesting preferred items\",\"test1\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-37",
+      "title": "Review behavior & replacement-skill trends side by side",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-37-behavior-skill-trends.md",
+      "tests": [
+        {
+          "id": "279436defa66743524e0-e4c20ab3ea48fb7e3666",
+          "name": "TC-US37-01 Behavior counts from a session appear in the plan Data tab beside the linked measures",
+          "file": "stories/10-client-funder-reporting/us-37-behavior-skill-trends.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 42291,
+          "attempts": 1,
+          "error": "Error: co-graph is labelled with the behavior for screen readers\n\nexpect(locator).toHaveAttribute(expected) failed\n\nLocator: getByTestId('paired-co-graph').getByTestId('clinical-chart-canvas')\nExpected pattern: /co-graph for .*test1/i\nReceived string:  \"Chart. Highcharts interactive chart.\"\nTimeout: 20000ms\n\nCall log:\n  - co-graph is labelled with the behavior for screen rea (+1 more failed check)",
+          "traceUrl": "reports/39807683322/index.html#?testId=279436defa66743524e0-e4c20ab3ea48fb7e3666",
+          "knownDefect": "TC-US37-01: Only one linked measure: no replacement skill graphed beside the behavior; co-graph has no accessible name (Oct 20)",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "latest session data row",
+              "description": "Oct 22, 2026 test1 Frequency 2 — Baseline — 192955 —"
+            },
+            {
+              "type": "linked measures / graph options",
+              "description": "1 LINKED MEASURE; [\"Behavior graph\",\"ABC data\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-38",
+      "title": "Review ABC patterns for a behavior plan",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-38-abc-patterns.md",
+      "tests": [
+        {
+          "id": "e3e64ed9304fd0d5d808-5fb15798b7c4c0ec5349",
+          "name": "TC-US38-01 ABC entries recorded in a session show up in the plan ABC breakdown",
+          "file": "stories/10-client-funder-reporting/us-38-abc-patterns.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 24698,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "graph options",
+              "description": "[\"Behavior graph\",\"ABC data\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-39",
+      "title": "Produce a funder-ready graph",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 1,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 3,
+      "manualCases": 1,
+      "doc": "test-cases/10-client-funder-reporting/US-39-funder-graph.md",
+      "tests": [
+        {
+          "id": "4f675275691a9eda4e72-2656183f65d350086982",
+          "name": "TC-US39-01 Funder (payor) graph of a program exports as PNG and PDF with dated x-axis labels and US spelling",
+          "file": "stories/10-client-funder-reporting/us-39-funder-graph.spec.ts",
+          "line": 7,
+          "status": "passed",
+          "durationMs": 22298,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "funder chart",
+              "description": "ChartLine chart with 12 data points.Funder graphView as data table, ChartThe chart has 1 X axis displaying values. Data ranges from 1 to 12.The chart has 1 Y axis displaying % correct. Data ranges from 50 to 100.Created with Highcharts 12.6.0% correct!*!Billy!*! !*!Billerson!*! | Requesting preferre"
+            },
+            {
+              "type": "Export PNG",
+              "description": "394036_PayorGraph-program-1843273_2026-10-22.png"
+            },
+            {
+              "type": "Export PDF",
+              "description": "394036_PayorGraph-program-1843273_2026-10-22.pdf"
+            }
+          ]
+        },
+        {
+          "id": "4f675275691a9eda4e72-a0abf7b3057e773acd47",
+          "name": "TC-US39-02 Funder report opens in the editor with required fields marked",
+          "file": "stories/10-client-funder-reporting/us-39-funder-graph.spec.ts",
+          "line": 42,
+          "status": "skipped",
+          "durationMs": 20406,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": "dev3 test data: the seeded client has no funder reports",
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "key": "US-40",
+      "title": "Reach client-level and program-level analysis",
+      "epic": "10 Client & funder reporting",
+      "priority": "P2",
+      "owner": null,
+      "status": "red",
+      "counts": {
+        "passed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 1,
+        "knownDefects": 0
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/10-client-funder-reporting/US-40-analysis-navigation.md",
+      "tests": [
+        {
+          "id": "0acd9be91b741032d027-b823010808c627ff9b62",
+          "name": "TC-US40-01 Move between Analyze Data and a program chart without losing the client; legacy tabs open the same client",
+          "file": "stories/10-client-funder-reporting/us-40-analysis-navigation.spec.ts",
+          "line": 4,
+          "status": "failed",
+          "durationMs": 44398,
+          "attempts": 3,
+          "error": "Error: expect(received).toContain(expected) // indexOf\n\nExpected substring: \"/clients/394036\"\nReceived string:    \"https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Login\"\n\n  32 |       const files = await workspace.openLegacyTab('file-cabinet');\n  33 |       test.info().annotations.push({ type: 'legacy tabs', description: `${info} | ${files}` });\n> 34 |       expect(info).toContain(`/clients",
+          "traceUrl": "reports/39807683322/index.html#?testId=0acd9be91b741032d027-b823010808c627ff9b62",
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "legacy tabs",
+              "description": "https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Login | https://rta-bh-stage-web.azurewebsites.net/Healthcare#/Login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-41",
+      "title": "Reach the clinical settings area",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/11-program-library-admin/US-41-settings-access.md",
+      "tests": [
+        {
+          "id": "e9c4f4d1190fc59960e6-597fcf645cf6d2ba0245",
+          "name": "TC-US41-01 Admin opens Settings from the navigation; every clinical section and the Locations list load",
+          "file": "stories/11-program-library-admin/us-41-settings-access.spec.ts",
+          "line": 6,
+          "status": "passed",
+          "durationMs": 7827,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "locations",
+              "description": "[\"Clinic DEFAULT\",\"Classroom DEFAULT\",\"Home DEFAULT\",\"Community DEFAULT\",\"Bathroom DEFAULT\",\"Playground DEFAULT\",\"Cafeteria DEFAULT\",\"Dummy Therapy Room 001\",\"Dummy Therapy Room 002\",\"Dummy Therapy Room 003\",\"Dummy Therapy Room 004\",\"Dummy Therapy Room 005\",\"Dummy Therapy Room 006\",\"Dummy Therapy Ro"
+            }
+          ]
+        },
+        {
+          "id": "e9c4f4d1190fc59960e6-14a35f87072a59e09524",
+          "name": "TC-US41-02 Settings is not offered in the RBT view",
+          "file": "stories/11-program-library-admin/us-41-settings-access.spec.ts",
+          "line": 30,
+          "status": "passed",
+          "durationMs": 6118,
+          "attempts": 1,
+          "error": "Error: Settings blocked for a non-admin role\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n\n  40 |       const opened = await settings.root.isVisible().catch(() => false);\n  41 |       test.info().annotations.push({ type: 'RBT direct Settings URL', description: `${page.url()} — settings shell visible: ${opened}` });\n> 42 |       expect.soft(opened, 'Setting",
+          "traceUrl": "reports/39807683322/index.html#?testId=e9c4f4d1190fc59960e6-14a35f87072a59e09524",
+          "knownDefect": "TC-US41-02: RBT view can open Settings by URL",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "role",
+              "description": "rbt simulated with the view toggle on the shared login"
+            },
+            {
+              "type": "RBT direct Settings URL",
+              "description": "https://clinical.dev3.rethinkbhtech.com/settings/clinical/program-library — settings shell visible: true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-42",
+      "title": "View the organization's program catalog",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 1,
+      "doc": "test-cases/11-program-library-admin/US-42-program-catalog.md",
+      "tests": [
+        {
+          "id": "3f0fd4bdb613ea1827b7-d600a8a849b5ca9ba4ae",
+          "name": "TC-US42-01 Catalog grid shows program details and row actions without side scrolling",
+          "file": "stories/11-program-library-admin/us-42-program-catalog.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 5298,
+          "attempts": 1,
+          "error": "Error: author column\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\n  10 |       test.info().annotations.push({ type: 'columns', description: JSON.stringify(headers) });\n  11 |       expect(headers).toEqual(expect.arrayContaining(['Program Name', 'Category', 'Domain', 'Area', 'Source', 'Status']));\n> 12 |       expect.soft(headers.so (+3 more failed checks)",
+          "traceUrl": "reports/39807683322/index.html#?testId=3f0fd4bdb613ea1827b7-d600a8a849b5ca9ba4ae",
+          "knownDefect": "TC-US42-01: NGC-68: no Author / Last edited columns; Domain and Area blank on most programs",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "columns",
+              "description": "[\"Program Name\",\"Category\",\"Domain\",\"Area\",\"Source\",\"Status\"]"
+            },
+            {
+              "type": "count",
+              "description": "222 of 222"
+            },
+            {
+              "type": "blank domain / area",
+              "description": "18 / 18 of 18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-43",
+      "title": "Find a program in the catalog",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 1,
+      "doc": "test-cases/11-program-library-admin/US-43-find-program.md",
+      "tests": [
+        {
+          "id": "87c76114cda3821d4c55-469cf85e6750fe57e44e",
+          "name": "TC-US43-01 Search by name, filter by category / domain / area, and clear back to the full catalog",
+          "file": "stories/11-program-library-admin/us-43-find-program.spec.ts",
+          "line": 4,
+          "status": "passed",
+          "durationMs": 16821,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "search results",
+              "description": "19: [\"Completing Activities with a Beginning and End - Older\",\"Completing Activities with a Beginning and End - Older\",\"Completing Activities with a Beginning and End - Older\",\"Completing Activities with a Beginning and End - Older\",\"Completing Activities with a Beginning and End - Older\"]"
+            },
+            {
+              "type": "filters",
+              "description": "domains [\"School Readiness\"]; areas [\"Foundational Math\"]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-44",
+      "title": "Create a new program",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "green",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 0
+      },
+      "testCases": 2,
+      "manualCases": 1,
+      "doc": "test-cases/11-program-library-admin/US-44-create-program.md",
+      "tests": [
+        {
+          "id": "1324f1f18975884f23f3-4c180ab25d908be770f2",
+          "name": "TC-US44-01 Create a program with objectives, targets and a link material and save it as a draft",
+          "file": "stories/11-program-library-admin/us-44-create-program.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 29183,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "required fields",
+              "description": "[\"Category\",\"Domain\",\"Program Name\"]"
+            },
+            {
+              "type": "categories",
+              "description": "[\"Skills\",\"Inclusion\",\"Transition\",\"Advanced Academic\"]; without domains: []"
+            },
+            {
+              "type": "draft row",
+              "description": "{\"title\":\"E2E-2610221635-pkze Library Draft\",\"category\":\"Skills\",\"domain\":\"School Readiness\",\"area\":\"Foundational Math\",\"customDomain\":\"\",\"source\":\"Standard\",\"status\":\"Draft\",\"createdBy\":\"\",\"lastEditedBy\":\"\"}"
+            },
+            {
+              "type": "cleanup",
+              "description": "left as is (actions: Edit, Publish, Duplicate)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-45",
+      "title": "Edit a program without changing it for everyone else",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/11-program-library-admin/US-45-adapt-program.md",
+      "tests": [
+        {
+          "id": "95cc69e2178b07d1ea6a-af2ab1729283192431e0",
+          "name": "TC-US45-01 Editing a standard program adapts a copy; the original stays Standard and unchanged",
+          "file": "stories/11-program-library-admin/us-45-adapt-program.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 5910,
+          "attempts": 1,
+          "error": "Error: standard programs are adapted, not edited in place\n\nexpect(received).not.toBe(expected) // Object.is equality\n\nExpected: not \"\"\n\n  17 |       message = await programLibrary.editOrAdapt(original);\n  18 |       test.info().annotations.push({ type: 'adapt prompt', description: message || '(editor opened directly)' });\n> 19 |       expect(message, 'standard programs are adapted, not edited in p",
+          "traceUrl": "reports/39807683322/index.html#?testId=95cc69e2178b07d1ea6a-af2ab1729283192431e0",
+          "knownDefect": "TC-US45-01: Edit on a standard program edits it in place, no \"adapt a copy\"",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "adapt prompt",
+              "description": "(editor opened directly)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-46",
+      "title": "Publish a draft",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 1,
+      "manualCases": 0,
+      "doc": "test-cases/11-program-library-admin/US-46-publish-draft.md",
+      "tests": [
+        {
+          "id": "0ade7ae79d5a9566d0f2-e1728177dddefc22c0aa",
+          "name": "TC-US46-01 A draft is not offered to clients; publishing asks for confirmation and makes it available in Add Program",
+          "file": "stories/11-program-library-admin/us-46-publish-draft.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 171437,
+          "attempts": 1,
+          "error": "Error: confirmation before publishing\n\nexpect(received).not.toBe(expected) // Object.is equality\n\nExpected: not \"\"\n\n  29 |       const confirmation = await programEditor.publish();\n  30 |       test.info().annotations.push({ type: 'publish confirmation', description: confirmation || '(none)' });\n> 31 |       expect.soft(confirmation, 'confirmation before publishing').not.toBe('');\n     |          ",
+          "traceUrl": "reports/39807683322/index.html#?testId=0ade7ae79d5a9566d0f2-e1728177dddefc22c0aa",
+          "knownDefect": "TC-US46-01: Publish has no confirmation",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "publish confirmation",
+              "description": "(none)"
+            },
+            {
+              "type": "offered in",
+              "description": "[\"System Programs\"]"
+            },
+            {
+              "type": "cleanup",
+              "description": "not listed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "US-47",
+      "title": "Retire and restore a program",
+      "epic": "11 Program library admin",
+      "priority": "P2",
+      "owner": null,
+      "status": "amber",
+      "counts": {
+        "passed": 1,
+        "flaky": 0,
+        "skipped": 1,
+        "failed": 0,
+        "knownDefects": 1
+      },
+      "testCases": 2,
+      "manualCases": 0,
+      "doc": "test-cases/11-program-library-admin/US-47-retire-restore.md",
+      "tests": [
+        {
+          "id": "211a4d96ff9ffc85a935-f1abd29f292f56b71115",
+          "name": "TC-US47-01 Deactivate with confirmation hides the program from clients; Reactivate brings it back",
+          "file": "stories/11-program-library-admin/us-47-retire-restore.spec.ts",
+          "line": 5,
+          "status": "passed",
+          "durationMs": 232690,
+          "attempts": 1,
+          "error": "Error: confirmation before deactivating\n\nexpect(received).not.toBe(expected) // Object.is equality\n\nExpected: not \"\"\n\n  26 |       const message = await programLibrary.toggleActive(input.title, 'Deactivate');\n  27 |       test.info().annotations.push({ type: 'deactivate confirmation', description: message || '(none)' });\n> 28 |       expect.soft(message, 'confirmation before deactivating').not.toB",
+          "traceUrl": "reports/39807683322/index.html#?testId=211a4d96ff9ffc85a935-f1abd29f292f56b71115",
+          "knownDefect": "TC-US47-01: Deactivate has no confirmation",
+          "knownDefectFixed": false,
+          "skipReason": null,
+          "annotations": [
+            {
+              "type": "deactivate confirmation",
+              "description": "(none)"
+            },
+            {
+              "type": "cleanup",
+              "description": "not listed"
+            }
+          ]
+        },
+        {
+          "id": "211a4d96ff9ffc85a935-2f2c7e76ae24571cf5c1",
+          "name": "TC-US47-02 Deactivating a standard program is either confirmed for this organization only or offers \"Adapt a copy\" (NGC-30)",
+          "file": "stories/11-program-library-admin/us-47-retire-restore.spec.ts",
+          "line": 53,
+          "status": "skipped",
+          "durationMs": 6911,
+          "attempts": 1,
+          "error": null,
+          "traceUrl": null,
+          "knownDefect": null,
+          "knownDefectFixed": false,
+          "skipReason": "no active standard program in the catalog",
+          "annotations": []
+        }
+      ]
+    }
+  ]
+}

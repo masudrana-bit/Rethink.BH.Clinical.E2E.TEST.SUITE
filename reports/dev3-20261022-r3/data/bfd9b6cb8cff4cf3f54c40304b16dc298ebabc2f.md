@@ -1,0 +1,216 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: stories\06-closeout\us-23-close-session-summary.spec.ts >> US-23 Close a session and review summary, audit & note >> TC-US23-01 Conclude a scheduled session: summary, audit list, account note template, finalize, appointment completed @rbt
+- Location: tests\stories\06-closeout\us-23-close-session-summary.spec.ts:4:7
+
+# Error details
+
+```
+Error: plan behavior test1 is on the session's behavior support card (loaded on Oct 19; missing on Oct 20, "0 behavior plans")
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+```
+Error: the template picked on the pre-session page is applied to the note
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: "Billable Session Note"
+Received: "No template selected"
+```
+
+```
+Error: finalize wording should not say "removed from this device" (NGC-86)
+
+expect(received).not.toMatch(expected)
+
+Expected pattern: not /removed from this device/i
+Received string:      "Finalize this session? Finalizing locks this summary. Changes after finalization are handled outside this application, and the session will be removed from this device. This cannot be undone. Cancel Finalize and remove"
+```
+
+```
+Error: RBT Home also shows the appointment as finalized
+
+expect(locator).toContainText(expected) failed
+
+Locator: getByTestId('scheduled-sessions-list').locator('[data-testid^="scheduled-sessions-row-"]').and(locator('[data-testid$="-394036"]')).first()
+Expected pattern: /finali[sz]ed|completed/i
+Received string:  "12:00 PM1 hr 30 min !*!Billy!*! !*!Billerson!*! Home ABA / Family home · ABA Therapy7 programs / 18 targets Open "
+Timeout: 15000ms
+
+Call log:
+  - RBT Home also shows the appointment as finalized getByTestId('scheduled-sessions-list').locator('[data-testid^="scheduled-sessions-row-"]').and(locator('[data-testid$="-394036"]')).first() with timeout 15000ms
+  - waiting for getByTestId('scheduled-sessions-list').locator('[data-testid^="scheduled-sessions-row-"]').and(locator('[data-testid$="-394036"]')).first()
+    2 × locator resolved to <p-card pc24="" data-pc-name="card" data-pc-section="root" data-client-id="394036" _ngcontent-ng-c1092846912="" class="scheduled-sessions-list__row p-card p-component" data-testid="scheduled-sessions-row-2026-10-22-scheduled-394036">…</p-card>
+      - unexpected value "12:00 PM1 hr 30 min !*!Billy!*! !*!Billerson!*! Home ABA / Family home · ABA Therapy Open "
+    24 × locator resolved to <p-card pc24="" data-pc-name="card" data-pc-section="root" data-client-id="394036" _ngcontent-ng-c1092846912="" class="scheduled-sessions-list__row p-card p-component" data-testid="scheduled-sessions-row-2026-10-22-scheduled-394036">…</p-card>
+       - unexpected value "12:00 PM1 hr 30 min !*!Billy!*! !*!Billerson!*! Home ABA / Family home · ABA Therapy7 programs / 18 targets Open "
+
+```
+
+```yaml
+- text: 12:00 PM 1 hr 30 min
+- heading "!*!Billy!*! !*!Billerson!*!" [level=3]
+- text: Home ABA / Family home · ABA Therapy 7 programs / 18 targets
+- button "Print a blank data sheet for !*!Billy!*! !*!Billerson!*!"
+- button "Open !*!Billy!*! !*!Billerson!*!'s session": Open
+```
+
+# Test source
+
+```ts
+  39  |         test.info().annotations.push({ type: 'test-data gap', description: `today's appointment cannot be started yet (${why || 'Start Session disabled'}); ran an ad-hoc session and skipped the appointment check` });
+  40  |         scheduled = false;
+  41  |         await page.goto('/rbt');
+  42  |         await flows.startLiveSessionAsRbt({ clientIds: [client], programs: { [client]: [program] }, behaviors: { [client]: [behavior] } });
+  43  |         return;
+  44  |       }
+  45  |       await sessionOpen.expectLoaded();
+  46  |       const templates = (await sessionOpen.noteTemplate.locator('option').allInnerTexts()).map((t) => t.trim()).filter((t) => t && t !== 'None');
+  47  |       expect(templates.length, 'account-level note templates are offered').toBeGreaterThan(0);
+  48  |       chosenTemplate = templates.find((t) => !/test/i.test(t)) ?? templates[0];
+  49  |       const preselected = (await sessionOpen.noteTemplate.locator('option:checked').innerText()).trim();
+  50  |       test.info().annotations.push({ type: 'note templates', description: `offered ${JSON.stringify(templates)}; pre-selected "${preselected}"; chose "${chosenTemplate}"` });
+  51  |       await sessionOpen.chooseNoteTemplate(chosenTemplate);
+  52  |       await sessionOpen.start();
+  53  |       await dataSheet.expectLoaded();
+  54  |     });
+  55  | 
+  56  |     await test.step('Record two trials, a behavior count and an ABC entry', async () => {
+  57  |       await dataSheet.recordOutcome(program, target, 'Correct');
+  58  |       await dataSheet.recordOutcome(program, target, 'Incorrect');
+  59  |       await expect.poll(() => dataSheet.targetScore(program, undefined, target)).toBe('50%');
+  60  |       behaviorOnSheet = await dataSheet.behaviorRow(client, behavior).waitFor({ timeout: 10_000 }).then(() => true, () => false);
+  61  |       expect.soft(behaviorOnSheet, `plan behavior ${behavior} is on the session's behavior support card (loaded on Oct 19; missing on Oct 20, "0 behavior plans")`).toBe(true);
+  62  |       if (behaviorOnSheet) await dataSheet.addBehaviorCount(client, behavior);
+  63  |       await dataSheet.openAbcEntry();
+  64  |       await abc.record({ behavior, context: 'Academics', antecedents: ['Task/command given'], consequences: ['Ignored'], note: 'E2E closeout ABC entry' });
+  65  |     });
+  66  | 
+  67  |     await test.step('Conclude: the summary shows collected data by name', async () => {
+  68  |       await flows.concludeToSummary();
+  69  |       await expect(sessionClose.overallPercent).toHaveText('50%');
+  70  |       await expect.poll(() => sessionClose.scored()).toBe(2);
+  71  |       await expect.soft(page.getByTestId('target-summary-name').filter({ hasText: target }), 'summary names the target, not its id').toBeVisible({ timeout: 15_000 });
+  72  |       if (behaviorOnSheet) await expect.soft(page.getByTestId('session-data-summary-behaviors')).toContainText(new RegExp(`${behavior}\\s*1 time`));
+  73  |       await expect(page.locator('[data-testid^="session-data-summary-abc-"]').filter({ hasText: behavior }).first()).toContainText('Academics');
+  74  |     });
+  75  | 
+  76  |     await test.step('Audit list: each trial, the behavior, the ABC entry (context by name) and the session times', async () => {
+  77  |       const trials = await sessionClose.auditTrialEntries(program);
+  78  |       await expect(trials).toHaveCount(2);
+  79  |       await expect(trials.filter({ hasText: /Outcome: correct/ })).toHaveCount(1);
+  80  |       await expect(trials.filter({ hasText: /Outcome: incorrect/ })).toHaveCount(1);
+  81  |       await expect(sessionClose.auditBehaviorEntries).toHaveCount(behaviorOnSheet ? 1 : 0);
+  82  |       const abcEntry = sessionClose.auditAbcEntries.filter({ hasText: behavior }).first();
+  83  |       await expect(abcEntry).toContainText('Context: Academics');
+  84  |       expect.soft(await abcEntry.innerText(), 'ABC context shown by name, not id').not.toMatch(/Context:\s*\d+\b/);
+  85  |       await expect(sessionClose.auditTimesEntry).toContainText(/Started at: .* Ended at: /);
+  86  |       expect(await sessionClose.corrections()).toBe(0);
+  87  |     });
+  88  | 
+  89  |     await test.step('Session note is drafted from the account template', async () => {
+  90  |       let template = await sessionClose.waitForNoteTemplate();
+  91  |       if (chosenTemplate) expect.soft(template, 'the template picked on the pre-session page is applied to the note').toBe(chosenTemplate);
+  92  |       if (/no template selected/i.test(template)) {
+  93  |         const fallback = chosenTemplate || 'Parent Training Session Note';
+  94  |         template = await sessionClose.startNoteWith(fallback, { orAnyReal: true });
+  95  |         test.info().annotations.push({ type: 'workaround', description: `note was not started; picked "${template}" in the note` });
+  96  |       }
+  97  |       expect(template, 'a note template is applied').not.toMatch(/no template selected/i);
+  98  |       expect.soft(template, 'a real account template, not a test template').not.toMatch(/\btest\b/i);
+  99  |       await expect(sessionClose.noteDataRows.filter({ hasText: target }).first()).toContainText('50%');
+  100 |       if ((await sessionClose.requiredNoteFieldLabels()).length) {
+  101 |         await expect(sessionClose.noteSubmitButton).toBeDisabled();
+  102 |         await expect(sessionClose.noteSubmitBlocked).toContainText(/required field/i);
+  103 |       } else {
+  104 |         test.info().annotations.push({ type: 'note template', description: `"${template}" has no required fields` });
+  105 |         // Save draft stays disabled until the note is edited.
+  106 |         await page.getByTestId('session-note-element').locator('textarea, input[type=text]').first().fill('E2E: client engaged and followed the routine.');
+  107 |       }
+  108 |       await sessionClose.completeRequiredNoteFields('E2E: client engaged and followed the routine.');
+  109 |       if (!(await sessionClose.noteSubmitBlocked.isHidden())) {
+  110 |         test.info().annotations.push({ type: 'note still blocked', description: `${await sessionClose.noteSubmitBlocked.innerText()} required: ${JSON.stringify(await sessionClose.requiredNoteFieldLabels())}` });
+  111 |       }
+  112 |       await expect.soft(sessionClose.noteSubmitBlocked, 'every required note field can be completed').toBeHidden();
+  113 |       await sessionClose.saveNoteDraft();
+  114 |       await expect(sessionClose.noteDraftStamp).toContainText(/Draft saved: .* by /);
+  115 |       await flows.evidence('summary-audit-note');
+  116 |     });
+  117 | 
+  118 |     await test.step('Finalize: wording and landing page (NGC-86)', async () => {
+  119 |       await expect(sessionClose.finalizeButton).toBeDisabled();
+  120 |       await expect(page.getByTestId('session-summary-finalize-hint')).toContainText(/confirm the session times/i);
+  121 |       const prompt = await sessionClose.openFinalizePrompt();
+  122 |       test.info().annotations.push({ type: 'finalize prompt', description: prompt });
+  123 |       expect.soft(prompt, 'finalize wording should not say "removed from this device" (NGC-86)').not.toMatch(/removed from this device/i);
+  124 |       await sessionClose.finalizeConfirmButton.click();
+  125 |       await expect(page).not.toHaveURL(/\/summary/, { timeout: 60_000 });
+  126 |     });
+  127 | 
+  128 |     await test.step('The appointment shows completed', async () => {
+  129 |       test.skip(!scheduled, 'ad-hoc session - no appointment to check');
+  130 |       if (!/\/rbt\/sessions/.test(page.url())) await page.goto('/rbt/sessions');
+  131 |       await rbtSessions.expectLoaded();
+  132 |       const row = page.locator(`[data-testid^="scheduled-sessions-row-"][data-testid$="-${client}"]`).first();
+  133 |       await expect(row).toBeVisible();
+  134 |       await expect.soft(row, 'finalized appointment is marked completed').toContainText(/finali[sz]ed|completed/i, { timeout: 15_000 });
+  135 |       await expect.soft(row, 'finalized appointment is no longer "Missed"').not.toContainText(/missed/i);
+  136 |       await page.goto('/rbt');
+  137 |       await rbtHome.expectLoaded();
+  138 |       const homeRow = rbtHome.scheduledRows.and(page.locator(`[data-testid$="-${client}"]`)).first();
+> 139 |       await expect.soft(homeRow, 'RBT Home also shows the appointment as finalized').toContainText(/finali[sz]ed|completed/i, { timeout: 15_000 });
+      |                                                                                      ^ Error: RBT Home also shows the appointment as finalized
+  140 |     });
+  141 |   });
+  142 | 
+  143 |   test('TC-US23-02 Finalize stays locked until the session times are confirmed @rbt', async ({ page, flows, dataSheet, sessionClose, testData }) => {
+  144 |     const client = testData.clients.seeded;
+  145 |     const program = testData.seeded.obProgram;
+  146 |     const target = testData.seeded.obTarget;
+  147 |     await flows.signInAs('rbt');
+  148 |     await flows.startLiveSessionAsRbt({ clientIds: [client], programs: { [client]: [program] } });
+  149 |     await dataSheet.recordOutcome(program, target, 'Correct');
+  150 |     await flows.concludeToSummary();
+  151 |     const hint = page.getByTestId('session-summary-finalize-hint');
+  152 | 
+  153 |     await test.step('Finalize is disabled with a hint until times are confirmed', async () => {
+  154 |       await expect(sessionClose.finalizeButton).toBeDisabled();
+  155 |       await expect(hint).toContainText(/confirm the session times/i);
+  156 |       await expect(sessionClose.netDuration).toHaveText(/\d+\s*[sm]/);
+  157 |       await expect(sessionClose.pausedDuration).toHaveText(/^0\s*m$/);
+  158 |     });
+  159 | 
+  160 |     await test.step('Session-times correction needs a reason before it can be saved', async () => {
+  161 |       await sessionClose.openCorrection(sessionClose.auditTimesEntry);
+  162 |       await expect(page.getByTestId('correction-started-at-input')).toBeVisible();
+  163 |       await expect(page.getByTestId('correction-ended-at-input')).toBeVisible();
+  164 |       await expect(page.getByTestId('correction-form-save-button')).toBeDisabled();
+  165 |       await sessionClose.cancelCorrection();
+  166 |       expect(await sessionClose.corrections()).toBe(0);
+  167 |     });
+  168 | 
+  169 |     await test.step('Confirming enables Finalize; un-confirming locks it again', async () => {
+  170 |       await sessionClose.timesConfirm.click();
+  171 |       await expect(sessionClose.finalizeButton).toBeEnabled();
+  172 |       await sessionClose.timesConfirm.click();
+  173 |       await expect(sessionClose.finalizeButton).toBeDisabled();
+  174 |     });
+  175 | 
+  176 |     await test.step('Confirm and finalize', async () => {
+  177 |       await sessionClose.finalize();
+  178 |     });
+  179 |   });
+  180 | });
+  181 | 
+```
